@@ -24,7 +24,7 @@ const philantrophyList: Philantrophy[] = [
     title: "Digital Literacy Program",
     description:
       "Led initiatives to improve digital literacy among small business owners in Surat, helping them adapt to digital transformation and expand their online presence.",
-  }
+  },
 ];
 
 export default philantrophyList;

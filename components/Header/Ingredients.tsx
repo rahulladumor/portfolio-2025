@@ -14,26 +14,26 @@ const expertiseList: Expertise[] = [
     name: "System_Architect",
     description: "Designing scalable cloud-native architectures",
     color: "text-amber-500",
-    keywords: ["AWS", "Microservices", "Serverless", "Kubernetes"]
+    keywords: ["AWS", "Microservices", "Serverless", "Kubernetes"],
   },
   {
     name: "Tech_Innovator",
     description: "Building next-gen AI & blockchain solutions",
     color: "text-blue-500",
-    keywords: ["AI/ML", "Web3", "Smart Contracts", "Innovation"]
+    keywords: ["AI/ML", "Web3", "Smart Contracts", "Innovation"],
   },
   {
     name: "Full_Stack",
     description: "Crafting end-to-end modern applications",
     color: "text-purple-500",
-    keywords: ["TypeScript", "React", "Node.js", "GraphQL"]
+    keywords: ["TypeScript", "React", "Node.js", "GraphQL"],
   },
   {
     name: "DevOps_Master",
     description: "Optimizing development & deployment pipelines",
     color: "text-green-500",
-    keywords: ["CI/CD", "Docker", "Terraform", "Monitoring"]
-  }
+    keywords: ["CI/CD", "Docker", "Terraform", "Monitoring"],
+  },
 ];
 
 const Ingredients: React.FC = () => {
@@ -42,13 +42,13 @@ const Ingredients: React.FC = () => {
 
   useEffect(() => {
     if (isTypingComplete) {
-      const items = document.querySelectorAll('.expertise-item');
-      items.forEach(item => {
-        item.addEventListener('mouseenter', (e) => {
-          const expertise = (e.target as HTMLElement).getAttribute('data-expertise');
+      const items = document.querySelectorAll(".expertise-item");
+      items.forEach((item) => {
+        item.addEventListener("mouseenter", (e) => {
+          const expertise = (e.target as HTMLElement).getAttribute("data-expertise");
           setHoveredExpertise(expertise);
         });
-        item.addEventListener('mouseleave', () => {
+        item.addEventListener("mouseleave", () => {
           setHoveredExpertise(null);
         });
       });
@@ -63,7 +63,7 @@ const Ingredients: React.FC = () => {
       transition={{ duration: 0.8 }}
     >
       {/* Animated gradient background */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 rounded-xl opacity-75 blur-xl"
         animate={{
           background: [
@@ -82,7 +82,7 @@ const Ingredients: React.FC = () => {
       <div className="relative rounded-xl overflow-hidden backdrop-blur-sm">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-pink-500/5" />
 
-        <motion.div 
+        <motion.div
           className="relative bg-white/90 dark:bg-gray-800/90 p-8 rounded-xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl"
           whileHover={{ scale: 1.005 }}
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -106,7 +106,7 @@ const Ingredients: React.FC = () => {
               options={{
                 delay: 50,
                 cursor: "▋",
-                wrapperClassName: "text-lg md:text-xl font-mono"
+                wrapperClassName: "text-lg md:text-xl font-mono",
               }}
               onInit={(typewriter) => {
                 typewriter
@@ -116,10 +116,14 @@ const Ingredients: React.FC = () => {
                   .typeString("<span class='text-gray-400'>()</span> {<br>")
                   .typeString("&nbsp;&nbsp;<span class='text-blue-500'>return</span> {<br>")
                   .typeString("&nbsp;&nbsp;&nbsp;&nbsp;name: <span class='text-green-500'>'Rahul Ladumor'</span>,<br>")
-                  .typeString("&nbsp;&nbsp;&nbsp;&nbsp;passion: <span class='text-orange-500'>'Building Amazing Tech'</span>,<br>")
+                  .typeString(
+                    "&nbsp;&nbsp;&nbsp;&nbsp;passion: <span class='text-orange-500'>'Building Amazing Tech'</span>,<br>",
+                  )
                   .typeString("&nbsp;&nbsp;&nbsp;&nbsp;expertise: [<br>")
                   .pasteString(
-                    expertiseList.map((exp, index) => `
+                    expertiseList
+                      .map(
+                        (exp, index) => `
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span 
                         class='expertise-item ${exp.color} font-semibold cursor-pointer
                                hover:scale-105 inline-block transition-all duration-300
@@ -127,11 +131,16 @@ const Ingredients: React.FC = () => {
                         data-expertise='${exp.name}'
                       >
                         ${exp.name}
-                      </span>${index < expertiseList.length - 1 ? ',<br>' : '<br>'}
-                    `).join("")
+                      </span>${index < expertiseList.length - 1 ? ",<br>" : "<br>"}
+                    `,
+                      )
+                      .join(""),
+                    null,
                   )
                   .typeString("&nbsp;&nbsp;&nbsp;&nbsp;],<br>")
-                  .typeString("&nbsp;&nbsp;&nbsp;&nbsp;mission: <span class='text-yellow-500'>'Innovate and Scale'</span>,<br>")
+                  .typeString(
+                    "&nbsp;&nbsp;&nbsp;&nbsp;mission: <span class='text-yellow-500'>'Innovate and Scale'</span>,<br>",
+                  )
                   .typeString("&nbsp;&nbsp;};<br>")
                   .typeString("}")
                   .callFunction(() => {
@@ -163,7 +172,7 @@ const Ingredients: React.FC = () => {
                   transition={{ delay: 0.1 }}
                 />
                 {(() => {
-                  const expertise = expertiseList.find(exp => exp.name === hoveredExpertise);
+                  const expertise = expertiseList.find((exp) => exp.name === hoveredExpertise);
                   if (!expertise) return null;
                   return (
                     <>
@@ -193,7 +202,7 @@ const Ingredients: React.FC = () => {
       </div>
 
       {isTypingComplete && (
-        <motion.div 
+        <motion.div
           className="absolute inset-0 pointer-events-none"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

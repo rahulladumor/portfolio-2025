@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
 import { motion } from "framer-motion";
-import { FaSpotify, FaMusic, FaHeadphones, FaExternalLinkAlt } from "react-icons/fa";
+import { FaExternalLinkAlt, FaHeadphones, FaMusic, FaSpotify } from "react-icons/fa";
 import { Section } from "types/Sections";
 import { getSectionHeading, openURLInNewTab } from "utils";
 
@@ -11,28 +11,29 @@ const musicData = [
     title: "My Everyday Playlist",
     subtitle: "A dynamic collection of my daily music roster, featuring the latest and greatest hits across genres.",
     url: "https://open.spotify.com/playlist/58Kg5IirKtASXLYosizqnm",
-    icon: FaSpotify
+    icon: FaSpotify,
   },
   {
     id: 2,
     title: "Music & Personality",
     subtitle: "Studies show that a person's music taste reveals a lot about their personality and preferences.",
-    icon: FaHeadphones
+    icon: FaHeadphones,
   },
   {
     id: 3,
     title: "Curated Collections",
-    subtitle: "Known for my eclectic taste in music, I share carefully curated playlists that tell stories through sound.",
-    icon: FaMusic
-  }
+    subtitle:
+      "Known for my eclectic taste in music, I share carefully curated playlists that tell stories through sound.",
+    icon: FaMusic,
+  },
 ];
 
 const MusicCard: React.FC<{
-  music: typeof musicData[0];
+  music: (typeof musicData)[0];
   index: number;
 }> = ({ music, index }) => {
   const Icon = music.icon;
-  
+
   return (
     <motion.div
       initial={{ opacity: 0, x: -20 }}
@@ -45,21 +46,23 @@ const MusicCard: React.FC<{
     >
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-start gap-4">
-          <div className="p-2 rounded-lg mt-1
+          <div
+            className="p-2 rounded-lg mt-1
                        bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10
-                       border border-gray-200 dark:border-gray-700">
+                       border border-gray-200 dark:border-gray-700"
+          >
             <Icon className="w-5 h-5 text-gray-700 dark:text-gray-300" />
           </div>
-          
+
           <div>
-            <h3 className="font-bold text-gray-900 dark:text-white
+            <h3
+              className="font-bold text-gray-900 dark:text-white
                         group-hover:text-blue-500 dark:group-hover:text-blue-400
-                        transition-colors duration-300">
+                        transition-colors duration-300"
+            >
               {music.title}
             </h3>
-            <p className="mt-1 text-gray-600 dark:text-gray-300">
-              {music.subtitle}
-            </p>
+            <p className="mt-1 text-gray-600 dark:text-gray-300">{music.subtitle}</p>
           </div>
         </div>
 
@@ -89,11 +92,7 @@ const Music = () => (
     <div className="grid gap-6">
       <div className="grid gap-6 lg:grid-cols-3">
         {musicData.map((item, index) => (
-          <MusicCard
-            key={item.id}
-            music={item}
-            index={index}
-          />
+          <MusicCard key={item.id} music={item} index={index} />
         ))}
       </div>
 

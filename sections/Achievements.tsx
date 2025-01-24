@@ -1,11 +1,11 @@
-import { motion } from "framer-motion";
 import achievementList from "data/achievements";
-import { FaTrophy, FaExternalLinkAlt } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { FaExternalLinkAlt, FaTrophy } from "react-icons/fa";
 import { Section } from "types/Sections";
 import { getSectionHeading, openURLInNewTab } from "utils";
 
 const AchievementCard: React.FC<{
-  achievement: typeof achievementList[0];
+  achievement: (typeof achievementList)[0];
   index: number;
 }> = ({ achievement, index }) => {
   return (
@@ -20,21 +20,23 @@ const AchievementCard: React.FC<{
     >
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-start gap-4">
-          <div className="p-2 rounded-lg mt-1
+          <div
+            className="p-2 rounded-lg mt-1
                        bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10
-                       border border-gray-200 dark:border-gray-700">
+                       border border-gray-200 dark:border-gray-700"
+          >
             <FaTrophy className="w-5 h-5 text-gray-700 dark:text-gray-300" />
           </div>
-          
+
           <div>
-            <h3 className="font-bold text-gray-900 dark:text-white
+            <h3
+              className="font-bold text-gray-900 dark:text-white
                         group-hover:text-blue-500 dark:group-hover:text-blue-400
-                        transition-colors duration-300">
+                        transition-colors duration-300"
+            >
               {achievement.title}
             </h3>
-            <p className="mt-1 text-gray-600 dark:text-gray-300">
-              {achievement.subtitle}
-            </p>
+            <p className="mt-1 text-gray-600 dark:text-gray-300">{achievement.subtitle}</p>
           </div>
         </div>
 
@@ -63,11 +65,7 @@ const Achievements = () => (
 
     <div className="grid gap-6">
       {achievementList.map((achievement, index) => (
-        <AchievementCard
-          key={achievement.id}
-          achievement={achievement}
-          index={index}
-        />
+        <AchievementCard key={achievement.id} achievement={achievement} index={index} />
       ))}
     </div>
   </section>

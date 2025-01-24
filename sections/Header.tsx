@@ -1,5 +1,5 @@
-import Ingredients from "components/Header/Ingredients";
 import DeveloperIntro from "components/Header/DeveloperIntro";
+import Ingredients from "components/Header/Ingredients";
 import Profiles from "components/Header/Profiles";
 import NoSSR from "components/NoSSR";
 import useWindowDimensions, { Breakpoints } from "hooks/useWindowDimensions";
@@ -16,7 +16,13 @@ const Header: React.FC = () => {
       </NoSSR>
 
       {/* Logo */}
-      <Image src="/images/rd-logo.png" width={485} height={128} alt="Rahul Ladumor - Founder & CEO of CodeLamda Technologies" priority />
+      <Image
+        src="/images/rd-logo.png"
+        width={485}
+        height={128}
+        alt="Rahul Ladumor - Founder & CEO of CodeLamda Technologies"
+        priority
+      />
 
       {/* Text Version - Enhanced for SEO */}
       <h1 className="sr-only">

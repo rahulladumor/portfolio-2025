@@ -2,16 +2,17 @@ import type { IconType } from "react-icons";
 
 export enum Section {
   "AboutMe" = "about-me",
-  "Achievements" = "achievements",
-  "Blog" = "blog",
-  "Certifications" = "certifications",
-  "Education" = "education",
-  "Languages" = "languages",
-  "Philantrophy" = "philantrophy",
-  "Projects" = "projects",
-  "Skills" = "skills",
   "WorkExperience" = "work-experience",
-  "Contact" = "contact"
+  "Education" = "education",
+  "Skills" = "skills",
+  "Projects" = "projects",
+  "Blog" = "blog",
+  "Languages" = "languages",
+  "Achievements" = "achievements",
+  "Certifications" = "certifications",
+  "Philanthropy" = "philanthropy",
+  "Music" = "music",
+  "Contact" = "contact",
 }
 
 export type SectionMap = Record<Section, { icon: IconType; title: string }>;
@@ -56,6 +57,7 @@ export type Achievement = {
   id: number;
   title: string;
   subtitle: string;
+  url?: string;
 };
 
 export type Certification = {

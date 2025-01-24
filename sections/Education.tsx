@@ -1,7 +1,7 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
-import { FaChevronDown, FaLocationArrow, FaExternalLinkAlt } from "react-icons/fa";
+import { FaChevronDown, FaExternalLinkAlt, FaLocationArrow } from "react-icons/fa";
 import { Section } from "types/Sections";
 import { getSectionHeading, openURLInNewTab } from "utils";
 
@@ -34,7 +34,7 @@ const education: Education[] = [
     degree: "Master of Science",
     study: "Information Technology",
     period: "2015 - 2017",
-    url: "https://alumni.vnsgu.net/NewsDetail.aspx?ID=3"
+    url: "https://alumni.vnsgu.net/NewsDetail.aspx?ID=3",
   },
   {
     id: 2,
@@ -43,8 +43,8 @@ const education: Education[] = [
     degree: "Bachelor of Science",
     study: "Information Technology",
     period: "2012 - 2015",
-    url: "https://alumni.vnsgu.net/NewsDetail.aspx?ID=3"
-  }
+    url: "https://alumni.vnsgu.net/NewsDetail.aspx?ID=3",
+  },
 ];
 
 const EducationCard: React.FC<{ data: Education }> = ({ data }) => {
@@ -74,9 +74,7 @@ const EducationCard: React.FC<{ data: Education }> = ({ data }) => {
             />
           ) : (
             <div className="w-12 h-12 rounded-lg bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-              <span className="text-lg font-bold text-gray-500 dark:text-gray-400">
-                {data.institution.charAt(0)}
-              </span>
+              <span className="text-lg font-bold text-gray-500 dark:text-gray-400">{data.institution.charAt(0)}</span>
             </div>
           )}
         </div>
@@ -88,8 +86,10 @@ const EducationCard: React.FC<{ data: Education }> = ({ data }) => {
                 {data.degree} in {data.study}
               </h3>
               <div className="flex items-center gap-2">
-                <p className="text-base font-medium bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 
-                             bg-clip-text text-transparent">
+                <p
+                  className="text-base font-medium bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 
+                             bg-clip-text text-transparent"
+                >
                   {data.institution}
                 </p>
                 {data.url && (
@@ -104,9 +104,7 @@ const EducationCard: React.FC<{ data: Education }> = ({ data }) => {
                 )}
               </div>
             </div>
-            <div className="text-sm text-gray-600 dark:text-gray-400">
-              {data.period}
-            </div>
+            <div className="text-sm text-gray-600 dark:text-gray-400">{data.period}</div>
           </div>
         </div>
       </div>
@@ -117,16 +115,10 @@ const EducationCard: React.FC<{ data: Education }> = ({ data }) => {
 const EducationSection = () => {
   const [showAll, setShowAll] = useState(false);
 
-  const displayedEducation = showAll
-    ? education
-    : education.slice(0, INITIAL_DISPLAY_COUNT);
+  const displayedEducation = showAll ? education : education.slice(0, INITIAL_DISPLAY_COUNT);
 
   return (
-    <section
-      id={Section.Education}
-      className="space-y-6"
-      aria-label="Education Section"
-    >
+    <section id={Section.Education} className="space-y-6" aria-label="Education Section">
       {getSectionHeading(Section.Education)}
 
       <div className="mt-8 space-y-6">
@@ -147,11 +139,7 @@ const EducationSection = () => {
 
       {/* Show More Button */}
       {!showAll && education.length > INITIAL_DISPLAY_COUNT && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="flex justify-center mt-8"
-        >
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex justify-center mt-8">
           <button
             onClick={() => setShowAll(true)}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-lg
@@ -167,7 +155,7 @@ const EducationSection = () => {
               transition={{
                 duration: 2,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: "easeInOut",
               }}
             >
               <FaChevronDown size={12} />
@@ -178,11 +166,7 @@ const EducationSection = () => {
 
       {/* Show Less Button */}
       {showAll && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="flex justify-center mt-8"
-        >
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex justify-center mt-8">
           <button
             onClick={() => setShowAll(false)}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-lg
@@ -198,7 +182,7 @@ const EducationSection = () => {
               transition={{
                 duration: 2,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: "easeInOut",
               }}
             >
               <FaChevronDown size={12} className="transform rotate-180" />

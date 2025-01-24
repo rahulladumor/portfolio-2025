@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
 import { ThemeContext } from "contexts/ThemeProvider";
 import { sectionsArray } from "data/sections";
 import { AnimatePresence, motion } from "framer-motion";
 import useWindowDimensions, { Breakpoints } from "hooks/useWindowDimensions";
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useContext, useState } from "react";
 import { FaMoon, FaSun } from "react-icons/fa";
@@ -13,7 +13,7 @@ import { animateScroll, scroller } from "react-scroll";
 import { Section } from "types/Sections";
 
 // Dynamically import Tippy with SSR disabled
-const Tippy = dynamic(() => import('@tippyjs/react'), {
+const Tippy = dynamic(() => import("@tippyjs/react"), {
   ssr: false,
 });
 
@@ -90,13 +90,7 @@ const Navigation = () => {
               onClick={animateScroll.scrollToTop}
               className="p-1 flex cursor-pointer"
             >
-              <Image
-                src="/images/rd-icon.png"
-                alt="Rahul Ladumor"
-                width={32}
-                height={32}
-                className="rounded-lg"
-              />
+              <Image src="/images/rd-icon.png" alt="Rahul Ladumor" width={32} height={32} className="rounded-lg" />
             </motion.div>
 
             <div className="flex items-center gap-3">
@@ -144,13 +138,7 @@ const Navigation = () => {
         onClick={animateScroll.scrollToTop}
         className="p-1 flex cursor-pointer"
       >
-        <Image
-          src="/images/rd-icon.png"
-          alt="Rahul Ladumor"
-          width={32}
-          height={32}
-          className="rounded-lg"
-        />
+        <Image src="/images/rd-icon.png" alt="Rahul Ladumor" width={32} height={32} className="rounded-lg" />
       </motion.div>
 
       <div className="flex-1 flex flex-col items-center justify-center gap-6">

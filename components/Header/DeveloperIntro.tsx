@@ -1,12 +1,13 @@
-import { FaAws, FaNodeJs, FaDocker, FaPython } from 'react-icons/fa';
-import { SiTypescript, SiServerless, SiKubernetes, SiMongodb, SiGo, SiTerraform } from 'react-icons/si';
-import { motion, useAnimation } from 'framer-motion';
-import { useEffect, useState, lazy, Suspense } from 'react';
-import { useInView } from 'react-intersection-observer';
-import Typewriter from 'typewriter-effect';
+import { motion, useAnimation } from "framer-motion";
+import { FC } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
+import { FaAws, FaDocker, FaNodeJs, FaPython } from "react-icons/fa";
+import { SiGo, SiKubernetes, SiMongodb, SiServerless, SiTerraform, SiTypescript } from "react-icons/si";
+import { useInView } from "react-intersection-observer";
+import Typewriter from "typewriter-effect";
 
 // Lazy load the tech stack icons
-const TechStackIcon = lazy(() => import('./TechStackIcon'));
+const TechStackIcon = lazy(() => import("./TechStackIcon"));
 
 const DeveloperIntro: React.FC = () => {
   const controls = useAnimation();
@@ -14,20 +15,20 @@ const DeveloperIntro: React.FC = () => {
   const [isHovering, setIsHovering] = useState(false);
   const { ref, inView } = useInView({
     threshold: 0.1,
-    triggerOnce: true
+    triggerOnce: true,
   });
 
   const techStack = [
-    { Icon: FaAws, color: '#FF9900', name: 'AWS Solutions' },
-    { Icon: SiServerless, color: '#FD5750', name: 'Serverless Architecture' },
-    { Icon: FaNodeJs, color: '#339933', name: 'Node.js Enterprise' },
-    { Icon: SiTypescript, color: '#3178C6', name: 'TypeScript Expert' },
-    { Icon: SiGo, color: '#00ADD8', name: 'Golang Development' },
-    { Icon: FaPython, color: '#3776AB', name: 'Python Solutions' },
-    { Icon: SiKubernetes, color: '#326CE5', name: 'Kubernetes Cloud' },
-    { Icon: FaDocker, color: '#2496ED', name: 'Docker Containers' },
-    { Icon: SiTerraform, color: '#7B42BC', name: 'Terraform IaC' },
-    { Icon: SiMongodb, color: '#47A248', name: 'MongoDB Atlas' },
+    { Icon: FaAws, color: "#FF9900", name: "AWS Solutions" },
+    { Icon: SiServerless, color: "#FD5750", name: "Serverless Architecture" },
+    { Icon: FaNodeJs, color: "#339933", name: "Node.js Enterprise" },
+    { Icon: SiTypescript, color: "#3178C6", name: "TypeScript Expert" },
+    { Icon: SiGo, color: "#00ADD8", name: "Golang Development" },
+    { Icon: FaPython, color: "#3776AB", name: "Python Solutions" },
+    { Icon: SiKubernetes, color: "#326CE5", name: "Kubernetes Cloud" },
+    { Icon: FaDocker, color: "#2496ED", name: "Docker Containers" },
+    { Icon: SiTerraform, color: "#7B42BC", name: "Terraform IaC" },
+    { Icon: SiMongodb, color: "#47A248", name: "MongoDB Atlas" },
   ];
 
   useEffect(() => {
@@ -37,8 +38,8 @@ const DeveloperIntro: React.FC = () => {
         transition: {
           duration: 2,
           repeat: Infinity,
-          ease: "easeInOut"
-        }
+          ease: "easeInOut",
+        },
       });
     }
   }, [controls, inView]);
@@ -51,29 +52,26 @@ const DeveloperIntro: React.FC = () => {
   };
 
   return (
-    <div 
+    <div
       ref={ref}
       className="text-center mb-8"
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-      <motion.div
-        animate={controls}
-        className="text-3xl md:text-4xl font-bold mb-4"
-      >
+      <motion.div animate={controls} className="text-3xl md:text-4xl font-bold mb-4">
         <Typewriter
           options={{
             strings: [
-              'Founder & CEO of CodeLamda Technologies',
-              'AWS Solutions Architect Professional',
-              'Full Stack Cloud Architect',
-              'Enterprise Solutions Expert'
+              "Founder & CEO of CodeLamda Technologies",
+              "AWS Solutions Architect Professional",
+              "Full Stack Cloud Architect",
+              "Enterprise Solutions Expert",
             ],
             autoStart: true,
             loop: true,
             delay: 50,
-            deleteSpeed: 30
+            deleteSpeed: 30,
           }}
         />
       </motion.div>

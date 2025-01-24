@@ -1,12 +1,13 @@
-import dynamic from 'next/dynamic';
+import "animate.css";
+
+import SEO from "components/SEO";
+import { sectionSEO } from "data/seo";
 import type { GetServerSideProps, NextPage } from "next";
+import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
 import { Header } from "sections";
 import { getArticles } from "services";
-import type { Article } from "types/Sections";
-import SEO from "components/SEO";
-import { useEffect, useState } from 'react';
-import { sectionSEO } from 'data/seo';
-import { Section } from 'types/Sections';
+import { Article, Section } from "types/Sections";
 
 // Dynamically import components for better performance
 const AboutMe = dynamic(() => import("sections/AboutMe"));
@@ -18,7 +19,7 @@ const Education = dynamic(() => import("sections/Education"));
 const Footer = dynamic(() => import("sections/Footer"));
 const Languages = dynamic(() => import("sections/Languages"));
 const Music = dynamic(() => import("sections/Music"));
-const Philantrophy = dynamic(() => import("sections/Philantrophy"));
+const Philanthropy = dynamic(() => import("sections/Philanthropy"));
 const Projects = dynamic(() => import("sections/Projects"));
 const Skills = dynamic(() => import("sections/Skills"));
 const WorkExperience = dynamic(() => import("sections/WorkExperience"));
@@ -48,7 +49,7 @@ const Home: NextPage<Props> = ({ articles }) => {
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.5 },
     );
 
     // Observe all sections
@@ -62,7 +63,11 @@ const Home: NextPage<Props> = ({ articles }) => {
 
   return (
     <>
-      <SEO {...sectionSEO[activeSection]} section={activeSection} />
+      <SEO
+        title={sectionSEO[activeSection].title}
+        description={sectionSEO[activeSection].description}
+        keywords={sectionSEO[activeSection].keywords.join(", ")}
+      />
 
       <div className="w-5/6 mx-auto md:container grid gap-24">
         <Header />
@@ -76,7 +81,7 @@ const Home: NextPage<Props> = ({ articles }) => {
 
         <Skills />
         <Projects />
-        
+
         {isClient && <Blog articles={articles} />}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -86,7 +91,7 @@ const Home: NextPage<Props> = ({ articles }) => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <Achievements />
-          <Philantrophy />
+          <Philanthropy />
         </div>
 
         <Music />

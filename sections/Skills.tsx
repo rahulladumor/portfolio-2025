@@ -1,60 +1,79 @@
-import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
+import { useState } from "react";
+import { AiOutlineCloudServer } from "react-icons/ai";
+import { FaAws, FaDatabase, FaDocker, FaPython, FaReact, FaStar, FaTools } from "react-icons/fa";
+import {
+  SiAmazondynamodb,
+  SiAmazons3,
+  SiAngular,
+  SiElasticsearch,
+  SiGo,
+  SiGooglecloud,
+  SiGraphql,
+  SiJenkins,
+  SiKubernetes,
+  SiMicrosoftazure,
+  SiMongodb,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiPostgresql,
+  SiPytorch,
+  SiRedis,
+  SiRedux,
+  SiTensorflow,
+  SiTerraform,
+  SiTypescript,
+  SiVuedotjs,
+} from "react-icons/si";
+import { TbApi } from "react-icons/tb";
 import { Section } from "types/Sections";
 import { getSectionHeading } from "utils";
-import { motion, AnimatePresence } from "framer-motion";
-import { FaStar, FaAws, FaPython, FaReact, FaDocker, FaDatabase, FaTools } from "react-icons/fa";
-import { SiTensorflow, SiMicrosoftazure, SiGooglecloud, SiPytorch, SiAmazonsagemaker,
-         SiNodedotjs, SiGo, SiGraphql, SiVuedotjs, SiAngular, SiTypescript, SiNextdotjs, 
-         SiRedux, SiKubernetes, SiJenkins, SiTerraform, SiMongodb, SiPostgresql, 
-         SiAmazondynamodb, SiRedis, SiElasticsearch, SiAmazons3 } from "react-icons/si";
-import { TbApi } from "react-icons/tb";
-import { AiOutlineCloudServer } from "react-icons/ai";
 
 type Technology = {
   name: string;
   proficiency: number; // 1-5
-  icon: React.ComponentType;
+  icon: React.ComponentType<{ className?: string }>;
 };
 
 type Skill = {
   id: number;
-  icon: React.ComponentType;
+  icon: React.ComponentType<{ className?: string }>;
   name: string;
   technologies: Technology[];
   description: string;
 };
 
-const getTechnologyIcon = (name: string): React.ComponentType => {
-  const iconMap: { [key: string]: React.ComponentType } = {
-    'AWS': FaAws,
-    'Azure': SiMicrosoftazure,
-    'GCP': SiGooglecloud,
-    'TensorFlow': SiTensorflow,
-    'PyTorch': SiPytorch,
-    'SageMaker': SiAmazonsagemaker,
-    'Node.js': SiNodedotjs,
-    'Python': FaPython,
-    'Golang': SiGo,
-    'Microservices': AiOutlineCloudServer,
-    'REST APIs': TbApi,
-    'GraphQL': SiGraphql,
-    'React.js': FaReact,
-    'Vue.js': SiVuedotjs,
-    'Angular': SiAngular,
-    'TypeScript': SiTypescript,
-    'Next.js': SiNextdotjs,
-    'Redux': SiRedux,
-    'Docker': FaDocker,
-    'Kubernetes': SiKubernetes,
-    'Jenkins': SiJenkins,
-    'Terraform': SiTerraform,
-    'MongoDB': SiMongodb,
-    'PostgreSQL': SiPostgresql,
-    'DynamoDB': SiAmazondynamodb,
-    'Redis': SiRedis,
-    'Elasticsearch': SiElasticsearch,
-    'S3': SiAmazons3,
+const getTechnologyIcon = (name: string): React.ComponentType<{ className?: string }> => {
+  const iconMap: { [key: string]: React.ComponentType<{ className?: string }> } = {
+    AWS: FaAws,
+    Azure: SiMicrosoftazure,
+    GCP: SiGooglecloud,
+    TensorFlow: SiTensorflow,
+    PyTorch: SiPytorch,
+    SageMaker: FaTools,
+    "Node.js": SiNodedotjs,
+    Python: FaPython,
+    Golang: SiGo,
+    Microservices: AiOutlineCloudServer,
+    "REST APIs": TbApi,
+    GraphQL: SiGraphql,
+    "React.js": FaReact,
+    "Vue.js": SiVuedotjs,
+    Angular: SiAngular,
+    TypeScript: SiTypescript,
+    "Next.js": SiNextdotjs,
+    Redux: SiRedux,
+    Docker: FaDocker,
+    Kubernetes: SiKubernetes,
+    Jenkins: SiJenkins,
+    Terraform: SiTerraform,
+    MongoDB: SiMongodb,
+    PostgreSQL: SiPostgresql,
+    DynamoDB: SiAmazondynamodb,
+    Redis: SiRedis,
+    Elasticsearch: SiElasticsearch,
+    S3: SiAmazons3,
   };
 
   return iconMap[name] || FaTools;
@@ -72,7 +91,7 @@ const skills: Skill[] = [
       { name: "GCP", proficiency: 4, icon: SiGooglecloud },
       { name: "TensorFlow", proficiency: 4, icon: SiTensorflow },
       { name: "PyTorch", proficiency: 4, icon: SiPytorch },
-      { name: "SageMaker", proficiency: 5, icon: SiAmazonsagemaker },
+      { name: "SageMaker", proficiency: 5, icon: FaTools },
     ],
   },
   {
@@ -139,14 +158,15 @@ const SkillCard: React.FC<{
   onClick: () => void;
 }> = ({ skill, isSelected, onClick }) => {
   const Icon = skill.icon;
-  
+
   return (
     <motion.div
       className={`p-6 rounded-xl backdrop-blur-sm cursor-pointer
                 border border-gray-200 dark:border-gray-700
-                ${isSelected 
-                  ? 'bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 border-blue-500/50'
-                  : 'bg-white dark:bg-gray-800/50 hover:border-blue-500/50'
+                ${
+                  isSelected
+                    ? "bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 border-blue-500/50"
+                    : "bg-white dark:bg-gray-800/50 hover:border-blue-500/50"
                 }
                 transition-all duration-300`}
       onClick={onClick}
@@ -159,18 +179,14 @@ const SkillCard: React.FC<{
         </div>
 
         <div className="flex-1">
-          <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-            {skill.name}
-          </h3>
-          <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {skill.description}
-          </p>
+          <h3 className="text-lg font-bold text-gray-900 dark:text-white">{skill.name}</h3>
+          <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{skill.description}</p>
 
           <AnimatePresence>
             {isSelected && (
               <motion.div
                 initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
+                animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
                 className="mt-4 space-y-4"
               >
@@ -182,18 +198,14 @@ const SkillCard: React.FC<{
                         <div className="p-1.5 rounded-md bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10">
                           <TechIcon className="w-4 h-4 text-gray-700 dark:text-gray-300" />
                         </div>
-                        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                          {tech.name}
-                        </span>
+                        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{tech.name}</span>
                       </div>
                       <div className="flex gap-1">
                         {[...Array(5)].map((_, i) => (
                           <FaStar
                             key={i}
                             className={`w-3 h-3 ${
-                              i < tech.proficiency
-                                ? 'text-yellow-400'
-                                : 'text-gray-300 dark:text-gray-600'
+                              i < tech.proficiency ? "text-yellow-400" : "text-gray-300 dark:text-gray-600"
                             }`}
                           />
                         ))}
@@ -216,7 +228,7 @@ const Skills = () => {
   return (
     <section id={Section.Skills} className="py-20 sm:py-32">
       {getSectionHeading(Section.Skills)}
-      
+
       <div className="mt-8 grid gap-6 sm:grid-cols-2">
         {skills.map((skill) => (
           <SkillCard

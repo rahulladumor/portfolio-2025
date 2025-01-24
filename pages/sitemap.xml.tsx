@@ -1,8 +1,9 @@
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps } from "next";
+import { Article } from "types/Sections";
 
-const EXTERNAL_DATA_URL = 'https://rahulladumor.com'; // Replace with your domain
+const EXTERNAL_DATA_URL = "https://rahulladumor.com"; // Replace with your domain
 
-function generateSiteMap(posts: any[]) {
+function generateSiteMap(posts: Article[]) {
   return `<?xml version="1.0" encoding="UTF-8"?>
    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
      <url>
@@ -22,7 +23,7 @@ function generateSiteMap(posts: any[]) {
        </url>
      `;
        })
-       .join('')}
+       .join("")}
    </urlset>
  `;
 }
@@ -33,12 +34,12 @@ function SiteMap() {
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   // Get external data from the file system, API, DB, etc.
-  const posts = []; // Replace with your actual blog posts data
+  const posts: Article[] = []; // Replace with your actual blog posts data
 
   // Generate the XML sitemap with the blog data
   const sitemap = generateSiteMap(posts);
 
-  res.setHeader('Content-Type', 'text/xml');
+  res.setHeader("Content-Type", "text/xml");
   res.write(sitemap);
   res.end();
 

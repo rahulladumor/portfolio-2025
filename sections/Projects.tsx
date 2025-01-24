@@ -1,16 +1,16 @@
-import { useState } from "react";
+import Button from "components/Button";
+import projectsList from "data/projects";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import { FaTags } from "react-icons/fa";
 import { Section } from "types/Sections";
 import { getSectionHeading } from "utils";
-import projectsList from "data/projects";
-import Button from "components/Button";
 
 const INITIAL_DISPLAY_COUNT = 3;
 
-const ProjectCard: React.FC<{ 
-  project: typeof projectsList[0];
+const ProjectCard: React.FC<{
+  project: (typeof projectsList)[0];
   priority?: boolean;
 }> = ({ project, priority = false }) => {
   const [imageError, setImageError] = useState(false);
@@ -41,26 +41,22 @@ const ProjectCard: React.FC<{
           />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-blue-500/10 to-purple-500/10">
-            <div className="text-6xl font-bold text-blue-500/20">
-              {project.name.charAt(0)}
-            </div>
+            <div className="text-6xl font-bold text-blue-500/20">{project.name.charAt(0)}</div>
           </div>
         )}
-        
+
         {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/40 to-transparent opacity-0 
-                      group-hover:opacity-100 transition-all duration-300" />
+        <div
+          className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/40 to-transparent opacity-0 
+                      group-hover:opacity-100 transition-all duration-300"
+        />
       </div>
 
       {/* Project Content */}
       <div className="p-6 space-y-4">
         <div>
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-            {project.name}
-          </h3>
-          <p className="text-gray-600 dark:text-gray-300">
-            {project.summary}
-          </p>
+          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{project.name}</h3>
+          <p className="text-gray-600 dark:text-gray-300">{project.summary}</p>
         </div>
 
         {/* Tags */}
@@ -90,19 +86,12 @@ const Projects = () => {
   return (
     <section id={Section.Projects} className="py-20 sm:py-32">
       {getSectionHeading(Section.Projects)}
-      
+
       <div className="mt-8">
-        <motion.div 
-          layout
-          className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
-        >
+        <motion.div layout className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence>
             {projectsList.slice(0, displayCount).map((project, index) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                priority={index < INITIAL_DISPLAY_COUNT}
-              />
+              <ProjectCard key={project.id} project={project} priority={index < INITIAL_DISPLAY_COUNT} />
             ))}
           </AnimatePresence>
         </motion.div>
@@ -111,7 +100,6 @@ const Projects = () => {
           <div className="mt-12 text-center">
             <Button
               onClick={() => setDisplayCount(projectsList.length)}
-              variant="secondary"
               className="hover:bg-blue-500/10 text-blue-600 dark:text-blue-400
                        transition-colors duration-200 border-0"
             >

@@ -10,50 +10,189 @@ interface SectionSEO {
 export const sectionSEO: Record<Section, SectionSEO> = {
   [Section.AboutMe]: {
     title: "Rahul Ladumor | Senior Full Stack Developer & AWS Solutions Architect",
-    description: "Award-winning Full Stack Developer and AWS Certified Solutions Architect with 7+ years of experience. Specialized in React.js, Node.js, TypeScript, and cloud-native applications. Founder of CodeLamda Technologies.",
-    keywords: ["Full Stack Developer", "AWS Solutions Architect", "React Developer", "Node.js Expert", "TypeScript Developer", "Cloud Solutions Expert", "Software Engineer", "Web Developer", "JavaScript Developer", "Tech Entrepreneur"],
-    type: "profile"
+    description:
+      "Award-winning Full Stack Developer and AWS Certified Solutions Architect with 7+ years of experience. Specialized in React.js, Node.js, TypeScript, and cloud-native applications. Founder of CodeLamda Technologies.",
+    keywords: [
+      "Full Stack Developer",
+      "AWS Solutions Architect",
+      "React Developer",
+      "Node.js Expert",
+      "TypeScript Developer",
+      "Cloud Solutions Expert",
+      "Software Engineer",
+      "Web Developer",
+      "JavaScript Developer",
+      "Tech Entrepreneur",
+    ],
+    type: "profile",
   },
   [Section.WorkExperience]: {
     title: "Professional Experience | Full Stack & Cloud Architecture | Rahul Ladumor",
-    description: "Led high-impact projects at CodeLamda Technologies and ProtectOnce, delivering scalable cloud solutions and enterprise-grade applications. Expertise in AWS, React.js, Node.js, and microservices architecture.",
-    keywords: ["Senior Developer Experience", "AWS Project Experience", "Full Stack Development", "Cloud Architecture Experience", "Tech Leadership", "Software Engineering Career", "React.js Experience", "Node.js Projects", "Enterprise Solutions", "Startup Experience"],
-    type: "experience"
-  },
-  [Section.Skills]: {
-    title: "Technical Skills | Full Stack Development & Cloud Architecture | Rahul Ladumor",
-    description: "Comprehensive expertise in modern web development stack including React.js, Node.js, TypeScript, AWS, and cloud-native technologies. Specialized in building scalable, secure, and performant applications.",
-    keywords: ["React.js", "Node.js", "TypeScript", "AWS Services", "Cloud Computing", "Docker", "Kubernetes", "MongoDB", "PostgreSQL", "REST APIs", "GraphQL", "Microservices", "DevOps", "CI/CD", "System Design"],
-    type: "skills"
-  },
-  [Section.Projects]: {
-    title: "Portfolio & Projects | Full Stack Applications | Rahul Ladumor",
-    description: "Showcase of innovative full-stack applications and cloud solutions. Featured projects demonstrate expertise in React.js, Node.js, AWS, and enterprise-scale architecture.",
-    keywords: ["Web Applications", "Full Stack Projects", "React.js Projects", "Node.js Applications", "AWS Solutions", "Cloud Projects", "Enterprise Applications", "Open Source Projects", "Portfolio Projects", "Technical Case Studies"],
-    type: "portfolio"
-  },
-  [Section.Blog]: {
-    title: "Technical Blog | Web Development & Cloud Architecture | Rahul Ladumor",
-    description: "In-depth articles on full-stack development, cloud architecture, and software engineering best practices. Regular insights on React.js, Node.js, AWS, and modern web development.",
-    keywords: ["Web Development Blog", "Technical Writing", "Software Engineering Blog", "Cloud Computing Articles", "React.js Tutorials", "Node.js Guides", "AWS Tips", "Development Best Practices", "Tech Industry Insights", "Programming Tutorials"],
-    type: "blog"
-  },
-  [Section.Certifications]: {
-    title: "Professional Certifications | AWS & Development | Rahul Ladumor",
-    description: "AWS Certified Solutions Architect Professional, AWS Community Builder, and various technical certifications in web development and cloud computing.",
-    keywords: ["AWS Certification", "Technical Certifications", "Cloud Computing Certificates", "Professional Development", "AWS Community Builder", "Developer Certifications", "IT Certifications", "Cloud Architect Certification", "Software Development Certification", "Professional Achievements"],
-    type: "certifications"
+    description:
+      "Led high-impact projects at CodeLamda Technologies and ProtectOnce, delivering scalable cloud solutions and enterprise-grade applications. Expertise in AWS, React.js, Node.js, and microservices architecture.",
+    keywords: [
+      "Senior Developer Experience",
+      "AWS Project Experience",
+      "Full Stack Development",
+      "Cloud Architecture Experience",
+      "Tech Leadership",
+      "Software Engineering Career",
+      "React.js Experience",
+      "Node.js Projects",
+      "Enterprise Solutions",
+      "Startup Experience",
+    ],
+    type: "experience",
   },
   [Section.Education]: {
     title: "Educational Background | Computer Science | Rahul Ladumor",
-    description: "Computer Science education with focus on software engineering, algorithms, and modern web development technologies. Continuous learner with emphasis on practical application.",
-    keywords: ["Computer Science Degree", "Software Engineering Education", "Technical Education", "Professional Development", "IT Education", "Computer Programming", "Software Development Training", "Technical Training", "Web Development Education", "Continuous Learning"],
-    type: "education"
+    description:
+      "Computer Science education with focus on software engineering, algorithms, and modern web development technologies. Continuous learner with emphasis on practical application.",
+    keywords: [
+      "Computer Science",
+      "Software Engineering",
+      "Technical Education",
+      "Professional Development",
+      "Continuous Learning",
+      "Tech Education",
+      "Engineering Background",
+      "Academic Achievements",
+      "Technical Training",
+      "Skills Development",
+    ],
+    type: "education",
+  },
+  [Section.Skills]: {
+    title: "Technical Skills | Full Stack Development & Cloud Architecture | Rahul Ladumor",
+    description:
+      "Comprehensive expertise in modern web development stack including React.js, Node.js, TypeScript, AWS, and cloud-native technologies. Specialized in building scalable, secure, and performant applications.",
+    keywords: [
+      "React.js",
+      "Node.js",
+      "TypeScript",
+      "AWS Services",
+      "Cloud Computing",
+      "Docker",
+      "Kubernetes",
+      "MongoDB",
+      "PostgreSQL",
+      "REST APIs",
+      "GraphQL",
+      "Microservices",
+      "DevOps",
+      "CI/CD",
+      "System Design",
+    ],
+    type: "skills",
+  },
+  [Section.Projects]: {
+    title: "Portfolio & Projects | Full Stack Applications | Rahul Ladumor",
+    description:
+      "Showcase of innovative full-stack applications and cloud solutions. Featured projects demonstrate expertise in React.js, Node.js, AWS, and enterprise-scale architecture.",
+    keywords: [
+      "Web Applications",
+      "Full Stack Projects",
+      "React.js Projects",
+      "Node.js Applications",
+      "AWS Solutions",
+      "Cloud Projects",
+      "Enterprise Applications",
+      "Open Source Projects",
+    ],
+    type: "projects",
+  },
+  [Section.Blog]: {
+    title: "Tech Blog | Cloud Architecture & Full Stack Development | Rahul Ladumor",
+    description:
+      "Insights and tutorials on cloud architecture, full-stack development, and modern web technologies. Learn about AWS, React.js, Node.js, and best practices in software development.",
+    keywords: [
+      "Tech Blog",
+      "Cloud Architecture",
+      "Full Stack Development",
+      "AWS Tutorials",
+      "React.js Tips",
+      "Node.js Guides",
+      "Software Development",
+      "Web Development",
+      "Tech Articles",
+    ],
+    type: "blog",
+  },
+  [Section.Languages]: {
+    title: "Programming Languages & Technologies | Rahul Ladumor",
+    description:
+      "Proficient in multiple programming languages and technologies including JavaScript, TypeScript, Python, and Go. Experience with modern frameworks and cloud platforms.",
+    keywords: [
+      "Programming Languages",
+      "JavaScript",
+      "TypeScript",
+      "Python",
+      "Go",
+      "Web Technologies",
+      "Cloud Technologies",
+      "Development Tools",
+    ],
+    type: "languages",
+  },
+  [Section.Achievements]: {
+    title: "Professional Achievements & Recognition | Rahul Ladumor",
+    description:
+      "Notable achievements and recognition in software development, cloud architecture, and technical leadership. AWS certifications and industry awards.",
+    keywords: [
+      "Professional Achievements",
+      "AWS Certifications",
+      "Industry Recognition",
+      "Technical Awards",
+      "Professional Accomplishments",
+    ],
+    type: "achievements",
+  },
+  [Section.Certifications]: {
+    title: "AWS & Technical Certifications | Rahul Ladumor",
+    description:
+      "AWS Certified Solutions Architect and other technical certifications. Validated expertise in cloud architecture, security, and enterprise solutions.",
+    keywords: [
+      "AWS Certifications",
+      "Technical Certifications",
+      "Cloud Certifications",
+      "Professional Credentials",
+      "Industry Certifications",
+    ],
+    type: "certifications",
+  },
+  [Section.Philanthropy]: {
+    title: "Tech Community & Open Source Contributions | Rahul Ladumor",
+    description:
+      "Contributing to the tech community through open source projects, mentoring, and knowledge sharing. Making technology accessible and impactful.",
+    keywords: [
+      "Open Source",
+      "Tech Community",
+      "Mentoring",
+      "Knowledge Sharing",
+      "Community Contributions",
+      "Tech Education",
+    ],
+    type: "philanthropy",
+  },
+  [Section.Music]: {
+    title: "Music & Creative Projects | Rahul Ladumor",
+    description:
+      "Exploring the intersection of technology and music. Personal projects and creative endeavors in digital music production.",
+    keywords: ["Music Technology", "Creative Projects", "Digital Music", "Audio Production", "Tech & Music"],
+    type: "music",
   },
   [Section.Contact]: {
-    title: "Contact Rahul Ladumor | Full Stack Developer & AWS Expert",
-    description: "Get in touch for consulting, collaboration, or discussion about full-stack development, cloud architecture, and enterprise solutions. Available for technical leadership roles and project consultation.",
-    keywords: ["Developer Contact", "Technical Consultation", "Project Collaboration", "Software Development Services", "Cloud Architecture Consultation", "Web Development Services", "Technical Advisory", "Professional Network", "Business Inquiry", "Development Partnership"],
-    type: "contact"
-  }
+    title: "Contact Rahul Ladumor | Full Stack Developer & AWS Architect",
+    description:
+      "Get in touch for collaboration opportunities, consulting services, or technical discussions. Connect for cloud solutions and full-stack development projects.",
+    keywords: [
+      "Contact",
+      "Professional Network",
+      "Business Inquiry",
+      "Collaboration",
+      "Consulting",
+      "Project Discussion",
+    ],
+    type: "contact",
+  },
 };

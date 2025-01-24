@@ -25,7 +25,7 @@ const achievementList: Achievement[] = [
     id: 5,
     title: "Technical Publications",
     subtitle: "Published articles on Node.js, JavaScript, and System Architecture",
-  }
+  },
 ];
 
 export default achievementList;

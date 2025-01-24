@@ -7,6 +7,7 @@ const links = {
   email: "mailto:rahul@codelamda.com",
   phone: "tel:+917567611653",
   location: "https://www.google.com/maps/place/Surat,+Gujarat",
+  portfolio: "https://www.codelamda.com",
 };
 
 export default links;

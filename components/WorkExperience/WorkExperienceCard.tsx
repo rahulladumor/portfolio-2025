@@ -1,8 +1,9 @@
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import { FaLocationArrow, FaCalendarAlt, FaExternalLinkAlt } from 'react-icons/fa';
-import { WorkExperience } from 'types/WorkExperience';
-import { openURLInNewTab } from 'utils';
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { FC } from "react";
+import { FaCalendarAlt, FaExternalLinkAlt, FaLocationArrow } from "react-icons/fa";
+import { WorkExperience } from "types/WorkExperience";
+import { openURLInNewTab } from "utils";
 
 interface Props {
   experience: WorkExperience;
@@ -49,22 +50,20 @@ const WorkExperienceCard: React.FC<Props> = ({ experience, index }) => {
               />
             ) : (
               <div className="w-12 h-12 rounded-lg bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                <span className="text-lg font-bold text-gray-500 dark:text-gray-400">
-                  {experience.name.charAt(0)}
-                </span>
+                <span className="text-lg font-bold text-gray-500 dark:text-gray-400">{experience.name.charAt(0)}</span>
               </div>
             )}
           </div>
-          
+
           <div className="flex-1 min-w-0">
             <div className="flex justify-between items-start flex-wrap gap-2">
               <div>
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white truncate">
-                  {experience.position}
-                </h3>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white truncate">{experience.position}</h3>
                 <div className="flex items-center gap-2">
-                  <p className="text-base font-medium bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 
-                               bg-clip-text text-transparent">
+                  <p
+                    className="text-base font-medium bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 
+                               bg-clip-text text-transparent"
+                  >
                     {experience.name}
                   </p>
                   {experience.url && (
@@ -92,15 +91,11 @@ const WorkExperienceCard: React.FC<Props> = ({ experience, index }) => {
               <span>{experience.location}</span>
             </div>
 
-            <p className="mt-4 text-gray-600 dark:text-gray-300 text-sm">
-              {experience.summary}
-            </p>
+            <p className="mt-4 text-gray-600 dark:text-gray-300 text-sm">{experience.summary}</p>
 
             {experience.keyFocus && (
               <div className="mt-4">
-                <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                  Key Focus Areas
-                </h4>
+                <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Key Focus Areas</h4>
                 <div className="flex flex-wrap gap-2">
                   {experience.keyFocus.map((focus, i) => (
                     <span
@@ -117,9 +112,7 @@ const WorkExperienceCard: React.FC<Props> = ({ experience, index }) => {
 
             {experience.technologies && (
               <div className="mt-4">
-                <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                  Technologies Used
-                </h4>
+                <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Technologies Used</h4>
                 <div className="flex flex-wrap gap-2">
                   {experience.technologies.map((tech, i) => (
                     <span

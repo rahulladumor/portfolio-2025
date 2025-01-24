@@ -17,43 +17,43 @@ const profiles: Profile[] = [
     title: "LinkedIn",
     icon: FaLinkedinIn,
     link: links.linkedin,
-    className: "bg-[#0A66C2]"
+    className: "bg-[#0A66C2]",
   },
   {
     title: "GitHub",
     icon: FaGithubAlt,
     link: links.github,
-    className: "bg-[#333333]"
+    className: "bg-[#333333]",
   },
   {
     title: "Medium",
     icon: FaMediumM,
     link: links.medium,
-    className: "bg-[#000000]"
+    className: "bg-[#000000]",
   },
   {
     title: "Dev.to",
     icon: FaDev,
     link: links.dev,
-    className: "bg-[#0A0A0A]"
+    className: "bg-[#0A0A0A]",
   },
   {
     title: "Portfolio",
     icon: FaGlobe,
     link: links.portfolio,
-    className: "bg-[#4B5563]"
-  }
+    className: "bg-[#4B5563]",
+  },
 ];
 
 const Profiles = () => {
   const handleKeyPress = useCallback((event: React.KeyboardEvent, link: string) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      window.open(link, '_blank', 'noopener,noreferrer');
+    if (event.key === "Enter" || event.key === " ") {
+      window.open(link, "_blank", "noopener,noreferrer");
     }
   }, []);
 
   return (
-    <nav 
+    <nav
       className="flex flex-wrap items-center justify-center gap-2"
       role="navigation"
       aria-label="Social Media Profiles"
@@ -66,7 +66,7 @@ const Profiles = () => {
             rel="noopener noreferrer"
             className={clsx(
               "flex h-10 w-10 items-center justify-center rounded-lg text-white transition-transform hover:scale-110 focus:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2",
-              className
+              className,
             )}
             aria-label={`Visit ${title} profile`}
             role="link"

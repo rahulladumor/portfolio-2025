@@ -1,5 +1,5 @@
-import Head from 'next/head';
-import { useRouter } from 'next/router';
+import Head from "next/head";
+import { useRouter } from "next/router";
 
 interface SEOProps {
   title?: string;
@@ -12,11 +12,12 @@ interface SEOProps {
 }
 
 const defaultMeta = {
-  title: 'Rahul Ladumor - Full Stack Developer',
-  description: 'Full Stack Developer with expertise in React, Node.js, and Cloud Technologies. View my portfolio, projects, and professional experience.',
-  keywords: 'Rahul Ladumor, Full Stack Developer, React Developer, Node.js Developer, Web Developer, Software Engineer',
-  ogImage: '/og-image.jpg', // Make sure to add an og-image in your public folder
-  siteUrl: 'https://rahulladumor.com' // Replace with your actual domain
+  title: "Rahul Ladumor - Full Stack Developer",
+  description:
+    "Full Stack Developer with expertise in React, Node.js, and Cloud Technologies. View my portfolio, projects, and professional experience.",
+  keywords: "Rahul Ladumor, Full Stack Developer, React Developer, Node.js Developer, Web Developer, Software Engineer",
+  ogImage: "/og-image.jpg", // Make sure to add an og-image in your public folder
+  siteUrl: "https://rahulladumor.com", // Replace with your actual domain
 };
 
 const SEO: React.FC<SEOProps> = ({
@@ -36,15 +37,12 @@ const SEO: React.FC<SEOProps> = ({
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
-      
+
       {/* Canonical URL */}
       <link rel="canonical" href={canonicalUrl || currentUrl} />
 
       {/* Robots */}
-      <meta 
-        name="robots" 
-        content={`${noindex ? 'noindex' : 'index'}, ${nofollow ? 'nofollow' : 'follow'}`}
-      />
+      <meta name="robots" content={`${noindex ? "noindex" : "index"}, ${nofollow ? "nofollow" : "follow"}`} />
 
       {/* Open Graph */}
       <meta property="og:url" content={currentUrl} />
@@ -62,7 +60,7 @@ const SEO: React.FC<SEOProps> = ({
       {/* Additional SEO-friendly meta tags */}
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
       <meta httpEquiv="x-ua-compatible" content="ie=edge" />
-      
+
       {/* Favicon */}
       <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
       <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />

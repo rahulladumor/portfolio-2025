@@ -11,7 +11,8 @@ import Head from "next/head";
 const SITE_URL = "https://codelamda.com";
 const SITE_NAME = "Rahul Ladumor - Portfolio";
 const SITE_TITLE = "Rahul Ladumor - AWS Expert & Cloud Architect | Founder of CodeLamda";
-const SITE_DESCRIPTION = "AWS Certified Expert & Cloud Architect with 7+ years of experience. Founder & CEO of CodeLamda Technologies, specializing in cloud solutions, AI/ML, and enterprise architecture.";
+const SITE_DESCRIPTION =
+  "AWS Certified Expert & Cloud Architect with 7+ years of experience. Founder & CEO of CodeLamda Technologies, specializing in cloud solutions, AI/ML, and enterprise architecture.";
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
@@ -22,7 +23,10 @@ const App = ({ Component, pageProps }: AppProps) => {
         <meta name="title" content={SITE_TITLE} />
         <meta name="description" content={SITE_DESCRIPTION} />
         <meta name="author" content="Rahul Ladumor" />
-        <meta name="keywords" content="Rahul Ladumor, AWS Expert, Cloud Architect, CodeLamda, Full Stack Developer, AI/ML Solutions, Enterprise Architecture, Node.js, Python, Golang" />
+        <meta
+          name="keywords"
+          content="Rahul Ladumor, AWS Expert, Cloud Architect, CodeLamda, Full Stack Developer, AI/ML Solutions, Enterprise Architecture, Node.js, Python, Golang"
+        />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />

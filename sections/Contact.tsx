@@ -1,13 +1,14 @@
-'use client';
+"use client";
 
 import { useFormspark } from "@formspark/use-formspark";
+import links from "data/links";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { FaPaperPlane, FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from "react-icons/fa";
+import { FaEnvelope, FaGithub, FaLinkedin, FaPaperPlane, FaTwitter } from "react-icons/fa";
+import { FaDev } from "react-icons/fa"; // Add this line
 import { Section } from "types/Sections";
 import { getSectionHeading, openURLInNewTab } from "utils";
-import links from "data/links";
 
 type FormData = {
   name: string;
@@ -21,37 +22,37 @@ const socialLinks = [
     title: "GitHub",
     subtitle: "Check out my open source projects and contributions",
     icon: FaGithub,
-    url: links.github
+    url: links.github,
   },
   {
     id: 2,
     title: "LinkedIn",
     subtitle: "Connect with me professionally and explore my career journey",
     icon: FaLinkedin,
-    url: links.linkedin
+    url: links.linkedin,
   },
   {
     id: 3,
-    title: "Twitter",
-    subtitle: "Follow me for tech insights and development updates",
-    icon: FaTwitter,
-    url: links.twitter
+    title: "Dev.to",
+    subtitle: "Follow my technical articles and development insights",
+    icon: FaDev,
+    url: links.dev,
   },
   {
     id: 4,
     title: "Email",
     subtitle: "Reach out directly via email for collaborations",
     icon: FaEnvelope,
-    url: `mailto:${links.email}`
-  }
+    url: `mailto:${links.email}`,
+  },
 ];
 
 const SocialCard: React.FC<{
-  social: typeof socialLinks[0];
+  social: (typeof socialLinks)[0];
   index: number;
 }> = ({ social, index }) => {
   const Icon = social.icon;
-  
+
   return (
     <motion.div
       initial={{ opacity: 0, x: -20 }}
@@ -64,21 +65,23 @@ const SocialCard: React.FC<{
     >
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-start gap-4">
-          <div className="p-2 rounded-lg mt-1
+          <div
+            className="p-2 rounded-lg mt-1
                        bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10
-                       border border-gray-200 dark:border-gray-700">
+                       border border-gray-200 dark:border-gray-700"
+          >
             <Icon className="w-5 h-5 text-gray-700 dark:text-gray-300" />
           </div>
-          
+
           <div>
-            <h3 className="font-bold text-gray-900 dark:text-white
+            <h3
+              className="font-bold text-gray-900 dark:text-white
                         group-hover:text-blue-500 dark:group-hover:text-blue-400
-                        transition-colors duration-300">
+                        transition-colors duration-300"
+            >
               {social.title}
             </h3>
-            <p className="mt-1 text-gray-600 dark:text-gray-300">
-              {social.subtitle}
-            </p>
+            <p className="mt-1 text-gray-600 dark:text-gray-300">{social.subtitle}</p>
           </div>
         </div>
 
@@ -107,7 +110,7 @@ const Contact = () => {
   } = useForm<FormData>();
 
   const [isSubmitted, setSubmitted] = useState(false);
-  const [submit, submitting] = useFormspark({ formId: "LVr3mgSu" });
+  const [submit, submitting] = useFormspark({ formId: "fughhb2WE" });
 
   const onSubmit = handleSubmit(async (data) => {
     await submit(data);
@@ -121,11 +124,7 @@ const Contact = () => {
       <div className="grid gap-6">
         <div className="grid gap-6 lg:grid-cols-2">
           {socialLinks.map((social, index) => (
-            <SocialCard
-              key={social.id}
-              social={social}
-              index={index}
-            />
+            <SocialCard key={social.id} social={social} index={index} />
           ))}
         </div>
 
@@ -148,43 +147,35 @@ const Contact = () => {
               >
                 <FaPaperPlane className="w-8 h-8 text-blue-500" />
               </motion.div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                Message Sent Successfully!
-              </h3>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Message Sent Successfully!</h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Thank you for reaching out. I'll get back to you as soon as possible.
+                Thank you for reaching out. I&apos;ll get back to you as soon as possible.
               </p>
             </div>
           ) : (
             <form onSubmit={onSubmit} className="grid gap-6">
               <div className="grid gap-6 lg:grid-cols-2">
                 <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Full Name
-                  </label>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Full Name</label>
                   <input
                     type="text"
                     className={`w-full px-4 py-2 rounded-lg bg-gray-50 dark:bg-gray-900
-                            border ${errors.name ? 'border-red-500' : 'border-gray-200 dark:border-gray-700'}
+                            border ${errors.name ? "border-red-500" : "border-gray-200 dark:border-gray-700"}
                             focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500
                             dark:focus:ring-blue-500/20 dark:focus:border-blue-500
                             transition-colors duration-200`}
                     placeholder="Regina Phalange"
                     {...register("name", { required: "Name is required" })}
                   />
-                  {errors.name && (
-                    <p className="text-sm text-red-500">{errors.name.message}</p>
-                  )}
+                  {errors.name && <p className="text-sm text-red-500">{errors.name.message}</p>}
                 </div>
 
                 <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Email Address
-                  </label>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Email Address</label>
                   <input
                     type="email"
                     className={`w-full px-4 py-2 rounded-lg bg-gray-50 dark:bg-gray-900
-                            border ${errors.email ? 'border-red-500' : 'border-gray-200 dark:border-gray-700'}
+                            border ${errors.email ? "border-red-500" : "border-gray-200 dark:border-gray-700"}
                             focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500
                             dark:focus:ring-blue-500/20 dark:focus:border-blue-500
                             transition-colors duration-200`}
@@ -193,24 +184,20 @@ const Contact = () => {
                       required: "Email is required",
                       pattern: {
                         value: /^\S+@\S+\.\S+$/,
-                        message: "Please enter a valid email"
-                      }
+                        message: "Please enter a valid email",
+                      },
                     })}
                   />
-                  {errors.email && (
-                    <p className="text-sm text-red-500">{errors.email.message}</p>
-                  )}
+                  {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Message
-                </label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Message</label>
                 <textarea
                   rows={4}
                   className={`w-full px-4 py-2 rounded-lg bg-gray-50 dark:bg-gray-900
-                          border ${errors.message ? 'border-red-500' : 'border-gray-200 dark:border-gray-700'}
+                          border ${errors.message ? "border-red-500" : "border-gray-200 dark:border-gray-700"}
                           focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500
                           dark:focus:ring-blue-500/20 dark:focus:border-blue-500
                           transition-colors duration-200`}
@@ -219,13 +206,11 @@ const Contact = () => {
                     required: "Message is required",
                     minLength: {
                       value: 10,
-                      message: "Message must be at least 10 characters"
-                    }
+                      message: "Message must be at least 10 characters",
+                    },
                   })}
                 />
-                {errors.message && (
-                  <p className="text-sm text-red-500">{errors.message.message}</p>
-                )}
+                {errors.message && <p className="text-sm text-red-500">{errors.message.message}</p>}
               </div>
 
               <motion.button
@@ -240,7 +225,7 @@ const Contact = () => {
                         flex items-center justify-center gap-2"
               >
                 <FaPaperPlane className="w-4 h-4" />
-                {submitting ? 'Sending...' : 'Send Message'}
+                {submitting ? "Sending..." : "Send Message"}
               </motion.button>
             </form>
           )}

@@ -1,7 +1,7 @@
 import { AiFillSafetyCertificate } from "react-icons/ai";
 import { BiDonateHeart } from "react-icons/bi";
 import { FaAward, FaDev, FaPaintBrush, FaPaperPlane, FaSignLanguage, FaTools } from "react-icons/fa";
-import { MdBook, MdCamera, MdInfo, MdMusicNote, MdPerson, MdSchool, MdWork } from "react-icons/md";
+import { MdBook, MdMusicNote, MdPerson, MdSchool, MdWork } from "react-icons/md";
 import { Section, SectionArray, SectionMap } from "types/Sections";
 
 const sectionsList: SectionMap = {
@@ -41,9 +41,9 @@ const sectionsList: SectionMap = {
     icon: AiFillSafetyCertificate,
     title: "Certifications",
   },
-  [Section.Philantrophy]: {
+  [Section.Philanthropy]: {
     icon: BiDonateHeart,
-    title: "Philantrophy",
+    title: "Philanthropy",
   },
   [Section.Music]: {
     icon: MdMusicNote,
@@ -52,7 +52,7 @@ const sectionsList: SectionMap = {
   [Section.Contact]: {
     icon: FaPaperPlane,
     title: "Contact",
-  }
+  },
 };
 
 export const sectionsArray: SectionArray = Object.entries(sectionsList).map(([id, { icon, title }]) => ({

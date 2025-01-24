@@ -1,12 +1,12 @@
-import { useState } from "react";
-import Image from "next/image";
-import Head from "next/head";
-import { motion, AnimatePresence } from "framer-motion";
-import { FaDev, FaMediumM, FaCalendar, FaHeart, FaTags, FaArrowRight } from "react-icons/fa";
-import { Article, Section } from "types/Sections";
-import { formatDateString, getSectionHeading, openURLInNewTab } from "utils";
 import Button from "components/Button";
 import links from "data/links";
+import { AnimatePresence, motion } from "framer-motion";
+import Head from "next/head";
+import Image from "next/image";
+import { useState } from "react";
+import { FaArrowRight, FaCalendar, FaDev, FaHeart, FaMediumM, FaTags } from "react-icons/fa";
+import { Article, Section } from "types/Sections";
+import { formatDateString, getSectionHeading, openURLInNewTab } from "utils";
 
 const INITIAL_DISPLAY_COUNT = 3;
 
@@ -14,7 +14,7 @@ type Props = {
   articles: Article[];
 };
 
-const BlogCard: React.FC<{ 
+const BlogCard: React.FC<{
   article: Article;
   priority?: boolean;
 }> = ({ article, priority = false }) => {
@@ -43,16 +43,20 @@ const BlogCard: React.FC<{
           className="object-cover transition-transform duration-500
                    group-hover:scale-110 group-hover:blur-sm"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0
-                      group-hover:opacity-100 transition-opacity duration-300" />
+        <div
+          className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0
+                      group-hover:opacity-100 transition-opacity duration-300"
+        />
       </div>
 
       {/* Article Content */}
       <div className="p-6 space-y-4">
         <div className="flex flex-col gap-2">
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white line-clamp-2
+          <h3
+            className="text-xl font-bold text-gray-900 dark:text-white line-clamp-2
                        group-hover:text-blue-500 dark:group-hover:text-blue-400
-                       transition-colors duration-300">
+                       transition-colors duration-300"
+          >
             {article.title}
           </h3>
 
@@ -68,9 +72,7 @@ const BlogCard: React.FC<{
           </div>
         </div>
 
-        <p className="text-gray-600 dark:text-gray-300 line-clamp-3">
-          {article.description}
-        </p>
+        <p className="text-gray-600 dark:text-gray-300 line-clamp-3">{article.description}</p>
 
         {article.tag_list.length > 0 && (
           <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
@@ -121,47 +123,42 @@ const BlogCard: React.FC<{
 const Blog = ({ articles }: Props) => {
   const [showAll, setShowAll] = useState(false);
 
-  const displayedArticles = showAll 
-    ? articles 
-    : articles.slice(0, INITIAL_DISPLAY_COUNT);
+  const displayedArticles = showAll ? articles : articles.slice(0, INITIAL_DISPLAY_COUNT);
 
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    "headline": "Rahul Ladumor's Technical Blog",
-    "author": {
+    headline: "Rahul Ladumor's Technical Blog",
+    author: {
       "@type": "Person",
-      "name": "Rahul Ladumor",
-      "url": "https://codelamda.com"
+      name: "Rahul Ladumor",
+      url: "https://codelamda.com",
     },
-    "blogPost": articles.map(article => ({
+    blogPost: articles.map((article) => ({
       "@type": "BlogPosting",
-      "headline": article.title,
-      "description": article.description,
-      "url": article.url,
-      "image": article.social_image,
-      "datePublished": article.published_at,
-      "author": {
+      headline: article.title,
+      description: article.description,
+      url: article.url,
+      image: article.social_image,
+      datePublished: article.published_at,
+      author: {
         "@type": "Person",
-        "name": "Rahul Ladumor"
-      }
-    }))
+        name: "Rahul Ladumor",
+      },
+    })),
   };
 
   return (
     <>
       <Head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       </Head>
 
       <section id={Section.Blog} className="space-y-8">
         {getSectionHeading(Section.Blog)}
 
         {articles.length === 0 ? (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="flex flex-col items-center justify-center py-12 px-4
@@ -173,16 +170,9 @@ const Blog = ({ articles }: Props) => {
           </motion.div>
         ) : (
           <>
-            <motion.div 
-              layout
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-            >
+            <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {displayedArticles.map((article, index) => (
-                <BlogCard
-                  key={article.id}
-                  article={article}
-                  priority={index < 3}
-                />
+                <BlogCard key={article.id} article={article} priority={index < 3} />
               ))}
             </motion.div>
 
@@ -197,7 +187,7 @@ const Blog = ({ articles }: Props) => {
                   Show More Articles
                 </Button>
               )}
-              <Button 
+              <Button
                 icon={FaDev}
                 onClick={() => openURLInNewTab(links.dev)}
                 className="bg-gradient-to-r from-black/10 via-black/10 to-black/10
@@ -205,7 +195,7 @@ const Blog = ({ articles }: Props) => {
               >
                 Follow on DEV
               </Button>
-              <Button 
+              <Button
                 icon={FaMediumM}
                 onClick={() => openURLInNewTab(links.medium)}
                 className="bg-gradient-to-r from-gray-500/10 via-gray-600/10 to-gray-700/10
