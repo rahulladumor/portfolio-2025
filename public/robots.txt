@@ -1,0 +1,11 @@
+# https://codelamda.com/robots.txt
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://codelamda.com/sitemap.xml
+
+# Prevent crawling of unnecessary paths
+Disallow: /api/
+Disallow: /_next/
