@@ -1,5 +1,5 @@
 const links = {
-  website: "https://codelamda.com",
+  website: "https://www.codelamda.com",
   linkedin: "https://www.linkedin.com/in/rahulladumor",
   dev: "https://dev.to/rahulladumor",
   medium: "https://medium.com/@ladumorrahul",

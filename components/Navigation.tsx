@@ -1,16 +1,16 @@
 'use client';
 
-import dynamic from 'next/dynamic';
-import { FaMoon, FaSun } from "react-icons/fa";
-import { FiMenu, FiX } from "react-icons/fi";
-import { Section } from "types/Sections";
-import Image from "next/image";
 import { ThemeContext } from "contexts/ThemeProvider";
 import { sectionsArray } from "data/sections";
+import { AnimatePresence, motion } from "framer-motion";
 import useWindowDimensions, { Breakpoints } from "hooks/useWindowDimensions";
+import dynamic from 'next/dynamic';
+import Image from "next/image";
 import { useContext, useState } from "react";
+import { FaMoon, FaSun } from "react-icons/fa";
+import { FiMenu, FiX } from "react-icons/fi";
 import { animateScroll, scroller } from "react-scroll";
-import { motion, AnimatePresence } from "framer-motion";
+import { Section } from "types/Sections";
 
 // Dynamically import Tippy with SSR disabled
 const Tippy = dynamic(() => import('@tippyjs/react'), {

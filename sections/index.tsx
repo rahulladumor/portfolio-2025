@@ -13,6 +13,5 @@ export { default as Music } from "./Music";
 export { default as Philantrophy } from "./Philantrophy";
 export { default as Photography } from "./Photography";
 export { default as Projects } from "./Projects";
-export { default as Resume } from "./Resume";
 export { default as Skills } from "./Skills";
 export { default as WorkExperience } from "./WorkExperience";

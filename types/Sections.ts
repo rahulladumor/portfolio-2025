@@ -11,7 +11,6 @@ export enum Section {
   "Projects" = "projects",
   "Skills" = "skills",
   "WorkExperience" = "work-experience",
-  "Resume" = "resume",
   "Contact" = "contact"
 }
 
@@ -63,6 +62,10 @@ export type Certification = {
   id: number;
   title: string;
   subtitle: string;
+  url?: string;
+  isAWS?: boolean;
+  icon?: string;
+  validUntil?: string;
 };
 
 export type Philantrophy = {

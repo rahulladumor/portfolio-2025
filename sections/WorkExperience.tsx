@@ -11,7 +11,7 @@ const INITIAL_DISPLAY_COUNT = 2;
 const workExperiences: WorkExperience[] = [
   {
     id: 1,
-    logo: '/images/work-experience/codelamda.svg',
+    logo: 'https://codelamda.com/images/logo.png',
     name: 'CodeLamda Technologies',
     period: { start: 'Sep 24', end: 'Present' },
     position: 'Founder & CEO',
@@ -24,11 +24,12 @@ const workExperiences: WorkExperience[] = [
       'Technology Innovation',
       'Business Growth'
     ],
-    technologies: ['AWS', 'Azure', 'Python', 'Node.js', 'React', 'TensorFlow']
+    technologies: ['AWS', 'Azure', 'Python', 'Node.js', 'React', 'TensorFlow'],
+    url: 'https://codelamda.com'
   },
   {
     id: 2,
-    logo: '/images/work-experience/prodigybuild.svg',
+    logo: 'https://prodigybuild.com/images/logo.png',
     name: 'ProdigyBuild',
     period: { start: 'Jul 23', end: 'Present' },
     position: 'Lead Engineer',
@@ -41,45 +42,48 @@ const workExperiences: WorkExperience[] = [
       'Team Leadership',
       'Technical Strategy'
     ],
-    technologies: ['AWS', 'Azure', 'Python', 'Node.js', 'React', 'TensorFlow']
+    technologies: ['AWS', 'Azure', 'Python', 'Node.js', 'React', 'TensorFlow'],
+    url: 'https://prodigybuild.com'
   },
   {
     id: 3,
-    logo: '/images/work-experience/protectonce.svg',
+    logo: 'https://protectonce.com/images/logo.png',
     name: 'ProtectOnce',
     period: { start: 'May 22', end: 'Aug 24' },
     position: 'SDE 2',
-    location: 'San Francisco Bay Area',
-    summary: 'Developed a cutting-edge cybersecurity product with single-line code integration for web application security. Built innovative solutions using AWS, Linux System Administration, DevOps, Serverless, Node.js, and JavaScript. Part of the core team that led to successful acquisition by an Israeli company.',
+    location: 'Bangalore, Karnataka, India',
+    summary: 'Led the development of cloud-native security solutions and implemented enterprise-grade authentication systems. Architected and deployed scalable microservices infrastructure.',
     keyFocus: [
-      'Web Application Security',
-      'AWS Services',
-      'DevOps & Serverless',
-      'Node.js Development',
+      'Cloud Security',
+      'Authentication Systems',
+      'Microservices',
+      'DevSecOps',
       'System Architecture'
     ],
-    technologies: ['AWS', 'Linux', 'DevOps', 'Serverless', 'Node.js', 'JavaScript']
+    technologies: ['AWS', 'Node.js', 'Python', 'Docker', 'Kubernetes', 'MongoDB'],
+    url: 'https://protectonce.com'
   },
   {
     id: 4,
-    logo: '/images/work-experience/primelab.svg',
-    name: 'PrimeLab',
-    period: { start: 'Apr 22', end: 'Jun 22' },
-    position: 'Blockchain Developer',
-    location: 'United States',
-    summary: 'Led development of NFTs and Blockchain technologies, managing multiple microservices including wallet services, transaction service, and user service. Developed libraries for DynamoDB and worked with GoLang for building robust protocols.',
+    logo: 'https://appgambit.com/images/logo.png',
+    name: 'AppGambit',
+    period: { start: 'Jan 20', end: 'Jul 20' },
+    position: 'Software Engineer',
+    location: 'Ahmedabad, Gujarat, India',
+    summary: 'Developed and maintained cloud-based applications using serverless architecture. Implemented CI/CD pipelines and automated deployment processes.',
     keyFocus: [
-      'Blockchain Development',
-      'NFT Technologies',
-      'Microservices Architecture',
-      'GoLang',
-      'DynamoDB'
+      'Serverless Development',
+      'Cloud Integration',
+      'DevOps',
+      'API Development',
+      'Performance Optimization'
     ],
-    technologies: ['Blockchain', 'NFT', 'Microservices', 'GoLang', 'DynamoDB']
+    technologies: ['AWS Lambda', 'Node.js', 'React', 'DynamoDB', 'Jenkins'],
+    url: 'https://appgambit.com'
   },
   {
     id: 5,
-    logo: '/images/work-experience/nds.svg',
+    logo: 'https://nds.com/images/logo.png',
     name: 'NDS Global',
     period: { start: 'Aug 21', end: 'May 22' },
     position: 'Senior Software Developer',
@@ -92,11 +96,12 @@ const workExperiences: WorkExperience[] = [
       'Enterprise Systems',
       'Data Analytics'
     ],
-    technologies: ['AWS Lex', 'Azure', 'Chatbot', 'Enterprise Systems', 'Data Analytics']
+    technologies: ['AWS Lex', 'Azure', 'Chatbot', 'Enterprise Systems', 'Data Analytics'],
+    url: 'https://nds.com'
   },
   {
     id: 6,
-    logo: '/images/work-experience/appgambit.svg',
+    logo: 'https://appgambit.com/images/logo.png',
     name: 'AppGambit',
     period: { start: 'Jul 20', end: 'Jul 21' },
     position: 'Full Stack Cloud Developer',
@@ -109,11 +114,12 @@ const workExperiences: WorkExperience[] = [
       'IVR Development',
       'Cloud Infrastructure'
     ],
-    technologies: ['AWS', 'ElasticSearch', 'High-Scale Systems', 'IVR', 'Cloud Infrastructure']
+    technologies: ['AWS', 'ElasticSearch', 'High-Scale Systems', 'IVR', 'Cloud Infrastructure'],
+    url: 'https://appgambit.com'
   },
   {
     id: 7,
-    logo: '/images/work-experience/appgambit.svg',
+    logo: 'https://appgambit.com/images/logo.png',
     name: 'AppGambit',
     period: { start: 'Jan 20', end: 'Jul 20' },
     position: 'Cloud Engineer',
@@ -126,11 +132,12 @@ const workExperiences: WorkExperience[] = [
       'System Design',
       'Cloud Optimization'
     ],
-    technologies: ['Cloud', 'Containerization', 'Performance Monitoring', 'System Design', 'Cloud Optimization']
+    technologies: ['Cloud', 'Containerization', 'Performance Monitoring', 'System Design', 'Cloud Optimization'],
+    url: 'https://appgambit.com'
   },
   {
     id: 8,
-    logo: '/images/work-experience/bynebits.svg',
+    logo: 'https://bynebits.com/images/logo.png',
     name: 'Bynebits',
     period: { start: 'Dec 17', end: 'Jul 19' },
     position: 'Software Developer',
@@ -143,11 +150,12 @@ const workExperiences: WorkExperience[] = [
       'Data Analytics',
       'System Optimization'
     ],
-    technologies: ['Node.js', 'AWS Serverless', 'Database Architecture', 'Data Analytics', 'System Optimization']
+    technologies: ['Node.js', 'AWS Serverless', 'Database Architecture', 'Data Analytics', 'System Optimization'],
+    url: 'https://bynebits.com'
   },
   {
     id: 9,
-    logo: '/images/work-experience/creative.svg',
+    logo: 'https://creativeinfotech.com/images/logo.png',
     name: 'Creative Infotech',
     period: { start: 'Apr 16', end: 'Sep 17' },
     position: 'Full Stack Developer',
@@ -160,7 +168,8 @@ const workExperiences: WorkExperience[] = [
       'Session Management',
       'Performance Tuning'
     ],
-    technologies: ['PHP Codeigniter', 'E-commerce', 'Database Optimization', 'Session Management', 'Performance Tuning']
+    technologies: ['PHP Codeigniter', 'E-commerce', 'Database Optimization', 'Session Management', 'Performance Tuning'],
+    url: 'https://creativeinfotech.com'
   }
 ];
 

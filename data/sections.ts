@@ -1,6 +1,6 @@
 import { AiFillSafetyCertificate } from "react-icons/ai";
 import { BiDonateHeart } from "react-icons/bi";
-import { FaAward, FaDev, FaFilePdf, FaPaintBrush, FaPaperPlane, FaSignLanguage, FaTools } from "react-icons/fa";
+import { FaAward, FaDev, FaPaintBrush, FaPaperPlane, FaSignLanguage, FaTools } from "react-icons/fa";
 import { MdBook, MdCamera, MdInfo, MdMusicNote, MdPerson, MdSchool, MdWork } from "react-icons/md";
 import { Section, SectionArray, SectionMap } from "types/Sections";
 
@@ -48,10 +48,6 @@ const sectionsList: SectionMap = {
   [Section.Music]: {
     icon: MdMusicNote,
     title: "Music",
-  },
-  [Section.Resume]: {
-    icon: FaFilePdf,
-    title: "Resume",
   },
   [Section.Contact]: {
     icon: FaPaperPlane,

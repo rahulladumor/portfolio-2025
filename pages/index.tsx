@@ -20,7 +20,6 @@ const Languages = dynamic(() => import("sections/Languages"));
 const Music = dynamic(() => import("sections/Music"));
 const Philantrophy = dynamic(() => import("sections/Philantrophy"));
 const Projects = dynamic(() => import("sections/Projects"));
-const Resume = dynamic(() => import("sections/Resume"));
 const Skills = dynamic(() => import("sections/Skills"));
 const WorkExperience = dynamic(() => import("sections/WorkExperience"));
 
@@ -91,7 +90,6 @@ const Home: NextPage<Props> = ({ articles }) => {
         </div>
 
         <Music />
-        <Resume />
         <Contact />
         <Footer />
       </div>
