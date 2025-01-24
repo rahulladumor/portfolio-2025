@@ -2,6 +2,7 @@ import "animate.css";
 import "styles/globals.css";
 import "tippy.js/dist/tippy.css";
 
+import { Analytics } from "@vercel/analytics/react";
 import Navigation from "components/Navigation";
 import NoSSR from "components/NoSSR";
 import ThemeProvider from "contexts/ThemeProvider";
@@ -63,6 +64,7 @@ const App = ({ Component, pageProps }: AppProps) => {
           <Navigation />
         </NoSSR>
       </ThemeProvider>
+      <Analytics />
     </>
   );
 };
