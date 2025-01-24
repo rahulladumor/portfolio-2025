@@ -1,13 +1,11 @@
-import Tippy from "@tippyjs/react";
-import clsx from "clsx";
-import Image from "next/image";
 import { useState } from "react";
-import { FaLocationArrow } from "react-icons/fa";
-import { MdMoreHoriz } from "react-icons/md";
+import Image from "next/image";
+import { FaLocationArrow, FaChevronDown } from "react-icons/fa";
 import { Section } from "types/Sections";
 import { getSectionHeading } from "utils";
+import { motion, AnimatePresence } from 'framer-motion';
 
-const DISPLAY_COUNT = 4;
+const INITIAL_DISPLAY_COUNT = 2;
 
 type Education = {
   id: number;
@@ -40,72 +38,145 @@ const education: Education[] = [
   },
 ];
 
-type Props = {
-  data: Education;
-  isFirst: boolean;
-  isLast: boolean;
-};
-
-const Education: React.FC<Props> = ({ data, isFirst, isLast }) => (
-  <div className="flex group">
-    <div
-      className={clsx("ml-1 w-1 flex-shrink-0 bg-neutral-500/25", {
-        "rounded-t": isFirst,
-        "rounded-b": isLast,
-      })}
-    />
-
-    <div className="-ml-2 mt-8 flex-shrink-0 relative w-3 h-3 rounded-full shadow-lg bg-teal-500/80 dark:bg-white/80 group-hover:w-6 transition-[width]" />
-
-    <div className="mt-5 ml-8 grid gap-2 pb-2">
-      <div className="relative w-10 h-10">
-        <Image src={data.logo} width={40} height={40} alt={data.institution} className="object-contain" />
+const EducationCard: React.FC<{ data: Education }> = ({ data }) => (
+  <motion.div 
+    className="p-6 rounded-xl bg-white dark:bg-gray-800/50 backdrop-blur-sm
+              border border-gray-200 dark:border-gray-700 
+              hover:border-blue-500/50 dark:hover:border-blue-500/50
+              transition-all duration-300"
+  >
+    <div className="flex items-start gap-6">
+      <div className="relative w-12 h-12 flex-shrink-0">
+        <Image 
+          src={data.logo} 
+          alt={data.institution}
+          width={48}
+          height={48}
+          className="object-contain rounded-lg"
+        />
       </div>
 
-      <div>
-        <h3>
-          <span className="text-base font-bold">{data.institution}</span>{" "}
-          <span className="text-xs">
-            ({data.period.start} - {data.period.end})
+      <div className="flex-grow space-y-2">
+        <div className="flex justify-between items-start">
+          <h3 className="font-bold text-gray-900 dark:text-white">
+            {data.institution}
+          </h3>
+          <span className="text-sm text-gray-500 dark:text-gray-400">
+            {data.period.start} - {data.period.end}
           </span>
-        </h3>
-        <h4>
+        </div>
+
+        <h4 className="text-gray-700 dark:text-gray-300">
           {data.degree}, {data.study}
         </h4>
-      </div>
 
-      <h5 className="my-1 flex gap-2 items-center text-xs">
-        <FaLocationArrow />
-        <span>{data.location}</span>
-      </h5>
+        <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+          <FaLocationArrow className="flex-shrink-0" />
+          <span>{data.location}</span>
+        </div>
+      </div>
     </div>
-  </div>
+  </motion.div>
 );
 
-const EducationTimeline = () => {
-  const [showMore, setShowMore] = useState(education.length > DISPLAY_COUNT ? false : true);
+const EducationSection = () => {
+  const [showAll, setShowAll] = useState(false);
+
+  const displayedEducation = showAll 
+    ? education 
+    : education.slice(0, INITIAL_DISPLAY_COUNT);
 
   return (
-    <div id={Section.Education}>
+    <section 
+      id={Section.Education}
+      className="space-y-6"
+      aria-label="Education Section"
+    >
       {getSectionHeading(Section.Education)}
 
-      <div className="flex flex-col">
-        {education
-          .filter((_, index) => (showMore ? true : index < DISPLAY_COUNT))
-          .map((data, index) => (
-            <Education key={data.id} data={data} isFirst={index === 0} isLast={index === 1} />
+      {/* Education Cards */}
+      <div className="grid gap-6">
+        <AnimatePresence mode="wait">
+          {displayedEducation.map((edu, index) => (
+            <motion.div
+              key={edu.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <EducationCard data={edu} />
+            </motion.div>
           ))}
+        </AnimatePresence>
       </div>
 
-      {!showMore && (
-        <Tippy content={`Show ${education.length - DISPLAY_COUNT} More`} placement="right">
-          <div className="inline-block ml-8 p-2 cursor-pointer" onClick={() => setShowMore(true)}>
-            <MdMoreHoriz size="24" />
-          </div>
-        </Tippy>
+      {/* Show More Button */}
+      {!showAll && education.length > INITIAL_DISPLAY_COUNT && (
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="flex justify-center mt-8"
+        >
+          <button
+            onClick={() => setShowAll(true)}
+            className="group flex items-center gap-2 px-6 py-3 rounded-xl
+                     bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10
+                     hover:from-blue-500/20 hover:via-purple-500/20 hover:to-pink-500/20
+                     text-gray-700 dark:text-gray-200
+                     border border-gray-200 dark:border-gray-700
+                     transition-all duration-300"
+            aria-label="Show more education"
+          >
+            Show More Education
+            <motion.span
+              animate={{ y: [0, 3, 0] }}
+              transition={{ 
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              <FaChevronDown className="text-gray-500 group-hover:text-gray-700 dark:group-hover:text-gray-300" />
+            </motion.span>
+          </button>
+        </motion.div>
       )}
-    </div>
+
+      {/* Show Less Button */}
+      {showAll && (
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="flex justify-center mt-8"
+        >
+          <button
+            onClick={() => setShowAll(false)}
+            className="group flex items-center gap-2 px-6 py-3 rounded-xl
+                     bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10
+                     hover:from-blue-500/20 hover:via-purple-500/20 hover:to-pink-500/20
+                     text-gray-700 dark:text-gray-200
+                     border border-gray-200 dark:border-gray-700
+                     transition-all duration-300"
+            aria-label="Show less education"
+          >
+            Show Less
+            <motion.span
+              animate={{ y: [0, -3, 0] }}
+              transition={{ 
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              style={{ transform: 'rotate(180deg)' }}
+            >
+              <FaChevronDown className="text-gray-500 group-hover:text-gray-700 dark:group-hover:text-gray-300" />
+            </motion.span>
+          </button>
+        </motion.div>
+      )}
+    </section>
   );
 };
 
-export default EducationTimeline;
+export default EducationSection;

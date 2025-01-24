@@ -1,38 +1,40 @@
 'use client';
 
 import { motion } from "framer-motion";
-import { FaSpotify, FaMusic, FaHeadphones, FaExternalLinkAlt } from "react-icons/fa";
+import { FaHandHoldingHeart, FaExternalLinkAlt } from "react-icons/fa";
 import { Section } from "types/Sections";
 import { getSectionHeading, openURLInNewTab } from "utils";
 
-const musicData = [
+const philanthropyData = [
   {
     id: 1,
-    title: "My Everyday Playlist",
-    subtitle: "A dynamic collection of my daily music roster, featuring the latest and greatest hits across genres.",
-    url: "https://open.spotify.com/playlist/58Kg5IirKtASXLYosizqnm",
-    icon: FaSpotify
+    title: "Tech Education Impact",
+    subtitle: "Conducted 25+ workshops reaching 500+ students, dedicating 200+ hours to teaching web development and programming fundamentals.",
+    url: "https://www.adplist.org/mentors/amruth-pillai"
   },
   {
     id: 2,
-    title: "Music & Personality",
-    subtitle: "Studies show that a person's music taste reveals a lot about their personality and preferences.",
-    icon: FaHeadphones
+    title: "Open Source Contributions",
+    subtitle: "Created and maintained 20+ open source projects, with 100+ merged PRs and 1.5k+ stars from the global developer community.",
+    url: "https://github.com/AmruthPillai"
   },
   {
     id: 3,
-    title: "Curated Collections",
-    subtitle: "Known for my eclectic taste in music, I share carefully curated playlists that tell stories through sound.",
-    icon: FaMusic
+    title: "Developer Mentorship",
+    subtitle: "Mentored 50+ developers across 15+ countries through 150+ sessions on ADPList and LinkedIn, focusing on career growth and technical skills.",
+    url: "https://www.linkedin.com/in/amruthpillai"
+  },
+  {
+    id: 4,
+    title: "Tech Community Building",
+    subtitle: "Built a thriving community of 1000+ members, organizing 30+ events and featuring 50+ industry speakers to promote learning and collaboration."
   }
 ];
 
-const MusicCard: React.FC<{
-  music: typeof musicData[0];
+const PhilanthropyCard: React.FC<{
+  philanthropy: typeof philanthropyData[0];
   index: number;
-}> = ({ music, index }) => {
-  const Icon = music.icon;
-  
+}> = ({ philanthropy, index }) => {
   return (
     <motion.div
       initial={{ opacity: 0, x: -20 }}
@@ -48,26 +50,26 @@ const MusicCard: React.FC<{
           <div className="p-2 rounded-lg mt-1
                        bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10
                        border border-gray-200 dark:border-gray-700">
-            <Icon className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+            <FaHandHoldingHeart className="w-5 h-5 text-gray-700 dark:text-gray-300" />
           </div>
           
           <div>
             <h3 className="font-bold text-gray-900 dark:text-white
                         group-hover:text-blue-500 dark:group-hover:text-blue-400
                         transition-colors duration-300">
-              {music.title}
+              {philanthropy.title}
             </h3>
             <p className="mt-1 text-gray-600 dark:text-gray-300">
-              {music.subtitle}
+              {philanthropy.subtitle}
             </p>
           </div>
         </div>
 
-        {music.url && (
+        {philanthropy.url && (
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => openURLInNewTab(music.url!)}
+            onClick={() => openURLInNewTab(philanthropy.url!)}
             className="flex-shrink-0 p-2 rounded-lg
                      bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10
                      border border-gray-200 dark:border-gray-700
@@ -82,41 +84,20 @@ const MusicCard: React.FC<{
   );
 };
 
-const Music = () => (
-  <section id={Section.Music} className="space-y-8">
-    {getSectionHeading(Section.Music)}
+const Philanthropy = () => (
+  <section id={Section.Philanthropy} className="space-y-8">
+    {getSectionHeading(Section.Philanthropy)}
 
     <div className="grid gap-6">
-      <div className="grid gap-6 lg:grid-cols-3">
-        {musicData.map((item, index) => (
-          <MusicCard
-            key={item.id}
-            music={item}
-            index={index}
-          />
-        ))}
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
-        className="bg-white dark:bg-gray-800/50 rounded-xl overflow-hidden
-                border border-gray-200 dark:border-gray-700
-                hover:border-blue-500/50 dark:hover:border-blue-500/50
-                transition-all duration-300"
-      >
-        <iframe
-          src="https://open.spotify.com/embed/playlist/58Kg5IirKtASXLYosizqnm"
-          width="100%"
-          height="352"
-          frameBorder="0"
-          allow="encrypted-media"
-          className="w-full"
+      {philanthropyData.map((item, index) => (
+        <PhilanthropyCard
+          key={item.id}
+          philanthropy={item}
+          index={index}
         />
-      </motion.div>
+      ))}
     </div>
   </section>
 );
 
-export default Music;
+export default Philanthropy;

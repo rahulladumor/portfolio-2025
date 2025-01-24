@@ -1,12 +1,20 @@
 import { FaAws, FaNodeJs, FaDocker, FaPython } from 'react-icons/fa';
 import { SiTypescript, SiServerless, SiKubernetes, SiMongodb, SiGo, SiTerraform } from 'react-icons/si';
 import { motion, useAnimation } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
+import { useInView } from 'react-intersection-observer';
+
+// Lazy load the tech stack icons
+const TechStackIcon = lazy(() => import('./TechStackIcon'));
 
 const DeveloperIntro: React.FC = () => {
   const controls = useAnimation();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const { ref, inView } = useInView({
+    threshold: 0.1,
+    triggerOnce: true
+  });
 
   const techStack = [
     { Icon: FaAws, color: '#FF9900', name: 'AWS' },
@@ -22,15 +30,17 @@ const DeveloperIntro: React.FC = () => {
   ];
 
   useEffect(() => {
-    controls.start({
-      scale: [1, 1.02, 1],
-      transition: {
-        duration: 2,
-        repeat: Infinity,
-        ease: "easeInOut"
-      }
-    });
-  }, [controls]);
+    if (inView) {
+      controls.start({
+        scale: [1, 1.02, 1],
+        transition: {
+          duration: 2,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }
+      });
+    }
+  }, [controls, inView]);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -41,6 +51,7 @@ const DeveloperIntro: React.FC = () => {
 
   return (
     <motion.div 
+      ref={ref}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
@@ -51,9 +62,14 @@ const DeveloperIntro: React.FC = () => {
       style={{
         perspective: '1000px'
       }}
+      role="region"
+      aria-label="Developer Introduction"
     >
       {/* Floating Particles Background */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div 
+        className="absolute inset-0 overflow-hidden"
+        aria-hidden="true"
+      >
         {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
@@ -89,7 +105,7 @@ const DeveloperIntro: React.FC = () => {
           transition: 'transform 0.3s ease-out'
         }}
       >
-        <motion.h2 
+        <motion.h1 
           className="text-5xl font-bold"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -99,115 +115,22 @@ const DeveloperIntro: React.FC = () => {
                          hover:from-orange-500 hover:via-purple-500 hover:to-blue-500 transition-all duration-500">
             Senior Software Engineer
           </span>
-        </motion.h2>
-        <motion.p 
-          className="text-xl text-gray-600 dark:text-gray-300"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-        >
-          AWS Expert & Cloud Architect
-        </motion.p>
-      </motion.div>
+        </motion.h1>
 
-      {/* Tech Stack Icons Grid with Hover Effects */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
-        className="grid grid-cols-5 gap-6 max-w-2xl mx-auto p-4 relative"
-        style={{
-          transform: isHovering
-            ? `rotateX(${(mousePosition.y - 300) / 40}deg) rotateY(${(mousePosition.x - 300) / 40}deg)`
-            : 'none',
-          transition: 'transform 0.3s ease-out'
-        }}
-      >
-        {techStack.map((tech, index) => {
-          const IconComponent = tech.Icon;
-          return (
-            <motion.div
-              key={tech.name}
-              whileHover={{ 
-                scale: 1.2, 
-                rotate: 5,
-                zIndex: 1,
-                boxShadow: '0 0 20px rgba(0,0,0,0.2)'
-              }}
-              whileTap={{ scale: 0.9 }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                type: "spring",
-                delay: 0.1 * index,
-                duration: 0.5
-              }}
-              className="flex flex-col items-center gap-2 group relative"
-              style={{
-                transformStyle: 'preserve-3d'
-              }}
-            >
-              <motion.div
-                whileHover={{ rotateY: 360 }}
-                transition={{ duration: 0.6 }}
-              >
-                <IconComponent 
-                  className="text-3xl transition-all duration-300 ease-in-out
-                           hover:drop-shadow-[0_0_10px_rgba(0,0,0,0.5)]" 
-                  style={{ color: tech.color }}
-                />
-              </motion.div>
-              <span className="text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300
-                           absolute -bottom-4 bg-gray-800 text-white px-2 py-1 rounded-md
-                           transform group-hover:scale-110">
-                {tech.name}
-              </span>
-            </motion.div>
-          );
-        })}
+        {/* Tech Stack */}
+        <div className="flex flex-wrap justify-center gap-4 mt-8">
+          <Suspense fallback={<div className="animate-pulse h-8 w-8 bg-gray-200 rounded-full"></div>}>
+            {techStack.map(({ Icon, color, name }) => (
+              <TechStackIcon
+                key={name}
+                Icon={Icon}
+                color={color}
+                name={name}
+              />
+            ))}
+          </Suspense>
+        </div>
       </motion.div>
-
-      {/* Animated Code Snippet Background */}
-      <motion.div 
-        className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden"
-        animate={{
-          opacity: [0.03, 0.05, 0.03],
-          scale: [1, 1.02, 1]
-        }}
-        transition={{
-          duration: 5,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      >
-        <pre className="text-xs whitespace-pre-wrap">
-          {`
-const developer = {
-  name: "Rahul Ladumor",
-  expertise: [
-    "AWS Solutions Architecture",
-    "Serverless Applications",
-    "Cloud Native Development",
-    "DevOps & Infrastructure",
-    "Microservices Architecture"
-  ],
-  passion: "Building scalable cloud solutions"
-};
-          `}
-        </pre>
-      </motion.div>
-
-      {/* Glowing Effect */}
-      <div 
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, 
-                      rgba(59, 130, 246, 0.1) 0%, 
-                      rgba(147, 51, 234, 0.05) 25%, 
-                      transparent 50%)`,
-          transition: 'background 0.3s ease-out'
-        }}
-      />
     </motion.div>
   );
 };

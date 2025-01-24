@@ -18,12 +18,6 @@ const languagesList: Language[] = [
     text: "ગુજરાતી મારી માતૃભાષા છે",
     translation: "Gujarati is my mother tongue.",
   },
-  {
-    id: 4,
-    language: "Italian",
-    text: "Bella Ciao, Bella Ciao, Bella Ciao Ciao Ciao!",
-    translation: "That's all the Italian I know. Credits: Money Heist",
-  },
 ];
 
 export default languagesList;
