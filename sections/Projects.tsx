@@ -81,30 +81,23 @@ const ProjectCard: React.FC<{
 
 const Projects = () => {
   const [displayCount, setDisplayCount] = useState(INITIAL_DISPLAY_COUNT);
-  const hasMore = displayCount < projectsList.length;
 
   return (
-    <section id={Section.Projects} className="py-20 sm:py-32">
+    <section id={Section.Projects} className="py-12 sm:py-16">
       {getSectionHeading(Section.Projects)}
 
-      <div className="mt-8">
-        <motion.div layout className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          <AnimatePresence>
+      <div className="mt-6">
+        <AnimatePresence>
+          <motion.div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {projectsList.slice(0, displayCount).map((project, index) => (
               <ProjectCard key={project.id} project={project} priority={index < INITIAL_DISPLAY_COUNT} />
             ))}
-          </AnimatePresence>
-        </motion.div>
+          </motion.div>
+        </AnimatePresence>
 
-        {hasMore && (
-          <div className="mt-12 text-center">
-            <Button
-              onClick={() => setDisplayCount(projectsList.length)}
-              className="hover:bg-blue-500/10 text-blue-600 dark:text-blue-400
-                       transition-colors duration-200 border-0"
-            >
-              View More Projects
-            </Button>
+        {displayCount < projectsList.length && (
+          <div className="mt-8 text-center">
+            <Button onClick={() => setDisplayCount((prev) => prev + 3)}>Show More Projects</Button>
           </div>
         )}
       </div>

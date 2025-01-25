@@ -1,15 +1,15 @@
 import DeveloperIntro from "components/Header/DeveloperIntro";
-import Ingredients from "components/Header/Ingredients";
 import Profiles from "components/Header/Profiles";
 import NoSSR from "components/NoSSR";
-import useWindowDimensions, { Breakpoints } from "hooks/useWindowDimensions";
+import useWindowDimensions from "hooks/useWindowDimensions";
 import Image from "next/image";
+import { Section } from "types/Sections";
 
 const Header: React.FC = () => {
   const { width } = useWindowDimensions();
 
   return (
-    <div id="header" className="h-screen grid place-items-center place-content-center gap-4 relative">
+    <section id={Section.AboutMe} className="h-screen grid place-items-center place-content-center gap-4 relative">
       {/* Modern Developer Intro */}
       <NoSSR>
         <DeveloperIntro />
@@ -42,12 +42,9 @@ const Header: React.FC = () => {
         Founder & CEO @ CodeLamda
       </div>
 
-      {/* Ingredients */}
-      <Ingredients />
-
       {/* Social Profiles */}
       <Profiles />
-    </div>
+    </section>
   );
 };
 

@@ -226,10 +226,10 @@ const Skills = () => {
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
   return (
-    <section id={Section.Skills} className="py-20 sm:py-32">
+    <section id={Section.Skills} className="py-12 sm:py-16">
       {getSectionHeading(Section.Skills)}
 
-      <div className="mt-8 grid gap-6 sm:grid-cols-2">
+      <div className="mt-6 grid gap-4 sm:grid-cols-2">
         {skills.map((skill) => (
           <SkillCard
             key={skill.id}
