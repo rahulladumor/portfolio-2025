@@ -1,6 +1,5 @@
 import languagesList from "data/languages";
 import { motion } from "framer-motion";
-import { FaGlobeAmericas } from "react-icons/fa";
 import { HiTranslate } from "react-icons/hi";
 import { Section } from "types/Sections";
 import { getSectionHeading } from "utils";
@@ -9,51 +8,68 @@ const LanguageCard: React.FC<{
   language: (typeof languagesList)[0];
   index: number;
 }> = ({ language, index }) => {
+  const Icon = language.icon;
+
   return (
     <motion.div
-      initial={{ opacity: 0, x: -10 }}
-      animate={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.15 }}
       className="group relative"
     >
-      <div className="relative flex items-center gap-4 py-5">
+      <div className="relative flex items-start gap-6 p-6 rounded-2xl
+                    bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm
+                    border border-gray-100 dark:border-gray-700/50
+                    hover:bg-white/80 dark:hover:bg-gray-800/80
+                    transition-all duration-300">
         {/* Language Badge */}
-        <div className="relative">
-          <div className="w-10 h-10 flex items-center justify-center rounded-lg 
-                      bg-gradient-to-br from-blue-500 to-blue-600 text-white
-                      shadow-md group-hover:shadow-blue-500/25 group-hover:scale-105
-                      transition duration-300">
-            <FaGlobeAmericas className="w-5 h-5" />
-          </div>
+        <div className="relative mt-1">
+          <motion.div 
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            className={`w-12 h-12 flex items-center justify-center rounded-xl
+                    bg-gradient-to-br ${language.color}
+                    shadow-md group-hover:shadow-xl group-hover:shadow-blue-500/25
+                    transition-all duration-300 overflow-hidden`}
+          >
+            <Icon className="w-full h-full object-cover" />
+          </motion.div>
+          {/* Decorative dot */}
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: index * 0.2 + 0.3 }}
+            className={`absolute -right-1 -top-1 w-3 h-3 rounded-full
+                     bg-gradient-to-br ${language.color}`}
+          />
         </div>
 
         {/* Content Container */}
-        <div className="flex-grow">
-          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
-            {/* Language Name */}
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white min-w-[100px]">
-              {language.language}
-            </h3>
+        <div className="flex-grow space-y-2">
+          {/* Language Name */}
+          <h3 className="text-xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 
+                       dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent">
+            {language.language}
+          </h3>
 
-            {/* Main Text & Translation */}
-            <div className="space-y-1.5">
-              <p className="text-base text-gray-600 dark:text-gray-300">
-                {language.text}
-              </p>
+          {/* Main Text & Translation */}
+          <div className="space-y-2">
+            <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+              {language.text}
+            </p>
 
-              {/* Translation */}
-              {language.translation && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.2 }}
-                  className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"
-                >
-                  <HiTranslate className="w-4 h-4 text-blue-500/70" />
-                  <p className="italic">{language.translation}</p>
-                </motion.div>
-              )}
-            </div>
+            {/* Translation */}
+            {language.translation && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: index * 0.2 + 0.4 }}
+                className="flex items-center gap-2.5 text-base text-gray-600 dark:text-gray-400"
+              >
+                <HiTranslate className="w-5 h-5 text-purple-500/70" />
+                <p className="italic font-light">{language.translation}</p>
+              </motion.div>
+            )}
           </div>
         </div>
       </div>
@@ -63,11 +79,11 @@ const LanguageCard: React.FC<{
 
 const Languages = () => {
   return (
-    <section id={Section.Languages} className="py-16 sm:py-24">
+    <section id={Section.Languages} className="py-20 sm:py-28">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
         {getSectionHeading(Section.Languages)}
 
-        <div className="mt-10 space-y-1 divide-y divide-gray-100 dark:divide-gray-800">
+        <div className="mt-12 space-y-6">
           {languagesList.map((language, index) => (
             <LanguageCard key={language.id} language={language} index={index} />
           ))}

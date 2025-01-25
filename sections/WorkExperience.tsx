@@ -26,7 +26,7 @@ const workExperiences: WorkExperience[] = [
       "Business Growth",
     ],
     technologies: ["AWS", "Azure", "Python", "Node.js", "React", "TensorFlow"],
-    url: "https://codelamda.com",
+    url: "https://www.codelamda.com",
   },
   {
     id: 2,
@@ -58,7 +58,7 @@ const workExperiences: WorkExperience[] = [
       "Led the development of cloud-native security solutions and implemented enterprise-grade authentication systems. Architected and deployed scalable microservices infrastructure.",
     keyFocus: ["Cloud Security", "Authentication Systems", "Microservices", "DevSecOps", "System Architecture"],
     technologies: ["AWS", "Node.js", "Python", "Docker", "Kubernetes", "MongoDB"],
-    url: "https://protectonce.com",
+    url: "https://www.protectonce.com",
   },
   {
     id: 4,
@@ -71,7 +71,7 @@ const workExperiences: WorkExperience[] = [
       "Developed and maintained cloud-based applications using serverless architecture. Implemented CI/CD pipelines and automated deployment processes.",
     keyFocus: ["Serverless Development", "Cloud Integration", "DevOps", "API Development", "Performance Optimization"],
     technologies: ["AWS Lambda", "Node.js", "React", "DynamoDB", "Jenkins"],
-    url: "https://appgambit.com",
+    url: "https://www.appgambit.com",
   },
   {
     id: 5,

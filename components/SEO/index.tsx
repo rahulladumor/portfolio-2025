@@ -50,22 +50,9 @@ const DEFAULT_SCHEMA = {
     "@type": "Organization",
     name: "CodeLamda Technologies",
   },
-  description: DEFAULT_DESCRIPTION,
-  knowsAbout: [
-    "Cloud Architecture",
-    "AWS",
-    "Full Stack Development",
-    "Enterprise Solutions",
-    "AI/ML",
-    "TypeScript",
-    "React",
-    "Node.js",
-    "Python",
-    "Golang",
-  ],
 };
 
-export const SEO: React.FC<SEOProps> = ({
+const SEO: React.FC<SEOProps> = ({
   title = DEFAULT_TITLE,
   description = DEFAULT_DESCRIPTION,
   keywords = DEFAULT_KEYWORDS,
@@ -75,53 +62,62 @@ export const SEO: React.FC<SEOProps> = ({
   schema = DEFAULT_SCHEMA,
 }) => {
   const router = useRouter();
-  const currentPath = section ? `${SITE_URL}/#${section}` : SITE_URL;
-  const fullTitle = section ? `${title} | Rahul Ladumor` : title;
+  const url = `${SITE_URL}${router.asPath}`;
   const imageUrl = image.startsWith("http") ? image : `${SITE_URL}${image}`;
 
   return (
     <Head>
       {/* Primary Meta Tags */}
-      <title>{fullTitle}</title>
-      <meta name="title" content={fullTitle} />
+      <title>{title}</title>
+      <meta name="title" content={title} />
       <meta name="description" content={description} />
-      <meta name="keywords" content={[...keywords, ...DEFAULT_KEYWORDS].join(", ")} />
-      <meta name="author" content="Rahul Ladumor" />
-      <meta name="robots" content="index, follow" />
-      <meta name="language" content="English" />
-      <meta name="revisit-after" content="7 days" />
-      <meta name="generator" content="Next.js" />
+      <meta name="keywords" content={keywords.join(", ")} />
+
+      {/* Favicon */}
+      <link rel="icon" type="image/x-icon" href="/images/favicon/favicon.ico" />
+      <link rel="icon" type="image/svg+xml" href="/images/favicon/favicon.svg" />
+      <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon/favicon-96x96.png" />
+      <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png" />
+      <link rel="manifest" href="/images/favicon/site.webmanifest" />
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={type} />
-      <meta property="og:url" content={currentPath} />
-      <meta property="og:title" content={fullTitle} />
+      <meta property="og:url" content={url} />
+      <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={imageUrl} />
-      <meta property="og:image:alt" content="Rahul Ladumor - AWS Expert & Cloud Architect" />
-      <meta property="og:site_name" content="Rahul Ladumor Portfolio" />
-      <meta property="og:locale" content="en_US" />
 
       {/* Twitter */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content="@rahulladumor" />
-      <meta name="twitter:creator" content="@rahulladumor" />
-      <meta name="twitter:url" content={currentPath} />
-      <meta name="twitter:title" content={fullTitle} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={imageUrl} />
-      <meta name="twitter:image:alt" content="Rahul Ladumor - AWS Expert & Cloud Architect" />
+      <meta property="twitter:card" content="summary_large_image" />
+      <meta property="twitter:url" content={url} />
+      <meta property="twitter:title" content={title} />
+      <meta property="twitter:description" content={description} />
+      <meta property="twitter:image" content={imageUrl} />
 
-      {/* Structured Data */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      {/* Theme */}
+      <meta name="theme-color" content="#ffffff" />
+      <meta name="msapplication-TileColor" content="#ffffff" />
 
-      {/* Additional Meta Tags */}
-      <link rel="canonical" href={currentPath} />
-      <meta name="theme-color" content="#2c3e50" />
-      <meta name="msapplication-TileColor" content="#2c3e50" />
-      <meta name="mobile-web-app-capable" content="yes" />
-      <meta name="apple-mobile-web-app-capable" content="yes" />
-      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+      {/* Canonical */}
+      <link rel="canonical" href={url} />
+
+      {/* Schema.org */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            ...schema,
+            url,
+            image: imageUrl,
+            ...(section && {
+              mainEntityOfPage: {
+                "@type": "WebPage",
+                "@id": url,
+              },
+            }),
+          }),
+        }}
+      />
     </Head>
   );
 };

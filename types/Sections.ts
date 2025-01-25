@@ -36,9 +36,11 @@ export type Article = {
 
 export type Language = {
   id: number;
-  text: string;
   language: string;
+  text: string;
   translation?: string;
+  icon: React.ComponentType;
+  color: string;
 };
 
 export type Project = {

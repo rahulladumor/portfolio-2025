@@ -1,16 +1,61 @@
-import { motion, useAnimation } from "framer-motion";
-import { FC } from "react";
-import { lazy, Suspense, useEffect, useState } from "react";
-import { FaAws, FaDocker, FaNodeJs, FaPython } from "react-icons/fa";
-import { SiGo, SiKubernetes, SiMongodb, SiServerless, SiTerraform, SiTypescript } from "react-icons/si";
+"use client";
+
+import Button from "components/Button";
+import { techStack } from "data/techStack";
+import { motion } from "framer-motion";
+import { lazy, Suspense, useState } from "react";
+import { 
+  FaGithub, 
+  FaLinkedinIn, 
+  FaMediumM,
+  FaStackOverflow, 
+  FaTwitter 
+} from "react-icons/fa";
+import { FiMail } from "react-icons/fi";
 import { useInView } from "react-intersection-observer";
-import Typewriter from "typewriter-effect";
 
 // Lazy load the tech stack icons
 const TechStackIcon = lazy(() => import("./TechStackIcon"));
 
+const socialLinks = [
+  {
+    name: 'GitHub',
+    icon: FaGithub,
+    url: 'https://github.com/rahulladumor',
+    color: 'hover:text-[#333] dark:hover:text-white',
+    bgColor: 'hover:bg-[#333]/10 dark:hover:bg-white/10'
+  },
+  {
+    name: 'LinkedIn',
+    icon: FaLinkedinIn,
+    url: 'https://www.linkedin.com/in/rahulladumor',
+    color: 'hover:text-[#0077B5]',
+    bgColor: 'hover:bg-[#0077B5]/10'
+  },
+  {
+    name: 'Stack Overflow',
+    icon: FaStackOverflow,
+    url: 'https://stackoverflow.com/users/8056347/rahul-ladumor',
+    color: 'hover:text-[#F48024]',
+    bgColor: 'hover:bg-[#F48024]/10'
+  },
+  {
+    name: 'Medium',
+    icon: FaMediumM,
+    url: 'https://medium.com/@rahulladumor',
+    color: 'hover:text-[#00AB6C]',
+    bgColor: 'hover:bg-[#00AB6C]/10'
+  },
+  {
+    name: 'Twitter',
+    icon: FaTwitter,
+    url: 'https://twitter.com/rahulladumor',
+    color: 'hover:text-[#1DA1F2]',
+    bgColor: 'hover:bg-[#1DA1F2]/10'
+  }
+];
+
 const DeveloperIntro: React.FC = () => {
-  const controls = useAnimation();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const { ref, inView } = useInView({
@@ -18,38 +63,20 @@ const DeveloperIntro: React.FC = () => {
     triggerOnce: true,
   });
 
-  const techStack = [
-    { Icon: FaAws, color: "#FF9900", name: "AWS Solutions" },
-    { Icon: SiServerless, color: "#FD5750", name: "Serverless Architecture" },
-    { Icon: FaNodeJs, color: "#339933", name: "Node.js Enterprise" },
-    { Icon: SiTypescript, color: "#3178C6", name: "TypeScript Expert" },
-    { Icon: SiGo, color: "#00ADD8", name: "Golang Development" },
-    { Icon: FaPython, color: "#3776AB", name: "Python Solutions" },
-    { Icon: SiKubernetes, color: "#326CE5", name: "Kubernetes Cloud" },
-    { Icon: FaDocker, color: "#2496ED", name: "Docker Containers" },
-    { Icon: SiTerraform, color: "#7B42BC", name: "Terraform IaC" },
-    { Icon: SiMongodb, color: "#47A248", name: "MongoDB Atlas" },
-  ];
-
-  useEffect(() => {
-    if (inView) {
-      controls.start({
-        scale: [1, 1.02, 1],
-        transition: {
-          duration: 2,
-          repeat: Infinity,
-          ease: "easeInOut",
-        },
-      });
-    }
-  }, [controls, inView]);
-
   const handleMouseMove = (e: React.MouseEvent) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     setMousePosition({ x, y });
   };
+
+  // Get a balanced mix of different categories
+  const displayTechStack = [
+    ...techStack.filter(t => t.category === 'cloud').slice(0, 2),
+    ...techStack.filter(t => t.category === 'language').slice(0, 3),
+    ...techStack.filter(t => t.category === 'framework').slice(0, 2),
+    ...techStack.filter(t => t.category === 'devops').slice(0, 3),
+  ];
 
   return (
     <div
@@ -59,59 +86,38 @@ const DeveloperIntro: React.FC = () => {
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-      <motion.div 
-        animate={controls} 
-        className="text-base sm:text-lg font-medium relative"
-      >
-        <motion.div
-          className="absolute -inset-x-6 -inset-y-2 bg-gradient-to-r from-blue-500/5 to-purple-500/5 
-                   blur-lg rounded-lg -z-10"
-        />
-        <Typewriter
-          options={{
-            strings: [
-              "AWS Solutions Architect Professional",
-              "Full Stack Cloud Architect",
-              "Enterprise Solutions Expert"
-            ],
-            autoStart: true,
-            loop: true,
-            delay: 50,
-            deleteSpeed: 30,
-            wrapperClassName: "text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600",
-            cursorClassName: "text-blue-500/50"
-          }}
-        />
-      </motion.div>
-
-      <div className="grid grid-cols-5 gap-3">
-        <Suspense fallback={<div className="col-span-5 h-8 animate-pulse bg-gray-200 dark:bg-gray-800 rounded" />}>
-          {techStack.map(({ Icon, color, name }, index) => (
-            <TechStackIcon
-              key={name}
-              Icon={Icon}
-              color={color}
-              name={name}
-              delay={index * 0.1}
-              isHovering={isHovering}
-              mousePosition={mousePosition}
-            />
-          ))}
-        </Suspense>
+      {/* Tech Stack Grid */}
+      <div className="flex flex-col items-center lg:items-start -ml-1.5 lg:-ml-2">
+        <div className="grid grid-cols-5 gap-3 max-w-[580px] w-full">
+          <Suspense fallback={<div className="col-span-5 h-8 animate-pulse bg-gray-200 dark:bg-gray-800 rounded" />}>
+            {displayTechStack.map(({ Icon, color, name }, index) => (
+              <TechStackIcon
+                key={name}
+                Icon={Icon}
+                color={color}
+                name={name}
+                delay={index * 0.1}
+                isHovering={isHovering}
+                mousePosition={mousePosition}
+              />
+            ))}
+          </Suspense>
+        </div>
       </div>
 
+      {/* Tagline */}
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
-        className="relative max-w-2xl mx-auto mt-4"
+        className="relative max-w-2xl text-center lg:text-left"
       >
         <div className="absolute -inset-1 bg-gradient-to-r from-blue-600/20 via-purple-500/20 to-pink-500/20 
                       blur-xl opacity-50 dark:opacity-30 rounded-full" />
         <span className="relative text-xl font-light text-gray-700 dark:text-gray-300 tracking-wide leading-relaxed">
           <span className="font-semibold bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500 
-                        bg-clip-text text-transparent">Transforming</span>{" "}
-          businesses through{" "}
+                        bg-clip-text text-transparent">Architecting</span>{" "}
+          the future through{" "}
           <span className="font-semibold bg-gradient-to-r from-purple-500 via-pink-500 to-blue-600 
                         bg-clip-text text-transparent">innovative</span>{" "}
           <span className="inline-flex items-center">
@@ -125,7 +131,7 @@ const DeveloperIntro: React.FC = () => {
           </span>{" "}
           and{" "}
           <span className="relative">
-            enterprise architecture
+            enterprise excellence
             <motion.div 
               className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-500/50 to-purple-500/50"
               initial={{ width: 0 }}
@@ -135,6 +141,57 @@ const DeveloperIntro: React.FC = () => {
           </span>
         </span>
       </motion.p>
+
+      <div className="flex flex-col items-center gap-8 mt-8">
+        <Button
+          onClick={() => window.open("mailto:rahulladumor@gmail.com", "_blank")}
+          icon={FiMail}
+          iconPosition="left"
+          variant="primary"
+          size="lg"
+          className="hover:scale-105 transition-transform duration-300"
+        >
+          Get in Touch
+        </Button>
+
+        {/* Social Media Icons */}
+        <motion.div 
+          className="flex items-center gap-5"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+        >
+          {socialLinks.map((social, index) => {
+            const Icon = social.icon;
+            return (
+              <motion.a
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 + index * 0.1 }}
+                whileHover={{ 
+                  scale: 1.1,
+                  y: -2,
+                  transition: { duration: 0.2 }
+                }}
+                whileTap={{ scale: 0.95 }}
+                className={`p-3 rounded-xl bg-white/80 dark:bg-gray-800/80 
+                        shadow-sm hover:shadow-md backdrop-blur-sm
+                        border border-gray-100 dark:border-gray-700/50
+                        transition-all duration-300 group
+                        ${social.color} ${social.bgColor}`}
+                title={social.name}
+              >
+                <Icon className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
+                <span className="sr-only">{social.name}</span>
+              </motion.a>
+            );
+          })}
+        </motion.div>
+      </div>
     </div>
   );
 };

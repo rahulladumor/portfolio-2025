@@ -1,243 +1,288 @@
-import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
-import { useState } from "react";
-import { AiOutlineCloudServer } from "react-icons/ai";
-import { FaAws, FaDatabase, FaDocker, FaPython, FaReact, FaStar, FaTools } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { Section } from "../types/Sections";
+import { getSectionHeading } from "../utils";
 import {
-  SiAmazondynamodb,
-  SiAmazons3,
-  SiAngular,
-  SiElasticsearch,
-  SiGo,
-  SiGooglecloud,
-  SiGraphql,
-  SiJenkins,
-  SiKubernetes,
-  SiMicrosoftazure,
-  SiMongodb,
-  SiNextdotjs,
-  SiNodedotjs,
-  SiPostgresql,
-  SiPytorch,
-  SiRedis,
-  SiRedux,
-  SiTensorflow,
-  SiTerraform,
+  FaCode,
+  FaTools,
+  FaCloud,
+  FaDocker,
+  FaPython,
+  FaJava,
+  FaAws,
+  FaReact,
+  FaStar,
+  FaDatabase,
+} from "react-icons/fa";
+import {
   SiTypescript,
-  SiVuedotjs,
+  SiKubernetes,
+  SiJenkins,
+  SiTerraform,
+  SiMicrosoftazure,
+  SiGooglecloud,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiMongodb,
+  SiPostgresql,
+  SiRedis,
+  SiGraphql,
 } from "react-icons/si";
-import { TbApi } from "react-icons/tb";
-import { Section } from "types/Sections";
-import { getSectionHeading } from "utils";
 
-type Technology = {
+interface Skill {
   name: string;
-  proficiency: number; // 1-5
-  icon: React.ComponentType<{ className?: string }>;
-};
-
-type Skill = {
-  id: number;
-  icon: React.ComponentType<{ className?: string }>;
-  name: string;
-  technologies: Technology[];
+  percentage: number;
   description: string;
-};
+  icon: JSX.Element;
+}
 
-const getTechnologyIcon = (name: string): React.ComponentType<{ className?: string }> => {
-  const iconMap: { [key: string]: React.ComponentType<{ className?: string }> } = {
-    AWS: FaAws,
-    Azure: SiMicrosoftazure,
-    GCP: SiGooglecloud,
-    TensorFlow: SiTensorflow,
-    PyTorch: SiPytorch,
-    SageMaker: FaTools,
-    "Node.js": SiNodedotjs,
-    Python: FaPython,
-    Golang: SiGo,
-    Microservices: AiOutlineCloudServer,
-    "REST APIs": TbApi,
-    GraphQL: SiGraphql,
-    "React.js": FaReact,
-    "Vue.js": SiVuedotjs,
-    Angular: SiAngular,
-    TypeScript: SiTypescript,
-    "Next.js": SiNextdotjs,
-    Redux: SiRedux,
-    Docker: FaDocker,
-    Kubernetes: SiKubernetes,
-    Jenkins: SiJenkins,
-    Terraform: SiTerraform,
-    MongoDB: SiMongodb,
-    PostgreSQL: SiPostgresql,
-    DynamoDB: SiAmazondynamodb,
-    Redis: SiRedis,
-    Elasticsearch: SiElasticsearch,
-    S3: SiAmazons3,
-  };
-
-  return iconMap[name] || FaTools;
-};
-
-const skills: Skill[] = [
-  {
-    id: 1,
-    icon: AiOutlineCloudServer,
-    name: "Cloud & AI",
-    description: "Expert in cloud architecture and AI/ML solutions with focus on scalability and performance",
-    technologies: [
-      { name: "AWS", proficiency: 5, icon: FaAws },
-      { name: "Azure", proficiency: 4, icon: SiMicrosoftazure },
-      { name: "GCP", proficiency: 4, icon: SiGooglecloud },
-      { name: "TensorFlow", proficiency: 4, icon: SiTensorflow },
-      { name: "PyTorch", proficiency: 4, icon: SiPytorch },
-      { name: "SageMaker", proficiency: 5, icon: FaTools },
-    ],
+const languages: Skill[] = [
+  { 
+    name: "JavaScript/TypeScript", 
+    percentage: 95, 
+    description: "Expert in modern JavaScript (ES6+) and TypeScript, with extensive experience in React, Next.js, and Node.js ecosystems.", 
+    icon: <SiTypescript className="w-5 h-5 text-blue-600 dark:text-blue-400" /> 
   },
-  {
-    id: 2,
-    icon: FaTools,
-    name: "Backend Technologies",
-    description: "Building robust and scalable backend systems with modern technologies",
-    technologies: [
-      { name: "Node.js", proficiency: 5, icon: SiNodedotjs },
-      { name: "Python", proficiency: 5, icon: FaPython },
-      { name: "Golang", proficiency: 4, icon: SiGo },
-      { name: "Microservices", proficiency: 5, icon: AiOutlineCloudServer },
-      { name: "REST APIs", proficiency: 5, icon: TbApi },
-      { name: "GraphQL", proficiency: 4, icon: SiGraphql },
-    ],
+  { 
+    name: "React & Next.js", 
+    percentage: 90, 
+    description: "Advanced proficiency in React.js and Next.js, including hooks, context, SSR, and modern state management.", 
+    icon: <FaReact className="w-5 h-5 text-blue-600 dark:text-blue-400" /> 
   },
-  {
-    id: 3,
-    icon: FaReact,
-    name: "Frontend Technologies",
-    description: "Creating beautiful and responsive user interfaces with modern frameworks",
-    technologies: [
-      { name: "React.js", proficiency: 5, icon: FaReact },
-      { name: "Vue.js", proficiency: 4, icon: SiVuedotjs },
-      { name: "Angular", proficiency: 3, icon: SiAngular },
-      { name: "TypeScript", proficiency: 5, icon: SiTypescript },
-      { name: "Next.js", proficiency: 5, icon: SiNextdotjs },
-      { name: "Redux", proficiency: 4, icon: SiRedux },
-    ],
+  { 
+    name: "Node.js", 
+    percentage: 85, 
+    description: "Strong backend development skills with Node.js, Express, and various middleware and authentication systems.", 
+    icon: <FaCode className="w-5 h-5 text-blue-600 dark:text-blue-400" /> 
   },
-  {
-    id: 4,
-    icon: FaDocker,
-    name: "DevOps & Infrastructure",
-    description: "Implementing efficient CI/CD pipelines and infrastructure automation",
-    technologies: [
-      { name: "Docker", proficiency: 5, icon: FaDocker },
-      { name: "Kubernetes", proficiency: 4, icon: SiKubernetes },
-      { name: "Jenkins", proficiency: 4, icon: SiJenkins },
-      { name: "Terraform", proficiency: 5, icon: SiTerraform },
-      { name: "CI/CD", proficiency: 5, icon: FaTools },
-      { name: "AWS ECS/EKS", proficiency: 4, icon: FaAws },
-    ],
-  },
-  {
-    id: 5,
-    icon: FaDatabase,
-    name: "Databases & Storage",
-    description: "Designing and optimizing database solutions for various use cases",
-    technologies: [
-      { name: "MongoDB", proficiency: 5, icon: SiMongodb },
-      { name: "PostgreSQL", proficiency: 4, icon: SiPostgresql },
-      { name: "DynamoDB", proficiency: 5, icon: SiAmazondynamodb },
-      { name: "Redis", proficiency: 4, icon: SiRedis },
-      { name: "Elasticsearch", proficiency: 4, icon: SiElasticsearch },
-      { name: "S3", proficiency: 5, icon: SiAmazons3 },
-    ],
+  { 
+    name: "Python", 
+    percentage: 80, 
+    description: "Proficient in Python for backend development, data processing, and automation scripting.", 
+    icon: <FaPython className="w-5 h-5 text-blue-600 dark:text-blue-400" /> 
   },
 ];
 
-const SkillCard: React.FC<{
-  skill: Skill;
-  isSelected: boolean;
-  onClick: () => void;
-}> = ({ skill, isSelected, onClick }) => {
-  const Icon = skill.icon;
+const tools: Skill[] = [
+  { 
+    name: "Docker & K8s", 
+    percentage: 90, 
+    description: "Expert in containerization with Docker and orchestration with Kubernetes, including microservices architecture.", 
+    icon: <FaDocker className="w-5 h-5 text-pink-600 dark:text-pink-400" /> 
+  },
+  { 
+    name: "CI/CD", 
+    percentage: 85, 
+    description: "Advanced experience with Jenkins, GitHub Actions, and GitLab CI for automated testing and deployment.", 
+    icon: <SiJenkins className="w-5 h-5 text-pink-600 dark:text-pink-400" /> 
+  },
+  { 
+    name: "Databases", 
+    percentage: 85, 
+    description: "Proficient in SQL and NoSQL databases including PostgreSQL, MongoDB, and Redis.", 
+    icon: <FaDatabase className="w-5 h-5 text-pink-600 dark:text-pink-400" /> 
+  },
+  { 
+    name: "GraphQL", 
+    percentage: 80, 
+    description: "Strong experience with GraphQL APIs, Apollo Server/Client, and real-time subscriptions.", 
+    icon: <SiGraphql className="w-5 h-5 text-pink-600 dark:text-pink-400" /> 
+  },
+];
 
-  return (
-    <motion.div
-      className={`p-6 rounded-xl backdrop-blur-sm cursor-pointer
-                border border-gray-200 dark:border-gray-700
-                ${
-                  isSelected
-                    ? "bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 border-blue-500/50"
-                    : "bg-white dark:bg-gray-800/50 hover:border-blue-500/50"
-                }
-                transition-all duration-300`}
-      onClick={onClick}
-      whileHover={{ scale: 1.02 }}
-      layout
-    >
-      <div className="flex items-start gap-4">
-        <div className="p-3 rounded-lg bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10">
-          <Icon className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-        </div>
-
-        <div className="flex-1">
-          <h3 className="text-lg font-bold text-gray-900 dark:text-white">{skill.name}</h3>
-          <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{skill.description}</p>
-
-          <AnimatePresence>
-            {isSelected && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                className="mt-4 space-y-4"
-              >
-                {skill.technologies.map((tech) => {
-                  const TechIcon = tech.icon;
-                  return (
-                    <div key={tech.name} className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <div className="p-1.5 rounded-md bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10">
-                          <TechIcon className="w-4 h-4 text-gray-700 dark:text-gray-300" />
-                        </div>
-                        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{tech.name}</span>
-                      </div>
-                      <div className="flex gap-1">
-                        {[...Array(5)].map((_, i) => (
-                          <FaStar
-                            key={i}
-                            className={`w-3 h-3 ${
-                              i < tech.proficiency ? "text-yellow-400" : "text-gray-300 dark:text-gray-600"
-                            }`}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  );
-                })}
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
+const cloud: Skill[] = [
+  { 
+    name: "AWS", 
+    percentage: 95, 
+    description: "AWS Certified Solutions Architect with expertise in EC2, Lambda, S3, DynamoDB, and CloudFormation.", 
+    icon: <FaAws className="w-5 h-5 text-green-600 dark:text-green-400" /> 
+  },
+  { 
+    name: "Azure", 
+    percentage: 85, 
+    description: "Proficient in Azure services including App Service, Functions, and Azure DevOps.", 
+    icon: <SiMicrosoftazure className="w-5 h-5 text-green-600 dark:text-green-400" /> 
+  },
+  { 
+    name: "Infrastructure as Code", 
+    percentage: 80, 
+    description: "Experienced with Terraform and CloudFormation for infrastructure automation and management.", 
+    icon: <SiTerraform className="w-5 h-5 text-green-600 dark:text-green-400" /> 
+  },
+];
 
 const Skills = () => {
-  const [selectedId, setSelectedId] = useState<number | null>(null);
-
   return (
-    <section id={Section.Skills} className="py-12 sm:py-16">
-      {getSectionHeading(Section.Skills)}
+    <section id={Section.Skills} className="py-16 sm:py-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {getSectionHeading(Section.Skills)}
 
-      <div className="mt-6 grid gap-4 sm:grid-cols-2">
-        {skills.map((skill) => (
-          <SkillCard
-            key={skill.id}
-            skill={skill}
-            isSelected={selectedId === skill.id}
-            onClick={() => setSelectedId(selectedId === skill.id ? null : skill.id)}
-          />
-        ))}
+        {/* Info Box */}
+        <div className="mt-8 relative bg-white/90 dark:bg-gray-800/90 rounded-2xl overflow-hidden
+                    border border-gray-100 dark:border-gray-700
+                    shadow-xl shadow-blue-500/5 backdrop-blur-sm">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5" />
+          <div className="relative p-8 sm:p-10 flex items-center gap-6">
+            <div className="p-2.5 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 flex-shrink-0">
+              <svg 
+                className="w-5 h-5 text-white" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth={2} 
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                />
+              </svg>
+            </div>
+            <div>
+              <h2 className="text-lg font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 
+                         dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent">
+                Technical Expertise & Core Competencies
+              </h2>
+              <p className="mt-4 text-sm text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl">
+                Comprehensive skill set spanning full-stack development, cloud architecture, and DevOps practices. 
+                Expertise in modern web technologies, distributed systems, and scalable solutions. 
+                Proven track record in delivering high-performance applications and leading technical initiatives.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Languages & Frameworks */}
+        <div className="mt-12">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="p-2.5 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20">
+              <FaCode className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+            </div>
+            <h2 className="text-lg font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 
+                         dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent">
+              Languages & Frameworks
+            </h2>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {languages.map((language, index) => (
+              <motion.div
+                key={language.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="group relative bg-white/80 dark:bg-gray-800/80 rounded-xl overflow-hidden
+                          border border-gray-200 dark:border-gray-700
+                          hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-500/10
+                          backdrop-blur-sm transition-all duration-300 p-6"
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="p-2.5 rounded-lg bg-gradient-to-br from-blue-500/10 to-purple-500/10
+                                group-hover:from-blue-500/20 group-hover:to-purple-500/20 transition-all duration-300">
+                    {language.icon}
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{language.name}</h3>
+                </div>
+                <div className="space-y-4">
+                  <div className="h-2 rounded-full bg-gray-100 dark:bg-gray-700">
+                    <div
+                      className="h-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-500"
+                      style={{ width: `${language.percentage}%` }}
+                    />
+                  </div>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{language.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Tools & Technologies */}
+        <div className="mt-12">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="p-2.5 rounded-xl bg-gradient-to-br from-pink-500/20 to-purple-500/20">
+              <FaTools className="w-5 h-5 text-pink-600 dark:text-pink-400" />
+            </div>
+            <h2 className="text-lg font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 
+                         dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent">
+              Tools & Technologies
+            </h2>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {tools.map((tool, index) => (
+              <motion.div
+                key={tool.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="group relative bg-white/80 dark:bg-gray-800/80 rounded-xl overflow-hidden
+                          border border-gray-200 dark:border-gray-700
+                          hover:border-pink-500/30 hover:shadow-lg hover:shadow-pink-500/10
+                          backdrop-blur-sm transition-all duration-300 p-6"
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="p-2.5 rounded-lg bg-gradient-to-br from-pink-500/10 to-purple-500/10
+                                group-hover:from-pink-500/20 group-hover:to-purple-500/20 transition-all duration-300">
+                    {tool.icon}
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{tool.name}</h3>
+                </div>
+                <div className="space-y-4">
+                  <div className="h-2 rounded-full bg-gray-100 dark:bg-gray-700">
+                    <div
+                      className="h-2 rounded-full bg-gradient-to-r from-pink-500 to-purple-500"
+                      style={{ width: `${tool.percentage}%` }}
+                    />
+                  </div>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{tool.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Cloud & Infrastructure */}
+        <div className="mt-12">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="p-2.5 rounded-xl bg-gradient-to-br from-green-500/20 to-blue-500/20">
+              <FaCloud className="w-5 h-5 text-green-600 dark:text-green-400" />
+            </div>
+            <h2 className="text-lg font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 
+                         dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent">
+              Cloud & Infrastructure
+            </h2>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {cloud.map((item, index) => (
+              <motion.div
+                key={item.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="group relative bg-white/80 dark:bg-gray-800/80 rounded-xl overflow-hidden
+                          border border-gray-200 dark:border-gray-700
+                          hover:border-green-500/30 hover:shadow-lg hover:shadow-green-500/10
+                          backdrop-blur-sm transition-all duration-300 p-6"
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="p-2.5 rounded-lg bg-gradient-to-br from-green-500/10 to-blue-500/10
+                                group-hover:from-green-500/20 group-hover:to-blue-500/20 transition-all duration-300">
+                    {item.icon}
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{item.name}</h3>
+                </div>
+                <div className="space-y-4">
+                  <div className="h-2 rounded-full bg-gray-100 dark:bg-gray-700">
+                    <div
+                      className="h-2 rounded-full bg-gradient-to-r from-green-500 to-blue-500"
+                      style={{ width: `${item.percentage}%` }}
+                    />
+                  </div>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{item.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

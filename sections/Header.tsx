@@ -3,12 +3,30 @@ import Profiles from "components/Header/Profiles";
 import NoSSR from "components/NoSSR";
 import Image from "next/image";
 import { Section } from "types/Sections";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import AnimatedBackground from "components/Header/AnimatedBackground";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { HiArrowDown } from "react-icons/hi";
+import { useState, useEffect } from "react";
+
+const titles = [
+  "Full Stack Developer",
+  "AWS Solutions Architect",
+  "Cloud Computing Expert",
+  "DevOps Specialist",
+  "Tech Lead"
+];
 
 const Header: React.FC = () => {
+  const [titleIndex, setTitleIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTitleIndex((current) => (current + 1) % titles.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section id={Section.AboutMe} className="relative min-h-screen flex flex-col items-center justify-center px-4 py-16">
       {/* Animated Background */}
@@ -23,16 +41,31 @@ const Header: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="flex flex-col gap-6 lg:gap-8 text-center lg:text-left"
         >
-          {/* Profile Image - Only visible on mobile */}
+          {/* Profile Image - Mobile Only */}
           <div className="lg:hidden flex justify-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
+              animate={{ 
+                opacity: 1, 
+                scale: 1,
+                y: [0, -15, 0]
+              }}
+              transition={{ 
+                duration: 2,
+                y: {
+                  duration: 3.5,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }
+              }}
+              whileHover={{ 
+                scale: 1.05,
+                transition: { duration: 0.2 }
+              }}
               className="relative w-32 h-32"
             >
               <Image
-                src="/images/profile.jpg"
+                src="/images/profile.png"
                 alt="Rahul Ladumor"
                 fill
                 className="object-cover rounded-full border-4 border-white/10 shadow-xl"
@@ -186,82 +219,113 @@ const Header: React.FC = () => {
                 </div>
               </div>
             </motion.div>
+
+            {/* Animated Titles */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="relative mt-3 flex items-center justify-center lg:justify-start"
+            >
+              <div className="relative px-4 py-1">
+                <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-500/10 via-purple-500/10 
+                             to-pink-500/10 blur-sm" />
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={titleIndex}
+                    initial={{ y: 10, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -10, opacity: 0 }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    className="relative text-lg font-medium text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-500 to-purple-600"
+                  >
+                    {titles[titleIndex]}
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </motion.div>
           </div>
 
-          {/* Developer Intro with Tech Stack */}
-          <div className="mt-2">
+          {/* Developer Intro Component */}
+          <div className="mt-4">
             <NoSSR>
               <DeveloperIntro />
             </NoSSR>
           </div>
 
-          {/* CTA Buttons */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex flex-wrap gap-4 justify-center lg:justify-start"
-          >
-            <a 
-              href="#contact" 
-              className="px-6 py-2.5 bg-blue-600 text-white rounded-full font-medium 
-                     hover:bg-blue-700 transition-colors duration-200 shadow-lg 
-                     hover:shadow-blue-500/20"
-            >
-              Get in Touch
-            </a>
-            <a 
-              href="#projects" 
-              className="px-6 py-2.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white 
-                     rounded-full font-medium hover:bg-gray-200 dark:hover:bg-gray-700 
-                     transition-colors duration-200"
-            >
-              View Projects
-            </a>
-          </motion.div>
-
-          {/* Social Links */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="flex gap-6 justify-center lg:justify-start"
-          >
-            <a href="https://github.com/rahulladumor" target="_blank" rel="noopener noreferrer" 
-               className="text-xl text-gray-600 hover:text-gray-900 dark:text-gray-400 
-                      dark:hover:text-white transition-colors duration-200">
-              <FaGithub />
-            </a>
-            <a href="https://linkedin.com/in/rahulladumor" target="_blank" rel="noopener noreferrer"
-               className="text-xl text-gray-600 hover:text-blue-600 dark:text-gray-400 
-                      dark:hover:text-blue-400 transition-colors duration-200">
-              <FaLinkedin />
-            </a>
-            <a href="https://twitter.com/rahulladumor" target="_blank" rel="noopener noreferrer"
-               className="text-xl text-gray-600 hover:text-blue-400 dark:text-gray-400 
-                      dark:hover:text-blue-400 transition-colors duration-200">
-              <FaTwitter />
-            </a>
-          </motion.div>
+          {/* Removed duplicate CTA buttons and social icons since they are in DeveloperIntro */}
         </motion.div>
 
-        {/* Right Column - Image */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
+        {/* Right Column - Desktop Profile Image */}
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="hidden lg:block relative"
+          className="hidden lg:flex justify-center items-center"
         >
-          <div className="relative w-full aspect-square max-w-md mx-auto">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ 
+              opacity: 1, 
+              scale: 1,
+              y: [0, -20, 0]
+            }}
+            transition={{ 
+              duration: 2,
+              y: {
+                duration: 3.5,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }
+            }}
+            whileHover={{ 
+              scale: 1.02,
+              y: 0,
+              transition: { 
+                duration: 0.2,
+                y: { duration: 0 }
+              }
+            }}
+            className="relative w-80 h-80 group"
+          >
+            {/* Profile Image */}
             <Image
-              src="/images/profile.jpg"
+              src="/images/profile.png"
               alt="Rahul Ladumor"
               fill
-              className="object-cover rounded-2xl shadow-2xl"
+              className="object-cover rounded-full border-4 border-white/10 shadow-xl transition-all duration-300 group-hover:border-white/20 group-hover:shadow-2xl"
               priority
             />
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/10 to-purple-500/10" />
-          </div>
+
+            {/* Outer ring with gradient */}
+            <motion.div
+              animate={{
+                opacity: [0.3, 0.5, 0.3],
+                scale: [1, 1.05, 1]
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className="absolute -inset-2 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20"
+            />
+
+            {/* Inner ring with reverse gradient */}
+            <motion.div
+              animate={{
+                opacity: [0.2, 0.4, 0.2],
+                scale: [1.02, 1.07, 1.02]
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 0.5
+              }}
+              className="absolute -inset-1 rounded-full bg-gradient-to-l from-blue-500/10 to-purple-500/10"
+            />
+          </motion.div>
         </motion.div>
       </div>
 
