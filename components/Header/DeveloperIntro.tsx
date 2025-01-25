@@ -4,12 +4,11 @@ import Button from "components/Button";
 import { techStack } from "data/techStack";
 import { motion } from "framer-motion";
 import { lazy, Suspense, useState } from "react";
-import { 
-  FaGithub, 
-  FaLinkedinIn, 
+import {
+  FaGithub,
+  FaLinkedinIn,
   FaMediumM,
-  FaStackOverflow, 
-  FaTwitter 
+  FaTwitter
 } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
 import { useInView } from "react-intersection-observer";
@@ -31,13 +30,6 @@ const socialLinks = [
     url: 'https://www.linkedin.com/in/rahulladumor',
     color: 'hover:text-[#0077B5]',
     bgColor: 'hover:bg-[#0077B5]/10'
-  },
-  {
-    name: 'Stack Overflow',
-    icon: FaStackOverflow,
-    url: 'https://stackoverflow.com/users/8056347/rahul-ladumor',
-    color: 'hover:text-[#F48024]',
-    bgColor: 'hover:bg-[#F48024]/10'
   },
   {
     name: 'Medium',
@@ -132,7 +124,7 @@ const DeveloperIntro: React.FC = () => {
           and{" "}
           <span className="relative">
             enterprise excellence
-            <motion.div 
+            <motion.div
               className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-500/50 to-purple-500/50"
               initial={{ width: 0 }}
               animate={{ width: "100%" }}
@@ -155,7 +147,7 @@ const DeveloperIntro: React.FC = () => {
         </Button>
 
         {/* Social Media Icons */}
-        <motion.div 
+        <motion.div
           className="flex items-center gap-5"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -172,7 +164,7 @@ const DeveloperIntro: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 + index * 0.1 }}
-                whileHover={{ 
+                whileHover={{
                   scale: 1.1,
                   y: -2,
                   transition: { duration: 0.2 }
