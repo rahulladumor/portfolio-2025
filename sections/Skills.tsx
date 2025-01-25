@@ -1,32 +1,33 @@
 import { motion } from "framer-motion";
-import { Section } from "../types/Sections";
-import { getSectionHeading } from "../utils";
 import {
-  FaCode,
-  FaTools,
-  FaCloud,
-  FaDocker,
-  FaPython,
-  FaJava,
   FaAws,
+  FaCloud,
+  FaCode,
+  FaDatabase,
+  FaDocker,
+  FaJava,
+  FaPython,
   FaReact,
   FaStar,
-  FaDatabase,
+  FaTools,
 } from "react-icons/fa";
 import {
-  SiTypescript,
-  SiKubernetes,
-  SiJenkins,
-  SiTerraform,
-  SiMicrosoftazure,
   SiGooglecloud,
-  SiNextdotjs,
-  SiTailwindcss,
+  SiGraphql,
+  SiJenkins,
+  SiKubernetes,
+  SiMicrosoftazure,
   SiMongodb,
+  SiNextdotjs,
   SiPostgresql,
   SiRedis,
-  SiGraphql,
+  SiTailwindcss,
+  SiTerraform,
+  SiTypescript,
 } from "react-icons/si";
+
+import { Section } from "../types/Sections";
+import { getSectionHeading } from "../utils";
 
 interface Skill {
   name: string;

@@ -1,30 +1,30 @@
-import type { Philantrophy } from "types/Sections";
+import type { Philanthropy } from "types/Sections";
 
-const philantrophyList: Philantrophy[] = [
+const philanthropyList: Philanthropy[] = [
   {
     id: 1,
     title: "Tech Education Initiative",
-    description:
-      "Conducted free workshops and training sessions for underprivileged students in Surat, teaching web development and cloud computing basics to help bridge the digital divide.",
+    description: "Led comprehensive web development workshops and mentorship programs reaching 600+ students globally.",
+    subtitle: "Led 30+ comprehensive web development workshops reaching 600+ students globally. Dedicated 250+ hours to teaching modern JavaScript, React, Node.js, and cloud technologies.",
+    keywords: ["Tech Education", "Mentorship", "Web Development", "Career Growth"],
+    url: "https://example.com/tech-education"
   },
   {
     id: 2,
     title: "Open Source Contributions",
-    description:
-      "Actively contribute to open-source projects, focusing on making technology more accessible and creating tools that can be freely used by the developer community.",
+    description: "Maintained and contributed to various open source projects, focusing on developer tools and libraries.",
+    subtitle: "Maintained 25+ open source projects with 2000+ combined GitHub stars. Contributed 150+ meaningful PRs to major frameworks.",
+    keywords: ["Open Source", "GitHub", "Developer Tools", "Community Impact"],
+    url: "https://github.com/rahulladumor"
   },
   {
     id: 3,
-    title: "Tech Community Building",
-    description:
-      "Organize and participate in local tech meetups in Gujarat, mentoring aspiring developers and fostering a collaborative learning environment in the tech community.",
-  },
-  {
-    id: 4,
-    title: "Digital Literacy Program",
-    description:
-      "Led initiatives to improve digital literacy among small business owners in Surat, helping them adapt to digital transformation and expand their online presence.",
-  },
+    title: "Community Building",
+    description: "Founded and grew a tech community, organizing workshops and creating platforms for knowledge sharing.",
+    subtitle: "Founded and grew a tech community of 1500+ active developers. Organized 40+ technical workshops and hackathons.",
+    keywords: ["Community Building", "Tech Events", "Knowledge Sharing", "Networking"],
+    url: "https://community.codelamda.com"
+  }
 ];
 
-export default philantrophyList;
+export default philanthropyList;

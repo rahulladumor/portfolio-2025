@@ -1,24 +1,25 @@
 import { motion } from "framer-motion";
-import { Section } from "../types/Sections";
-import { getSectionHeading } from "../utils";
 import Head from "next/head";
 import {
   FaAward,
+  FaCertificate,
   FaCloud,
   FaCode,
+  FaEnvelope,
+  FaGithub,
+  FaGlobe,
+  FaHandshake,
   FaIndustry,
   FaLightbulb,
+  FaLinkedin,
   FaRocket,
   FaTools,
-  FaUsers,
-  FaCertificate,
-  FaHandshake,
-  FaEnvelope,
-  FaGlobe,
-  FaGithub,
-  FaLinkedin,
   FaTwitter,
+  FaUsers,
 } from "react-icons/fa";
+
+import { Section } from "../types/Sections";
+import { getSectionHeading } from "../utils";
 
 const AboutMe = () => {
   const seoKeywords = [
@@ -66,14 +67,14 @@ const AboutMe = () => {
               <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 
                            dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent
                            tracking-tight leading-snug">
-                👋 Hi, I'm Rahul Ladumor
+                👋 Hi, I&apos;m Rahul Ladumor
               </h1>
               <p className="mt-4 text-base text-gray-700 dark:text-gray-300 leading-relaxed">
                 Founder & CEO of <span className="text-blue-600 dark:text-blue-400">CodeLamda Technologies</span>,
                 pioneering innovative solutions in cloud architecture and AI implementation.
               </p>
               <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                With over 7 years of experience, we've revolutionized business operations by reducing cloud costs up to
+                With over 7 years of experience, we&apos;ve revolutionized business operations by reducing cloud costs up to
                 <span className="font-semibold text-green-600 dark:text-green-400"> 40%</span> and building robust systems
                 handling <span className="font-semibold text-blue-600 dark:text-blue-400">1M+ requests per minute</span>.
               </p>
@@ -318,12 +319,12 @@ const AboutMe = () => {
                   </div>
                   <h2 className="text-base font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 
                                dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent">
-                    Let's Connect
+                    Let&apos;s Connect
                   </h2>
                 </div>
                 <div className="mt-3 space-y-4">
                   <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                    Ready to transform your business with cutting-edge technology solutions? Let's discuss your requirements!
+                    Ready to transform your business with cutting-edge technology solutions? Let&apos;s discuss your requirements!
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3">
                     <a

@@ -1,13 +1,13 @@
+import AnimatedBackground from "components/Header/AnimatedBackground";
 import DeveloperIntro from "components/Header/DeveloperIntro";
 import Profiles from "components/Header/Profiles";
 import NoSSR from "components/NoSSR";
+import { AnimatePresence,motion } from "framer-motion";
 import Image from "next/image";
-import { Section } from "types/Sections";
-import { motion, AnimatePresence } from "framer-motion";
-import AnimatedBackground from "components/Header/AnimatedBackground";
+import { useEffect,useState } from "react";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { HiArrowDown } from "react-icons/hi";
-import { useState, useEffect } from "react";
+import { Section } from "types/Sections";
 
 const titles = [
   "Full Stack Developer",

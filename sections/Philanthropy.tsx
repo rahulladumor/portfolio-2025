@@ -1,59 +1,17 @@
 "use client";
 
+import philanthropyList from "data/philantrophy";
 import { motion } from "framer-motion";
 import { FaExternalLinkAlt, FaHandHoldingHeart } from "react-icons/fa";
 import { Section } from "types/Sections";
 import { getSectionHeading, openURLInNewTab } from "utils";
 
-const philanthropyData = [
-  {
-    id: 1,
-    title: "Tech Education Impact & Mentorship",
-    subtitle:
-      "Led 30+ comprehensive web development workshops reaching 600+ students globally. Dedicated 250+ hours to teaching modern JavaScript, React, Node.js, and cloud technologies. Achieved 95% positive feedback and mentored 50+ students into successful tech careers.",
-    keywords: ["Tech Education", "Mentorship", "Web Development", "Career Growth"]
-  },
-  {
-    id: 2,
-    title: "Open Source Leadership & Innovation",
-    subtitle:
-      "Maintained 25+ open source projects with 2000+ combined GitHub stars. Contributed 150+ meaningful PRs to major frameworks. Created developer tools and libraries used by 10,000+ developers monthly. Active core contributor to popular React and Node.js projects.",
-    keywords: ["Open Source", "GitHub", "Developer Tools", "Community Impact"]
-  },
-  {
-    id: 3,
-    title: "Developer Community Building",
-    subtitle:
-      "Founded and grew a tech community of 1500+ active developers. Organized 40+ technical workshops and hackathons. Featured 60+ industry experts as speakers. Created platforms for knowledge sharing and collaboration in cloud computing and web development.",
-    keywords: ["Community Building", "Tech Events", "Knowledge Sharing", "Networking"]
-  },
-  {
-    id: 4,
-    title: "Technical Content Creation",
-    subtitle:
-      "Published 50+ in-depth technical articles and tutorials. Created comprehensive learning resources for modern web development. Reached 100,000+ developers through various platforms. Specialized content in React, Node.js, AWS, and system architecture.",
-    keywords: ["Technical Writing", "Education", "Content Creation", "Knowledge Sharing"]
-  },
-  {
-    id: 5,
-    title: "Diversity in Tech Initiatives",
-    subtitle:
-      "Led programs supporting underrepresented groups in tech. Provided free mentorship to 30+ aspiring developers from diverse backgrounds. Organized coding bootcamps focused on women in tech. Created scholarship opportunities for tech education.",
-    keywords: ["Diversity", "Inclusion", "Social Impact", "Education Access"]
-  },
-  {
-    id: 6,
-    title: "Environmental Tech Solutions",
-    subtitle:
-      "Developed open-source solutions for environmental monitoring. Created applications for tracking carbon footprint and sustainability metrics. Contributed to green technology initiatives. Mentored projects focused on environmental impact.",
-    keywords: ["Green Tech", "Sustainability", "Environmental Impact", "Social Responsibility"]
-  }
-];
-
-const PhilanthropyCard: React.FC<{
-  philanthropy: (typeof philanthropyData)[0];
+type PhilanthropyCardProps = {
+  philanthropy: typeof philanthropyList[0];
   index: number;
-}> = ({ philanthropy, index }) => {
+};
+
+const PhilanthropyCard: React.FC<PhilanthropyCardProps> = ({ philanthropy, index }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -160,9 +118,13 @@ const Philanthropy = () => (
       </div>
 
       {/* Philanthropy Cards */}
-      <div className="mt-6 sm:mt-8 space-y-4">
-        {philanthropyData.map((item, index) => (
-          <PhilanthropyCard key={item.id} philanthropy={item} index={index} />
+      <div className="mt-8 space-y-6">
+        {philanthropyList.map((philanthropy, index) => (
+          <PhilanthropyCard
+            key={philanthropy.id}
+            philanthropy={philanthropy}
+            index={index}
+          />
         ))}
       </div>
     </div>

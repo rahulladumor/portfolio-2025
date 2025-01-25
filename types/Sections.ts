@@ -39,8 +39,9 @@ export type Language = {
   language: string;
   text: string;
   translation?: string;
-  icon: React.ComponentType;
+  icon: IconType;
   color: string;
+  tooltip?: string;
 };
 
 export type Project = {
@@ -60,6 +61,7 @@ export type Achievement = {
   title: string;
   subtitle: string;
   url?: string;
+  keywords?: string[];
 };
 
 export type Certification = {
@@ -72,8 +74,11 @@ export type Certification = {
   validUntil?: string;
 };
 
-export type Philantrophy = {
+export type Philanthropy = {
   id: number;
   title: string;
   description: string;
+  url?: string;
+  subtitle?: string;
+  keywords?: string[];
 };

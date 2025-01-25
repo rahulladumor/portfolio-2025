@@ -1,10 +1,9 @@
-import type { Language } from "types/Sections";
 import { 
+  ES,
   GB,
   IN,
-  IT,
-  ES
-} from 'country-flag-icons/react/3x2';
+  IT} from 'country-flag-icons/react/3x2';
+import type { Language } from "types/Sections";
 
 const languagesList: Language[] = [
   {

@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import clsx from "clsx";
+import { motion } from "framer-motion";
 import type { IconType } from "react-icons";
 import { BiLinkExternal } from "react-icons/bi";
 
