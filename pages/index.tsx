@@ -69,12 +69,12 @@ const Home: NextPage<Props> = ({ articles }) => {
         keywords={sectionSEO[activeSection].keywords.join(", ")}
       />
 
-      <div className="w-5/6 mx-auto md:container grid gap-24 pt-20 lg:pt-8 lg:pl-24">
+      <div className="w-5/6 mx-auto md:container grid gap-16 pt-16 lg:pt-8 lg:pl-24">
         <Header />
 
         <AboutMe />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <WorkExperience />
           <Education />
         </div>
@@ -84,12 +84,12 @@ const Home: NextPage<Props> = ({ articles }) => {
 
         {isClient && <Blog articles={articles} />}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <Languages />
           <Certifications />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <Achievements />
           <Philanthropy />
         </div>

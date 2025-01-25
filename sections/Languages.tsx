@@ -1,6 +1,6 @@
 import languagesList from "data/languages";
 import { motion } from "framer-motion";
-import { FaGlobeAmericas, FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
+import { FaGlobeAmericas } from "react-icons/fa";
 import { HiTranslate } from "react-icons/hi";
 import { Section } from "types/Sections";
 import { getSectionHeading } from "utils";
@@ -11,54 +11,50 @@ const LanguageCard: React.FC<{
 }> = ({ language, index }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1 }}
-      className="group relative p-6 rounded-xl bg-white dark:bg-gray-800/50
-                border border-gray-200 dark:border-gray-700
-                hover:border-blue-500/50 dark:hover:border-blue-500/50
-                hover:shadow-lg dark:hover:shadow-blue-500/10
-                transition-all duration-300"
+      initial={{ opacity: 0, x: -10 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: index * 0.15 }}
+      className="group relative"
     >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 rounded-xl opacity-5 dark:opacity-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.3),rgba(255,255,255,0))]" />
-      </div>
-
-      {/* Content */}
-      <div className="relative space-y-4">
-        {/* Header */}
-        <div className="flex items-center gap-3">
-          <div
-            className="p-2 rounded-xl bg-blue-500/10 text-blue-500 
-                       group-hover:bg-blue-500 group-hover:text-white
-                       transition-all duration-300"
-          >
+      <div className="relative flex items-center gap-4 py-5">
+        {/* Language Badge */}
+        <div className="relative">
+          <div className="w-10 h-10 flex items-center justify-center rounded-lg 
+                      bg-gradient-to-br from-blue-500 to-blue-600 text-white
+                      shadow-md group-hover:shadow-blue-500/25 group-hover:scale-105
+                      transition duration-300">
             <FaGlobeAmericas className="w-5 h-5" />
           </div>
-          <h3 className="text-lg font-bold text-gray-900 dark:text-white">{language.language}</h3>
         </div>
 
-        {/* Quote */}
-        <div className="pl-12">
-          <div className="relative">
-            <FaQuoteLeft className="absolute -left-6 -top-2 w-4 h-4 text-blue-500/50" />
-            <p className="text-gray-600 dark:text-gray-300 font-medium">{language.text}</p>
-            <FaQuoteRight className="absolute -right-6 -bottom-2 w-4 h-4 text-blue-500/50" />
-          </div>
+        {/* Content Container */}
+        <div className="flex-grow">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
+            {/* Language Name */}
+            <h3 className="text-lg font-bold text-gray-900 dark:text-white min-w-[100px]">
+              {language.language}
+            </h3>
 
-          {/* Translation */}
-          {language.translation && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="mt-3 flex items-start gap-2 text-sm text-gray-500 dark:text-gray-400"
-            >
-              <HiTranslate className="w-4 h-4 mt-0.5 flex-shrink-0" />
-              <p className="italic">{language.translation}</p>
-            </motion.div>
-          )}
+            {/* Main Text & Translation */}
+            <div className="space-y-1.5">
+              <p className="text-base text-gray-600 dark:text-gray-300">
+                {language.text}
+              </p>
+
+              {/* Translation */}
+              {language.translation && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.2 }}
+                  className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400"
+                >
+                  <HiTranslate className="w-4 h-4 text-blue-500/70" />
+                  <p className="italic">{language.translation}</p>
+                </motion.div>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </motion.div>
@@ -67,13 +63,15 @@ const LanguageCard: React.FC<{
 
 const Languages = () => {
   return (
-    <section id={Section.Languages} className="py-20 sm:py-32">
-      {getSectionHeading(Section.Languages)}
+    <section id={Section.Languages} className="py-16 sm:py-24">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+        {getSectionHeading(Section.Languages)}
 
-      <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {languagesList.map((language, index) => (
-          <LanguageCard key={language.id} language={language} index={index} />
-        ))}
+        <div className="mt-10 space-y-1 divide-y divide-gray-100 dark:divide-gray-800">
+          {languagesList.map((language, index) => (
+            <LanguageCard key={language.id} language={language} index={index} />
+          ))}
+        </div>
       </div>
     </section>
   );
