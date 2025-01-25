@@ -69,7 +69,7 @@ const Home: NextPage<Props> = ({ articles }) => {
         keywords={sectionSEO[activeSection].keywords.join(", ")}
       />
 
-      <div className="w-5/6 mx-auto md:container grid gap-24">
+      <div className="w-5/6 mx-auto md:container grid gap-24 pt-20 lg:pt-8 lg:pl-24">
         <Header />
 
         <AboutMe />
