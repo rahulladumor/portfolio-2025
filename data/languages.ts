@@ -1,8 +1,4 @@
-import { 
-  ES,
-  GB,
-  IN,
-  IT} from 'country-flag-icons/react/3x2';
+import { GB, IN, IT } from "country-flag-icons/react/3x2";
 import type { Language } from "types/Sections";
 
 const languagesList: Language[] = [
@@ -12,7 +8,7 @@ const languagesList: Language[] = [
     text: "I'm fluent in English, the global language of connection and innovation.",
     icon: GB,
     color: "from-sky-500 to-indigo-500",
-    tooltip: "Native-level proficiency in spoken and written English."
+    tooltip: "Native-level proficiency in spoken and written English.",
   },
   {
     id: 2,
@@ -21,7 +17,7 @@ const languagesList: Language[] = [
     translation: "I can speak and understand Hindi fluently.",
     icon: IN,
     color: "from-yellow-500 to-orange-500",
-    tooltip: "Fluent in one of the most widely spoken languages in the world."
+    tooltip: "Fluent in one of the most widely spoken languages in the world.",
   },
   {
     id: 3,
@@ -30,26 +26,17 @@ const languagesList: Language[] = [
     translation: "Gujarati is my mother tongue and holds a special place in my heart.",
     icon: IN,
     color: "from-green-400 to-teal-500",
-    tooltip: "Proficient in my native language, connecting me to my roots."
+    tooltip: "Proficient in my native language, connecting me to my roots.",
   },
   {
     id: 4,
     language: "Italian",
     text: "Bella ciao, bella ciao, bella ciao ciao ciao!",
-    translation: "I picked this up from watching Money Heist.",
+    translation: "I picked this up from the iconic Italian protest song featured in Money Heist.",
     icon: IT,
     color: "from-red-500 to-green-500",
-    tooltip: "Learned a bit of Italian while enjoying some great TV!"
+    tooltip: "Learned some Italian through the timeless protest song featured in great TV!",
   },
-  {
-    id: 5,
-    language: "Spanish",
-    text: "Hola amigo! Cómo estás? Estoy bien, gracias.",
-    translation: "Basic conversational Spanish learned from movies and songs.",
-    icon: ES,
-    color: "from-yellow-400 to-red-600",
-    tooltip: "Gracias to Spanish movies and songs for teaching me the basics!"
-  }
 ];
 
 export default languagesList;

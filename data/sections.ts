@@ -1,6 +1,6 @@
 import { AiFillSafetyCertificate } from "react-icons/ai";
 import { BiDonateHeart } from "react-icons/bi";
-import { FaAward, FaDev, FaPaintBrush, FaPaperPlane, FaSignLanguage, FaTools } from "react-icons/fa";
+import { FaAward, FaDev, FaPaperPlane, FaSignLanguage, FaTools } from "react-icons/fa";
 import { MdBook, MdMusicNote, MdPerson, MdSchool, MdWork } from "react-icons/md";
 import { Section, SectionArray, SectionMap } from "types/Sections";
 
@@ -22,11 +22,11 @@ const sectionsList: SectionMap = {
     title: "Skills",
   },
   [Section.Projects]: {
-    icon: FaDev,
+    icon: MdBook,
     title: "Projects",
   },
   [Section.Blog]: {
-    icon: MdBook,
+    icon: FaDev,
     title: "Blog",
   },
   [Section.Languages]: {

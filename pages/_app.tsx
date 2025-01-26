@@ -5,6 +5,7 @@ import "tippy.js/dist/tippy.css";
 import { Analytics } from "@vercel/analytics/react";
 import Navigation from "components/Navigation";
 import NoSSR from "components/NoSSR";
+import ScrollToTop from "components/ScrollToTop";
 import ThemeProvider from "contexts/ThemeProvider";
 import type { AppProps } from "next/app";
 import Head from "next/head";
@@ -62,6 +63,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         <Component {...pageProps} />
         <NoSSR>
           <Navigation />
+          <ScrollToTop />
         </NoSSR>
       </ThemeProvider>
       <Analytics />

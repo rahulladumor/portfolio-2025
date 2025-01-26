@@ -8,10 +8,11 @@ import {
   FaGithub,
   FaLinkedinIn,
   FaMediumM,
-  FaTwitter
+  FaTwitter,
+  FaUserAlt
 } from "react-icons/fa";
-import { FiMail } from "react-icons/fi";
 import { useInView } from "react-intersection-observer";
+import { Section } from "types/Sections";
 
 // Lazy load the tech stack icons
 const TechStackIcon = lazy(() => import("./TechStackIcon"));
@@ -136,8 +137,13 @@ const DeveloperIntro: React.FC = () => {
 
       <div className="flex flex-col items-center gap-8 mt-8">
         <Button
-          onClick={() => window.open("mailto:rahulladumor@gmail.com", "_blank")}
-          icon={FiMail}
+          onClick={() => {
+            const contactSection = document.getElementById(Section.Contact);
+            if (contactSection) {
+              contactSection.scrollIntoView({ behavior: "smooth" });
+            }
+          }}
+          icon={FaUserAlt}
           iconPosition="left"
           variant="primary"
           size="lg"
