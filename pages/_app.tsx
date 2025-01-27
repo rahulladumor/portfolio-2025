@@ -3,8 +3,10 @@ import "styles/globals.css";
 import "tippy.js/dist/tippy.css";
 
 import { Analytics } from "@vercel/analytics/react";
+import InteractiveBackground from "components/InteractiveBackground";
 import Navigation from "components/Navigation";
 import NoSSR from "components/NoSSR";
+import ScrollToTop from "components/ScrollToTop";
 import ThemeProvider from "contexts/ThemeProvider";
 import type { AppProps } from "next/app";
 import Head from "next/head";
@@ -59,12 +61,16 @@ const App = ({ Component, pageProps }: AppProps) => {
       </Head>
 
       <ThemeProvider>
-        <Component {...pageProps} />
         <NoSSR>
-          <Navigation />
+          <div className="relative min-h-screen">
+            <InteractiveBackground />
+            <Navigation />
+            <Component {...pageProps} />
+            <ScrollToTop />
+          </div>
         </NoSSR>
+        <Analytics />
       </ThemeProvider>
-      <Analytics />
     </>
   );
 };

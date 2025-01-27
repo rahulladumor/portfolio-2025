@@ -17,179 +17,161 @@ interface Education {
   url?: string;
 }
 
-const getFaviconUrl = (url: string) => {
-  try {
-    const domain = new URL(url).hostname;
-    return `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
-  } catch {
-    return null;
-  }
-};
-
 const education: Education[] = [
   {
     id: 1,
-    logo: "https://vnsgu.ac.in/wp-content/uploads/2023/07/VNSGU-Logo-1.png",
+    logo: "/images/education/vnsgu.png",
     institution: "Veer Narmad South Gujarat University",
     degree: "Master of Science",
     study: "Information Technology",
     period: "2015 - 2017",
-    url: "https://alumni.vnsgu.net/NewsDetail.aspx?ID=3",
+    url: "https://vnsgu.ac.in",
   },
   {
     id: 2,
-    logo: "https://vnsgu.ac.in/wp-content/uploads/2023/07/VNSGU-Logo-1.png",
+    logo: "/images/education/vnsgu.png",
     institution: "Veer Narmad South Gujarat University",
     degree: "Bachelor of Science",
     study: "Information Technology",
     period: "2012 - 2015",
-    url: "https://alumni.vnsgu.net/NewsDetail.aspx?ID=3",
+    url: "https://vnsgu.ac.in",
   },
 ];
 
 const EducationCard: React.FC<{ data: Education }> = ({ data }) => {
-  const faviconUrl = data.url ? getFaviconUrl(data.url) : null;
-
   return (
-    <motion.div
-      className="p-6 rounded-xl bg-white dark:bg-gray-800/50 backdrop-blur-sm
-                border border-gray-200 dark:border-gray-700 
-                hover:border-blue-500/50 dark:hover:border-blue-500/50
-                hover:shadow-lg dark:hover:shadow-blue-500/10
-                transition-all duration-300"
-      whileHover={{ scale: 1.01 }}
+    <motion.article
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="group bg-white/80 dark:bg-gray-800/50 rounded-2xl shadow-lg hover:shadow-xl 
+                 transition-all duration-300 overflow-hidden backdrop-blur-sm
+                 border border-gray-100/50 dark:border-gray-700/50
+                 hover:border-blue-500/30 hover:shadow-blue-500/10"
     >
-      <div className="flex items-start gap-6">
-        <div className="relative w-12 h-12 flex-shrink-0">
-          <div className="absolute inset-0 bg-blue-500/10 dark:bg-blue-400/10 rounded-lg"></div>
-          {faviconUrl ? (
+      <div className="p-8">
+        <div className="flex items-start gap-6">
+          <div className="relative w-16 h-16 flex-shrink-0">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl 
+                          group-hover:from-blue-500/30 group-hover:to-purple-500/30 transition-all duration-300"></div>
             <Image
-              src={faviconUrl}
-              alt={data.institution}
-              width={48}
-              height={48}
-              className="rounded-lg object-contain p-1"
+              src={data.logo}
+              alt={`${data.institution} logo`}
+              width={64}
+              height={64}
+              className="rounded-xl object-contain p-2"
               loading="lazy"
-              unoptimized={true}
             />
-          ) : (
-            <div className="w-12 h-12 rounded-lg bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-              <span className="text-lg font-bold text-gray-500 dark:text-gray-400">{data.institution.charAt(0)}</span>
-            </div>
-          )}
-        </div>
+          </div>
 
-        <div className="flex-1 min-w-0">
-          <div className="flex justify-between items-start gap-2 flex-wrap">
-            <div>
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-                {data.degree} in {data.study}
-              </h3>
-              <div className="flex items-center gap-2">
-                <p
-                  className="text-base font-medium bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 
-                             bg-clip-text text-transparent"
-                >
-                  {data.institution}
-                </p>
-                {data.url && (
-                  <button
-                    onClick={() => openURLInNewTab(data.url!)}
-                    className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200
-                             transition-colors duration-200"
-                    aria-label={`Visit ${data.institution} website`}
-                  >
-                    <FaExternalLinkAlt size={12} />
-                  </button>
-                )}
+          <div className="flex-1 min-w-0">
+            <div className="flex justify-between items-start flex-wrap gap-3">
+              <div>
+                <h3 className="text-xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 
+                             dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent">
+                  {data.degree}
+                </h3>
+                <div className="flex items-center gap-2 mt-1">
+                  <p className="text-lg font-medium bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+                    {data.institution}
+                  </p>
+                  {data.url && (
+                    <button
+                      onClick={() => openURLInNewTab(data.url!)}
+                      className="text-gray-400 hover:text-blue-500 dark:text-gray-500 dark:hover:text-blue-400
+                               transition-colors duration-300"
+                      aria-label={`Visit ${data.institution} website`}
+                    >
+                      <FaExternalLinkAlt size={14} />
+                    </button>
+                  )}
+                </div>
               </div>
+              <span className="text-base font-medium text-gray-600 dark:text-gray-400">
+                {data.period}
+              </span>
             </div>
-            <div className="text-sm text-gray-600 dark:text-gray-400">{data.period}</div>
+
+            <div className="mt-3 flex items-center text-base text-gray-600 dark:text-gray-400 gap-2">
+              <FaLocationArrow className="flex-shrink-0" size={14} />
+              <span className="font-medium">{data.study}</span>
+            </div>
           </div>
         </div>
       </div>
-    </motion.div>
+    </motion.article>
   );
 };
 
 const EducationSection = () => {
   const [showAll, setShowAll] = useState(false);
-
   const displayedEducation = showAll ? education : education.slice(0, INITIAL_DISPLAY_COUNT);
 
   return (
-    <section id={Section.Education} className="space-y-6" aria-label="Education Section">
-      {getSectionHeading(Section.Education)}
+    <section id={Section.Education} className="py-20 sm:py-28">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {getSectionHeading(Section.Education)}
 
-      <div className="mt-8 space-y-6">
-        <AnimatePresence>
-          {displayedEducation.map((edu) => (
-            <motion.div
-              key={edu.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.2 }}
+        <div className="mt-8 max-w-3xl relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-pink-500/5 
+                         rounded-2xl backdrop-blur-sm" />
+          <div className="relative p-6 sm:p-8 rounded-2xl border border-blue-500/20 dark:border-purple-500/20">
+            <div className="flex items-start gap-3">
+              <div className="p-2 rounded-lg bg-gradient-to-br from-blue-500 to-purple-500">
+                <svg 
+                  className="w-5 h-5 text-white" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" 
+                  />
+                </svg>
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 
+                             dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent mb-2">
+                  Academic Background
+                </h4>
+                <p className="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                  Formal education in Information Technology with focus on software development, 
+                  database management, and system architecture. Strong foundation in computer science 
+                  principles and modern development practices.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-12 space-y-6">
+          <AnimatePresence>
+            {displayedEducation.map((edu) => (
+              <EducationCard key={edu.id} data={edu} />
+            ))}
+          </AnimatePresence>
+        </div>
+
+        {education.length > INITIAL_DISPLAY_COUNT && (
+          <div className="mt-8 text-center">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg
+                       bg-gradient-to-r from-blue-500/10 to-purple-500/10 
+                       hover:from-blue-500/20 hover:to-purple-500/20
+                       text-gray-700 dark:text-gray-300
+                       transition-all duration-300"
             >
-              <EducationCard data={edu} />
-            </motion.div>
-          ))}
-        </AnimatePresence>
+              <span>{showAll ? "Show Less" : "Show More"}</span>
+              <FaChevronDown
+                className={`transform transition-transform duration-300 ${showAll ? "rotate-180" : ""}`}
+              />
+            </button>
+          </div>
+        )}
       </div>
-
-      {/* Show More Button */}
-      {!showAll && education.length > INITIAL_DISPLAY_COUNT && (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex justify-center mt-8">
-          <button
-            onClick={() => setShowAll(true)}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg
-                     bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10
-                     hover:from-blue-500/20 hover:via-purple-500/20 hover:to-pink-500/20
-                     text-gray-900 dark:text-white
-                     border border-gray-200 dark:border-gray-700
-                     transition-all duration-300"
-          >
-            Show More Education
-            <motion.span
-              animate={{ y: [0, 3, 0] }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            >
-              <FaChevronDown size={12} />
-            </motion.span>
-          </button>
-        </motion.div>
-      )}
-
-      {/* Show Less Button */}
-      {showAll && (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex justify-center mt-8">
-          <button
-            onClick={() => setShowAll(false)}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg
-                     bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10
-                     hover:from-blue-500/20 hover:via-purple-500/20 hover:to-pink-500/20
-                     text-gray-900 dark:text-white
-                     border border-gray-200 dark:border-gray-700
-                     transition-all duration-300"
-          >
-            Show Less
-            <motion.span
-              animate={{ y: [0, -3, 0] }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            >
-              <FaChevronDown size={12} className="transform rotate-180" />
-            </motion.span>
-          </button>
-        </motion.div>
-      )}
     </section>
   );
 };

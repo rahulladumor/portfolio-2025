@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEnvelope, FaGithub, FaLinkedin, FaPaperPlane, FaTwitter } from "react-icons/fa";
-import { FaDev } from "react-icons/fa"; // Add this line
+import { FaDev } from "react-icons/fa"; 
 import { Section } from "types/Sections";
 import { getSectionHeading, openURLInNewTab } from "utils";
 
@@ -110,11 +110,27 @@ const Contact = () => {
   } = useForm<FormData>();
 
   const [isSubmitted, setSubmitted] = useState(false);
-  const [submit, submitting] = useFormspark({ formId: "fughhb2WE" });
+  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [submit, submitting] = useFormspark({
+    formId: process.env.NEXT_PUBLIC_FORMSPARK_FORM_ID || "fughhb2WE"
+  });
 
   const onSubmit = handleSubmit(async (data) => {
-    await submit(data);
-    setSubmitted(true);
+    try {
+      setIsError(false);
+      setErrorMessage("");
+      await submit({
+        ...data,
+        _redirect: false,
+        _captcha: true
+      });
+      setSubmitted(true);
+    } catch (error) {
+      setIsError(true);
+      setErrorMessage("Failed to send message. Please try again later.");
+      console.error("Form submission error:", error);
+    }
   });
 
   return (
@@ -135,7 +151,7 @@ const Contact = () => {
           className="bg-white dark:bg-gray-800/50 rounded-xl p-6
                   border border-gray-200 dark:border-gray-700
                   hover:border-blue-500/50 dark:hover:border-blue-500/50
-                  transition-all duration-300"
+                  transition-all duration-300 relative z-10"
         >
           {isSubmitted ? (
             <div className="flex flex-col items-center justify-center py-12 text-center">
@@ -154,6 +170,16 @@ const Contact = () => {
             </div>
           ) : (
             <form onSubmit={onSubmit} className="grid gap-6">
+              {isError && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="p-4 rounded-lg bg-red-50 dark:bg-red-900/10 border border-red-200 dark:border-red-800"
+                >
+                  <p className="text-sm text-red-600 dark:text-red-400">{errorMessage}</p>
+                </motion.div>
+              )}
+
               <div className="grid gap-6 lg:grid-cols-2">
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Full Name</label>
@@ -166,6 +192,7 @@ const Contact = () => {
                             transition-colors duration-200`}
                     placeholder="Regina Phalange"
                     {...register("name", { required: "Name is required" })}
+                    disabled={submitting}
                   />
                   {errors.name && <p className="text-sm text-red-500">{errors.name.message}</p>}
                 </div>
@@ -187,6 +214,7 @@ const Contact = () => {
                         message: "Please enter a valid email",
                       },
                     })}
+                    disabled={submitting}
                   />
                   {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
                 </div>
@@ -209,6 +237,7 @@ const Contact = () => {
                       message: "Message must be at least 10 characters",
                     },
                   })}
+                  disabled={submitting}
                 />
                 {errors.message && <p className="text-sm text-red-500">{errors.message.message}</p>}
               </div>
@@ -218,13 +247,14 @@ const Contact = () => {
                 disabled={submitting}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full lg:w-auto px-8 py-3 rounded-lg font-medium
+                className={`w-full lg:w-auto px-8 py-3 rounded-lg font-medium
                         bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500
                         text-white disabled:opacity-50 disabled:cursor-not-allowed
                         hover:opacity-90 transition-all duration-200
-                        flex items-center justify-center gap-2"
+                        flex items-center justify-center gap-2
+                        ${submitting ? 'cursor-not-allowed' : 'cursor-pointer'}`}
               >
-                <FaPaperPlane className="w-4 h-4" />
+                <FaPaperPlane className={`w-4 h-4 ${submitting ? 'animate-pulse' : ''}`} />
                 {submitting ? "Sending..." : "Send Message"}
               </motion.button>
             </form>

@@ -1,53 +1,109 @@
+import AnimatedBackground from "components/Header/AnimatedBackground";
+import AnimatedName from "components/Header/AnimatedName";
 import DeveloperIntro from "components/Header/DeveloperIntro";
-import Ingredients from "components/Header/Ingredients";
+import ProfileParticles from "components/Header/ProfileParticles";
 import Profiles from "components/Header/Profiles";
+import StylizedProfileImage from "components/Header/StylizedProfileImage";
 import NoSSR from "components/NoSSR";
-import useWindowDimensions, { Breakpoints } from "hooks/useWindowDimensions";
+import { AnimatePresence,motion } from "framer-motion";
 import Image from "next/image";
+import { useEffect,useState } from "react";
+import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { HiArrowDown } from "react-icons/hi";
+import { Section } from "types/Sections";
+
+const titles = [
+  "Full Stack Developer",
+  "AWS Solutions Architect",
+  "Cloud Computing Expert",
+  "DevOps Specialist",
+  "Tech Lead"
+];
 
 const Header: React.FC = () => {
-  const { width } = useWindowDimensions();
+  const [titleIndex, setTitleIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTitleIndex((current) => (current + 1) % titles.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <div id="header" className="h-screen grid place-items-center place-content-center gap-4 relative">
-      {/* Modern Developer Intro */}
-      <NoSSR>
-        <DeveloperIntro />
-      </NoSSR>
+    <section id={Section.AboutMe} className="relative min-h-screen flex flex-col items-center justify-center px-4 py-16">
+      {/* Animated Background */}
+      <AnimatedBackground />
 
-      {/* Logo */}
-      <Image
-        src="/images/rd-logo.png"
-        width={485}
-        height={128}
-        alt="Rahul Ladumor - Founder & CEO of CodeLamda Technologies"
-        priority
-      />
+      {/* Main Content */}
+      <div className="w-full max-w-6xl mx-auto grid lg:grid-cols-[1.2fr,0.8fr] gap-12 lg:gap-16 items-center">
+        {/* Left Column - Text Content */}
+        <motion.div 
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="flex flex-col gap-6 lg:gap-8 text-center lg:text-left"
+        >
+          {/* Profile Image - Mobile Only */}
+          <div className="lg:hidden flex justify-center">
+            <StylizedProfileImage />
+          </div>
 
-      {/* Text Version - Enhanced for SEO */}
-      <h1 className="sr-only">
-        Rahul Ladumor
-        <br />
-        Founder & CEO at CodeLamda Technologies
-        <br />
-        Full Stack Developer & AWS Solutions Architect
-        <br />
-        Cloud Computing Expert | Enterprise Solutions
-        <br />
-        Surat, Gujarat, India
-      </h1>
+          {/* Name and Title */}
+          <div className="lg:text-left text-center">
+            <AnimatedName />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+            >
+              <h2 className="text-2xl font-semibold mt-4 bg-gradient-to-r from-purple-500 via-blue-500 to-pink-500 bg-clip-text text-transparent">
+                AWS Expert & Cloud Architect
+              </h2>
+              <p className="text-gray-600 dark:text-gray-400 mt-2">
+                Founder & CEO of CodeLamda Technologies
+              </p>
+            </motion.div>
+          </div>
 
-      {/* Founder Badge */}
-      <div className="absolute top-4 right-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
-        Founder & CEO @ CodeLamda
+          {/* Developer Intro Component */}
+          <div className="mt-4">
+            <NoSSR>
+              <DeveloperIntro />
+            </NoSSR>
+          </div>
+
+          {/* Removed duplicate CTA buttons and social icons since they are in DeveloperIntro */}
+        </motion.div>
+
+        {/* Right Column - Desktop Profile Image */}
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="hidden lg:flex justify-center items-center"
+        >
+          <StylizedProfileImage />
+        </motion.div>
       </div>
 
-      {/* Ingredients */}
-      <Ingredients />
+      {/* Scroll Indicator */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: [0, 10, 0] }}
+        transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+      >
+        <HiArrowDown className="text-2xl text-gray-400 dark:text-gray-500" />
+      </motion.div>
 
-      {/* Social Profiles */}
-      <Profiles />
-    </div>
+      {/* SEO Content */}
+      <h2 className="sr-only">
+        Full Stack Developer & AWS Solutions Architect
+        Cloud Computing Expert | Enterprise Solutions
+        Surat, Gujarat, India
+      </h2>
+    </section>
   );
 };
 
