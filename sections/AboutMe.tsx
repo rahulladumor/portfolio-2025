@@ -21,35 +21,49 @@ import {
 import { Section } from "../types/Sections";
 import { getSectionHeading } from "../utils";
 
+const links = {
+  email: "rahul.ladumor@gmail.com",
+  linkedin: "https://linkedin.com/in/rahulladumor",
+  github: "https://github.com/rahulladumor",
+  twitter: "https://twitter.com/rahulladumor",
+  dev: "https://dev.to/rahulladumor"
+};
+
 const AboutMe = () => {
   const seoKeywords = [
     "Rahul Ladumor",
-    "CodeLamda Technologies",
-    "Cloud Architecture",
+    "CEO CodeLamda Technologies",
+    "Technology Leader",
+    "Cloud Solutions Architect",
+    "AWS Certified Expert",
     "Digital Transformation",
+    "Enterprise Solutions",
+    "Technology Innovation",
+    "Cloud Architecture",
     "AI/ML Solutions",
-    "Enterprise Applications",
-    "DevOps Automation",
-    "Blockchain Development",
-    "Full Stack Development",
-    "AWS Certified",
-    "Tech Leadership",
-    "Innovation",
+    "Business Leadership",
+    "Tech Entrepreneurship",
+    "Enterprise Technology",
+    "Strategic Technology",
+    "Digital Innovation",
+    "System Architecture",
+    "Web3 Innovation",
+    "Technology Strategy"
   ].join(", ");
 
   return (
     <>
       <Head>
-        <title>About Rahul Ladumor - Founder & CEO of CodeLamda Technologies</title>
+        <title>Rahul Ladumor - CEO & Founder of CodeLamda Technologies</title>
         <meta
           name="description"
-          content="Rahul Ladumor is the Founder & CEO of CodeLamda Technologies, with 7+ years of experience in cloud architecture, AI/ML solutions, and digital transformation. Expert in AWS, Azure, and modern tech stack."
+          content="Founder & CEO of CodeLamda Technologies, pioneering innovative solutions in cloud architecture, AI/ML, and digital transformation. Leading enterprises to achieve remarkable technological breakthroughs."
         />
         <meta name="keywords" content={seoKeywords} />
-        <meta property="og:title" content="About Rahul Ladumor - Tech Innovator & Business Leader" />
+        <meta property="og:title" content="Rahul Ladumor - CEO & Technology Innovation Leader" />
         <meta
           property="og:description"
-          content="Discover how Rahul Ladumor and CodeLamda Technologies are transforming businesses through innovative technology solutions, reducing cloud costs by 40% and handling 1M+ requests per minute."
+          content="Technology leader and innovator specializing in enterprise solutions, cloud architecture, and digital transformation. Proven track record of driving business growth through technological excellence."
         />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
@@ -70,13 +84,12 @@ const AboutMe = () => {
                 👋 Hi, I&apos;m Rahul Ladumor
               </h1>
               <p className="mt-4 text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-                Founder & CEO of <span className="text-blue-600 dark:text-blue-400">CodeLamda Technologies</span>,
-                pioneering innovative solutions in cloud architecture and AI implementation.
+                Founder & CEO of <span className="text-blue-600 dark:text-blue-400">CodeLamda Technologies</span>, where I lead innovation in cloud architecture, AI/ML solutions, and digital transformation.
               </p>
               <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                With over 7 years of experience, we&apos;ve revolutionized business operations by reducing cloud costs up to
-                <span className="font-semibold text-green-600 dark:text-green-400"> 40%</span> and building robust systems
-                handling <span className="font-semibold text-blue-600 dark:text-blue-400">1M+ requests per minute</span>.
+                With over 7+ years of experience, I&apos;ve guided enterprises to achieve remarkable technological breakthroughs, including
+                <span className="font-semibold text-green-600 dark:text-green-400"> 40% reduction in cloud costs</span> and architecting systems handling
+                <span className="font-semibold text-blue-600 dark:text-blue-400"> 1M+ requests per minute</span>.
               </p>
               <div className="mt-6 flex flex-wrap gap-4">
                 <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
@@ -86,6 +99,10 @@ const AboutMe = () => {
                 <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                   <FaHandshake className="w-4 h-4 text-blue-500" />
                   <span>50+ Enterprise Clients</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                  <FaUsers className="w-4 h-4 text-green-500" />
+                  <span>Technology Innovation Leader</span>
                 </div>
               </div>
             </div>
@@ -99,39 +116,39 @@ const AboutMe = () => {
               </div>
               <h2 className="text-lg font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 
                            dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent">
-                What We Do Best
+                What I Do Best
               </h2>
             </div>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {[
                 {
-                  title: "Cloud Architecture & Digital Transformation",
-                  description: "Expert implementation of scalable cloud solutions using AWS, Azure, and GCP",
+                  title: "Enterprise Cloud Solutions",
+                  description: "Strategic implementation of cloud architectures using AWS, Azure, and GCP, delivering scalable and cost-effective solutions for enterprises.",
                   icon: FaCloud
                 },
                 {
-                  title: "AI/ML Solutions Implementation",
-                  description: "Custom AI/ML solutions for process automation and data analytics",
+                  title: "AI/ML Innovation",
+                  description: "Pioneering AI/ML solutions that drive business automation and data-driven decision making, transforming operational efficiency.",
                   icon: FaLightbulb
                 },
                 {
-                  title: "Enterprise Application Development",
-                  description: "Scalable, secure, and high-performance enterprise applications",
+                  title: "Digital Transformation",
+                  description: "Leading end-to-end digital transformation initiatives that revolutionize business processes and customer experiences.",
                   icon: FaCode
                 },
                 {
-                  title: "DevOps Automation & Infrastructure",
-                  description: "Streamlined CI/CD pipelines and infrastructure management",
+                  title: "Technology Strategy",
+                  description: "Developing comprehensive technology strategies that align with business objectives and drive sustainable growth.",
                   icon: FaTools
                 },
                 {
-                  title: "Cybersecurity Solutions",
-                  description: "Comprehensive security measures for enterprise applications",
+                  title: "Enterprise Security",
+                  description: "Implementing enterprise-grade security solutions that protect critical business assets and ensure regulatory compliance.",
                   icon: FaAward
                 },
                 {
-                  title: "Blockchain Development",
-                  description: "Smart contracts and decentralized application development",
+                  title: "Web3 & Blockchain",
+                  description: "Spearheading blockchain initiatives and Web3 solutions that position businesses at the forefront of technological innovation.",
                   icon: FaIndustry
                 }
               ].map((service, index) => (
@@ -168,7 +185,7 @@ const AboutMe = () => {
               </div>
               <h2 className="text-lg font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 
                            dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent">
-                Our Tech Stack
+                My Tech Stack
               </h2>
             </div>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -227,21 +244,19 @@ const AboutMe = () => {
                 </div>
                 <h2 className="text-base font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 
                              dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent">
-                  Industries We Serve
+                  Who I Help
                 </h2>
               </div>
               <div className="grid gap-2 sm:grid-cols-2">
                 {[
-                  "FinTech",
-                  "HealthTech",
-                  "E-commerce",
-                  "EdTech",
-                  "Manufacturing",
-                  "Logistics",
-                  "Enterprise IT"
-                ].map((industry, index) => (
+                  "Enterprises seeking digital transformation",
+                  "Startups looking for technical expertise",
+                  "Companies needing cloud optimization",
+                  "Organizations requiring security solutions",
+                  "Businesses wanting AI implementation"
+                ].map((client, index) => (
                   <motion.div
-                    key={industry}
+                    key={client}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
@@ -255,7 +270,7 @@ const AboutMe = () => {
                                     group-hover:from-green-500/20 group-hover:to-blue-500/20 transition-all duration-300">
                         <FaIndustry className="w-3.5 h-3.5 text-green-600 dark:text-green-400" />
                       </div>
-                      <h3 className="text-sm font-medium text-gray-900 dark:text-white">{industry}</h3>
+                      <h3 className="text-sm font-medium text-gray-900 dark:text-white">{client}</h3>
                     </div>
                   </motion.div>
                 ))}
@@ -324,21 +339,21 @@ const AboutMe = () => {
                 </div>
                 <div className="mt-3 space-y-4">
                   <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                    Ready to transform your business with cutting-edge technology solutions? Let&apos;s discuss your requirements!
+                    Looking to build something amazing? I&apos;d love to help bring your ideas to life with cutting-edge technology solutions!
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3">
                     <a
-                      href="mailto:contact@codelamda.com"
+                      href={`mailto:${links.email}`}
                       className="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm
                                bg-gradient-to-r from-blue-500 to-purple-500 text-white
                                hover:from-blue-600 hover:to-purple-600
                                transition-all duration-300"
                     >
                       <FaEnvelope className="w-3.5 h-3.5 mr-2" />
-                      Contact Us
+                      Email Me
                     </a>
                     <a
-                      href="https://www.codelamda.com"
+                      href={links.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm
@@ -347,13 +362,13 @@ const AboutMe = () => {
                                hover:border-blue-500/30 hover:shadow-sm hover:shadow-blue-500/10
                                transition-all duration-300"
                     >
-                      <FaGlobe className="w-3.5 h-3.5 mr-2" />
-                      Visit Website
+                      <FaLinkedin className="w-3.5 h-3.5 mr-2" />
+                      Connect on LinkedIn
                     </a>
                   </div>
                   <div className="flex items-center gap-4 mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
                     <a
-                      href="https://github.com/codelamda"
+                      href={links.github}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
@@ -361,7 +376,7 @@ const AboutMe = () => {
                       <FaGithub className="w-4 h-4" />
                     </a>
                     <a
-                      href="https://linkedin.com/company/codelamda"
+                      href={links.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
@@ -369,7 +384,7 @@ const AboutMe = () => {
                       <FaLinkedin className="w-4 h-4" />
                     </a>
                     <a
-                      href="https://twitter.com/codelamda"
+                      href={links.twitter}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
