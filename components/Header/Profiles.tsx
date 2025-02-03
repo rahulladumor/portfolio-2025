@@ -53,31 +53,37 @@ const Profiles = () => {
   }, []);
 
   return (
-    <nav
-      className="flex flex-wrap items-center justify-center gap-2"
-      role="navigation"
-      aria-label="Social Media Profiles"
-    >
-      {profiles.map(({ title, icon: Icon, link, className }) => (
-        <Tippy key={title} content={title}>
-          <a
-            href={link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={clsx(
-              "flex h-10 w-10 items-center justify-center rounded-lg text-white transition-transform hover:scale-110 focus:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2",
-              className,
-            )}
-            aria-label={`Visit ${title} profile`}
-            role="link"
-            tabIndex={0}
-            onKeyDown={(e) => handleKeyPress(e, link)}
-          >
-            <Icon aria-hidden="true" />
-          </a>
-        </Tippy>
-      ))}
-    </nav>
+    <div className="flex flex-col items-center gap-4">
+      <div className="flex items-center gap-4">
+        {profiles.map(({ title, icon: Icon, link, className }) => (
+          <Tippy key={title} content={title} placement="bottom" arrow={false}>
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={clsx(
+                "w-10 h-10 rounded-lg flex items-center justify-center text-white transition-transform hover:scale-110",
+                className
+              )}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => handleKeyPress(e, link)}
+            >
+              <Icon size={20} />
+            </a>
+          </Tippy>
+        ))}
+      </div>
+      <a
+        href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=rahulladumor"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="bg-[#0A66C2] hover:bg-[#004182] text-white font-sans px-4 py-2 rounded-full text-sm flex items-center gap-2 transition-all hover:scale-105"
+      >
+        <FaLinkedinIn size={16} />
+        Follow on LinkedIn
+      </a>
+    </div>
   );
 };
 

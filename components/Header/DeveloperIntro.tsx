@@ -136,59 +136,53 @@ const DeveloperIntro: React.FC = () => {
       </motion.p>
 
       <div className="flex flex-col items-center gap-8 mt-8">
-        <Button
-          onClick={() => {
-            const contactSection = document.getElementById(Section.Contact);
-            if (contactSection) {
-              contactSection.scrollIntoView({ behavior: "smooth" });
-            }
-          }}
-          icon={FaUserAlt}
-          iconPosition="left"
-          variant="primary"
-          size="lg"
-          className="hover:scale-105 transition-transform duration-300"
-        >
-          Get in Touch
-        </Button>
+        <div className="flex flex-wrap items-center gap-4">
+          <Button
+            onClick={() => {
+              const contactSection = document.getElementById(Section.Contact);
+              if (contactSection) {
+                contactSection.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
+            icon={FaUserAlt}
+            iconPosition="left"
+            variant="primary"
+            size="lg"
+            className="hover:scale-105 transition-transform duration-300"
+          >
+            Get in Touch
+          </Button>
+
+          <Button
+            onClick={() => window.open('https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=rahulladumor', '_blank')}
+            variant="outline"
+            icon={FaLinkedinIn}
+            className="border-[#0A66C2] text-[#0A66C2] hover:bg-[#0A66C2] hover:text-white dark:border-[#0A66C2] dark:text-white dark:hover:bg-[#0A66C2] dark:hover:text-white transition-colors duration-300"
+          >
+            Follow on LinkedIn
+          </Button>
+        </div>
 
         {/* Social Media Icons */}
-        <motion.div
-          className="flex items-center gap-5"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-        >
-          {socialLinks.map((social, index) => {
-            const Icon = social.icon;
-            return (
+        <div className="flex flex-col items-center gap-4">
+          <div className="flex items-center gap-2">
+            {socialLinks.map((link, index) => (
               <motion.a
-                key={social.name}
-                href={social.url}
+                key={link.name}
+                href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 + index * 0.1 }}
-                whileHover={{
-                  scale: 1.1,
-                  y: -2,
-                  transition: { duration: 0.2 }
-                }}
-                whileTap={{ scale: 0.95 }}
-                className={`p-3 rounded-xl bg-white/80 dark:bg-gray-800/80 
-                        shadow-sm hover:shadow-md backdrop-blur-sm
-                        border border-gray-100 dark:border-gray-700/50
-                        transition-all duration-300 group
-                        ${social.color} ${social.bgColor}`}
-                title={social.name}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className={`p-3 rounded-lg transition-all duration-300 ${link.bgColor} ${link.color}`}
+                aria-label={link.name}
               >
-                <Icon className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
-                <span className="sr-only">{social.name}</span>
+                <link.icon size={20} />
               </motion.a>
-            );
-          })}
-        </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
