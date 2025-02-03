@@ -5,17 +5,19 @@ import { motion } from "framer-motion";
 import type { IconType } from "react-icons";
 import { BiLinkExternal } from "react-icons/bi";
 
-type Props = {
+interface Props extends React.PropsWithChildren {
   icon?: IconType;
   disabled?: boolean;
   className?: string;
   onClick: () => void;
-  variant?: 'primary' | 'secondary' | 'outline';
+  variant?: 'primary' | 'secondary' | 'outline' | 'linkedin';
   size?: 'sm' | 'md' | 'lg';
   iconPosition?: 'left' | 'right';
-};
+  href?: string;
+  target?: string;
+}
 
-const Button: React.FC<React.PropsWithChildren<Props>> = ({
+function Button({
   onClick,
   children,
   className,
@@ -24,7 +26,9 @@ const Button: React.FC<React.PropsWithChildren<Props>> = ({
   size = 'md',
   iconPosition = 'right',
   icon: Icon = BiLinkExternal,
-}) => {
+  href,
+  target,
+}: Props) {
   const sizeClasses = {
     sm: 'px-3 py-1.5 text-sm',
     md: 'px-4 py-2 text-sm',
@@ -35,6 +39,7 @@ const Button: React.FC<React.PropsWithChildren<Props>> = ({
     primary: 'bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white',
     secondary: 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700',
     outline: 'bg-transparent border-2 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white hover:border-blue-500 dark:hover:border-blue-400',
+    linkedin: 'bg-[#0A66C2] hover:bg-[#004182] text-white font-sans',
   };
 
   return (
@@ -43,6 +48,7 @@ const Button: React.FC<React.PropsWithChildren<Props>> = ({
       whileTap={{ scale: 0.98 }}
       onClick={disabled ? undefined : onClick}
       disabled={disabled}
+      {...(href && { as: 'a', href, target })}
       className={clsx(
         'relative group inline-flex items-center justify-center gap-2 rounded-xl font-medium',
         'transition-all duration-300 shadow-sm hover:shadow-md',
@@ -59,6 +65,7 @@ const Button: React.FC<React.PropsWithChildren<Props>> = ({
           'bg-gradient-to-r from-blue-500/50 to-purple-500/50': variant === 'primary',
           'bg-white/50 dark:bg-gray-800/50': variant === 'secondary',
           'bg-transparent': variant === 'outline',
+          'bg-[#0A66C2]/50': variant === 'linkedin',
         }
       )} />
 
@@ -97,10 +104,11 @@ const Button: React.FC<React.PropsWithChildren<Props>> = ({
           'border-white/25': variant === 'primary',
           'border-gray-200 dark:border-gray-700': variant === 'secondary',
           'border-blue-500/50 dark:border-blue-400/50': variant === 'outline',
+          'border-[#0A66C2]/50': variant === 'linkedin',
         }
       )} />
     </motion.button>
   );
-};
+}
 
 export default Button;
