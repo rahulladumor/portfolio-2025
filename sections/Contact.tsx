@@ -1,12 +1,12 @@
 "use client";
 
 import { useFormspark } from "@formspark/use-formspark";
-import links from "data/links";
+import { links } from "data/links";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEnvelope, FaGithub, FaLinkedin, FaPaperPlane, FaTwitter } from "react-icons/fa";
-import { FaDev } from "react-icons/fa"; 
+import { FaGlobe } from "react-icons/fa"; 
 import { Section } from "types/Sections";
 import { getSectionHeading, openURLInNewTab } from "utils";
 
@@ -33,10 +33,10 @@ const socialLinks = [
   },
   {
     id: 3,
-    title: "Dev.to",
+    title: "Blog",
     subtitle: "Follow my technical articles and development insights",
-    icon: FaDev,
-    url: links.dev,
+    icon: FaGlobe,
+    url: links.blog,
   },
   {
     id: 4,

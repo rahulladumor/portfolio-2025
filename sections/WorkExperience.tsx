@@ -11,151 +11,180 @@ const INITIAL_DISPLAY_COUNT = 2;
 const workExperiences: WorkExperience[] = [
   {
     id: 1,
-    logo: "https://codelamda.com/images/logo.png",
-    name: "CodeLamda Technologies",
-    period: { start: "Sep 24", end: "Present" },
-    position: "Founder & CEO",
-    location: "Surat, Gujarat, India",
-    summary:
-      "Leading innovative cloud solutions and cutting-edge technology projects. Driving strategic technology decisions while maintaining hands-on involvement in project delivery and technical architecture.",
+    logo: "/images/profile.png",
+    name: "Independent Consultant",
+    period: { start: "Jan 2025", end: "Present" },
+    position: "Senior Full Stack Developer & AWS Solutions Architect",
+    location: "Remote",
+    summary: [
+      "Providing expert consulting services in cloud architecture and enterprise solutions",
+      "Designing and implementing scalable cloud-native applications",
+      "Leading technical architecture decisions for client projects",
+      "Implementing best practices in cloud security and cost optimization"
+    ],
     keyFocus: [
       "Cloud Architecture",
-      "AI/ML Solutions",
-      "Strategic Leadership",
-      "Technology Innovation",
-      "Business Growth",
+      "Enterprise Solutions",
+      "Technical Leadership",
+      "Solution Design"
     ],
-    technologies: ["AWS", "Azure", "Python", "Node.js", "React", "TensorFlow"],
-    url: "https://www.codelamda.com",
+    technologies: ["AWS", "React", "Node.js", "TypeScript", "Microservices", "Kubernetes"],
+    url: "https://rahulladumor.com"
   },
   {
     id: 2,
-    logo: "https://prodigybuild.com/images/logo.png",
+    logo: "/images/companies/prodigybuild.png",
     name: "ProdigyBuild",
-    period: { start: "Jul 23", end: "Present" },
-    position: "Lead Engineer",
-    location: "United States",
-    summary:
-      "Spearheading the development of AI-powered SaaS platforms with focus on enterprise-grade serverless solutions. Leading EPIC planning and implementing AI-driven automation systems.",
-    keyFocus: [
-      "AI-Powered SaaS",
-      "Serverless Architecture",
-      "Enterprise Solutions",
-      "Team Leadership",
-      "Technical Strategy",
+    period: { start: "Jul 2023", end: "Dec 2024" },
+    position: "Senior Full Stack Developer",
+    location: "Remote",
+    summary: [
+      "Led development of cloud-native applications using AWS services",
+      "Architected and implemented microservices-based solutions",
+      "Mentored junior developers and established best practices",
+      "Implemented CI/CD pipelines and DevOps practices"
     ],
-    technologies: ["AWS", "Azure", "Python", "Node.js", "React", "TensorFlow"],
-    url: "https://prodigybuild.com",
+    keyFocus: [
+      "Cloud Architecture",
+      "Full Stack Development",
+      "Team Leadership",
+      "DevOps"
+    ],
+    technologies: ["AWS", "React", "Node.js", "TypeScript", "Docker", "Kubernetes"],
+    url: "https://prodigybuild.com"
   },
   {
     id: 3,
-    logo: "https://protectonce.com/images/logo.png",
+    logo: "/images/companies/protectonce.png",
     name: "ProtectOnce",
-    period: { start: "May 22", end: "Aug 24" },
-    position: "SDE 2",
-    location: "Bangalore, Karnataka, India",
-    summary:
-      "Led the development of cloud-native security solutions and implemented enterprise-grade authentication systems. Architected and deployed scalable microservices infrastructure.",
-    keyFocus: ["Cloud Security", "Authentication Systems", "Microservices", "DevSecOps", "System Architecture"],
-    technologies: ["AWS", "Node.js", "Python", "Docker", "Kubernetes", "MongoDB"],
-    url: "https://www.protectonce.com",
+    period: { start: "Jul 2022", end: "Sep 2024" },
+    position: "Senior Software Engineer",
+    location: "Remote",
+    summary: [
+      "Developed secure cloud solutions and security automation tools",
+      "Implemented security best practices and compliance measures",
+      "Built scalable backend services and RESTful APIs",
+      "Led security audits and vulnerability assessments"
+    ],
+    keyFocus: [
+      "Security Engineering",
+      "Cloud Security",
+      "API Development",
+      "Automation"
+    ],
+    technologies: ["AWS", "Python", "Node.js", "Security Tools", "Docker"],
+    url: "https://protectonce.com"
   },
   {
     id: 4,
-    logo: "https://appgambit.com/images/logo.png",
-    name: "AppGambit",
-    period: { start: "Jan 20", end: "Jul 20" },
-    position: "Software Engineer",
-    location: "Ahmedabad, Gujarat, India",
-    summary:
-      "Developed and maintained cloud-based applications using serverless architecture. Implemented CI/CD pipelines and automated deployment processes.",
-    keyFocus: ["Serverless Development", "Cloud Integration", "DevOps", "API Development", "Performance Optimization"],
-    technologies: ["AWS Lambda", "Node.js", "React", "DynamoDB", "Jenkins"],
-    url: "https://www.appgambit.com",
+    logo: "/images/companies/primelab.png",
+    name: "PrimeLab",
+    period: { start: "Apr 2022", end: "Jul 2022" },
+    position: "Full Stack Developer",
+    location: "Remote",
+    summary: [
+      "Built responsive web applications using React and Node.js",
+      "Implemented real-time features using WebSocket",
+      "Developed and maintained REST APIs",
+      "Optimized application performance and user experience"
+    ],
+    keyFocus: [
+      "Frontend Development",
+      "Backend Development",
+      "Real-time Applications",
+      "Performance Optimization"
+    ],
+    technologies: ["React", "Node.js", "MongoDB", "WebSocket", "Redis"],
+    url: "https://primelab.io"
   },
   {
     id: 5,
-    logo: "https://nds.com/images/logo.png",
+    logo: "/images/companies/nds.png",
     name: "NDS Global",
-    period: { start: "Aug 21", end: "May 22" },
-    position: "Senior Software Developer",
-    location: "India",
-    summary:
-      "Developed and implemented enterprise chatbot solutions using AWS Lex and Azure. Designed conversation flows, integrated with enterprise systems, and optimized solutions based on user feedback and usage data.",
-    keyFocus: ["AWS Lex", "Azure Integration", "Chatbot Development", "Enterprise Systems", "Data Analytics"],
-    technologies: ["AWS Lex", "Azure", "Chatbot", "Enterprise Systems", "Data Analytics"],
-    url: "https://nds.com",
+    period: { start: "Aug 2021", end: "May 2022" },
+    position: "Full Stack Developer",
+    location: "Remote",
+    summary: [
+      "Developed enterprise applications using React and Node.js",
+      "Implemented cloud solutions using AWS services",
+      "Created automated deployment pipelines",
+      "Optimized database performance and queries"
+    ],
+    keyFocus: [
+      "Enterprise Applications",
+      "Cloud Integration",
+      "Database Optimization",
+      "DevOps"
+    ],
+    technologies: ["React", "Node.js", "AWS", "PostgreSQL", "Jenkins"],
+    url: "https://ndsglobal.com"
   },
   {
     id: 6,
-    logo: "https://appgambit.com/images/logo.png",
+    logo: "/images/companies/appgambit.png",
     name: "AppGambit",
-    period: { start: "Jul 20", end: "Jul 21" },
+    period: { start: "Jan 2020", end: "Jul 2021" },
     position: "Full Stack Cloud Developer",
-    location: "Surat, Gujarat, India",
-    summary:
-      "Developed high-scale systems including audit logger using ElasticSearch and IVR system. Managed systems handling 1M+ requests per minute using AWS services (ECS, EKS, Fargate, ECR). Focused on performance tuning and cloud infrastructure optimization.",
-    keyFocus: ["AWS Services", "ElasticSearch", "High-Scale Systems", "IVR Development", "Cloud Infrastructure"],
-    technologies: ["AWS", "ElasticSearch", "High-Scale Systems", "IVR", "Cloud Infrastructure"],
-    url: "https://appgambit.com",
+    location: "Surat, India",
+    summary: [
+      "Led cloud-native application development using AWS services",
+      "Implemented serverless architectures and microservices",
+      "Developed full-stack applications using React and Node.js",
+      "Managed cloud infrastructure and DevOps processes"
+    ],
+    keyFocus: [
+      "Cloud Development",
+      "Serverless Architecture",
+      "Full Stack Development",
+      "Infrastructure Management"
+    ],
+    technologies: ["AWS", "React", "Node.js", "Serverless", "Docker"],
+    url: "https://appgambit.com"
   },
   {
     id: 7,
-    logo: "https://appgambit.com/images/logo.png",
-    name: "AppGambit",
-    period: { start: "Jan 20", end: "Jul 20" },
-    position: "Cloud Engineer",
-    location: "Surat, Gujarat, India",
-    summary:
-      "Designed and implemented cloud-based solutions, managed containerized applications, and utilized multiple cloud service providers. Focused on analyzing business requirements, monitoring system performance, and resolving complex issues.",
-    keyFocus: [
-      "Cloud Architecture",
-      "Container Management",
-      "Performance Monitoring",
-      "System Design",
-      "Cloud Optimization",
+    logo: "/images/companies/bynebits.png",
+    name: "Bynebits",
+    period: { start: "Dec 2017", end: "Jul 2019" },
+    position: "Software Developer",
+    location: "Surat, India",
+    summary: [
+      "Developed web applications using JavaScript frameworks",
+      "Built and maintained RESTful APIs",
+      "Implemented responsive UI designs",
+      "Collaborated with cross-functional teams"
     ],
-    technologies: ["Cloud", "Containerization", "Performance Monitoring", "System Design", "Cloud Optimization"],
-    url: "https://appgambit.com",
+    keyFocus: [
+      "Web Development",
+      "API Development",
+      "UI/UX Implementation",
+      "Team Collaboration"
+    ],
+    technologies: ["JavaScript", "Angular", "Node.js", "MongoDB", "Express"],
+    url: "https://bynebits.com"
   },
   {
     id: 8,
-    logo: "https://bynebits.com/images/logo.png",
-    name: "Bynebits",
-    period: { start: "Dec 17", end: "Jul 19" },
-    position: "Software Developer",
-    location: "Indore, Madhya Pradesh, India",
-    summary:
-      "Built scalable web applications using Node.js and AWS serverless technologies. Developed RenagatePartner platform for company investment insights and visualization. Designed efficient database architectures and implemented complex data processing systems.",
-    keyFocus: ["Node.js", "AWS Serverless", "Database Architecture", "Data Analytics", "System Optimization"],
-    technologies: ["Node.js", "AWS Serverless", "Database Architecture", "Data Analytics", "System Optimization"],
-    url: "https://bynebits.com",
-  },
-  {
-    id: 9,
-    logo: "https://creativeinfotech.com/images/logo.png",
+    logo: "/images/companies/creative.png",
     name: "Creative Infotech",
-    period: { start: "Apr 16", end: "Sep 17" },
-    position: "Full Stack Developer",
-    location: "Surat, Gujarat, India",
-    summary:
-      "Developed an E-commerce application using PHP Codeigniter with three panels for local women's clothing business. Implemented real-time cart management, session handling, and optimized database performance through caching and best practices.",
+    period: { start: "Apr 2016", end: "Sep 2017" },
+    position: "Junior Developer",
+    location: "Surat, India",
+    summary: [
+      "Developed web applications using PHP and JavaScript",
+      "Created and maintained databases",
+      "Implemented frontend designs using HTML/CSS",
+      "Assisted in project planning and execution"
+    ],
     keyFocus: [
-      "PHP Codeigniter",
-      "E-commerce Development",
-      "Database Optimization",
-      "Session Management",
-      "Performance Tuning",
+      "Web Development",
+      "Database Management",
+      "Frontend Development",
+      "Project Planning"
     ],
-    technologies: [
-      "PHP Codeigniter",
-      "E-commerce",
-      "Database Optimization",
-      "Session Management",
-      "Performance Tuning",
-    ],
-    url: "https://creativeinfotech.com",
-  },
+    technologies: ["PHP", "MySQL", "JavaScript", "HTML", "CSS"],
+    url: "https://creativeinfotech.com"
+  }
 ];
 
 const WorkExperienceSection = () => {

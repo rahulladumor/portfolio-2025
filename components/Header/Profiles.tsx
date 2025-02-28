@@ -1,9 +1,9 @@
 import Tippy from "@tippyjs/react";
 import clsx from "clsx";
-import links from "data/links";
+import { links } from "data/links";
 import { useCallback } from "react";
 import type { IconType } from "react-icons";
-import { FaDev, FaGithubAlt, FaGlobe, FaLinkedinIn, FaMediumM } from "react-icons/fa";
+import { FaGithubAlt, FaGlobe, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 
 interface Profile {
   title: string;
@@ -26,16 +26,10 @@ const profiles: Profile[] = [
     className: "bg-[#333333]",
   },
   {
-    title: "Medium",
-    icon: FaMediumM,
-    link: links.medium,
-    className: "bg-[#000000]",
-  },
-  {
-    title: "Dev.to",
-    icon: FaDev,
-    link: links.dev,
-    className: "bg-[#0A0A0A]",
+    title: "Twitter",
+    icon: FaTwitter,
+    link: links.twitter,
+    className: "bg-[#1DA1F2]",
   },
   {
     title: "Portfolio",

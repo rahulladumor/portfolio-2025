@@ -60,8 +60,8 @@ const Header: React.FC = () => {
               <h2 className="text-2xl font-semibold mt-4 bg-gradient-to-r from-purple-500 via-blue-500 to-pink-500 bg-clip-text text-transparent">
                 AWS Expert & Cloud Architect
               </h2>
-              <p className="text-gray-600 dark:text-gray-400 mt-2">
-                Founder & CEO of CodeLamda Technologies
+              <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400">
+                Senior Full Stack Developer & AWS Solutions Architect
               </p>
             </motion.div>
           </div>

@@ -1,13 +1,10 @@
-const links = {
-  website: "https://www.codelamda.com",
-  linkedin: "https://www.linkedin.com/in/rahulladumor",
-  dev: "https://dev.to/rahulladumor",
-  medium: "https://medium.com/@ladumorrahul",
+export const links = {
+  website: "https://www.rahulladumor.com",
   github: "https://github.com/rahulladumor",
-  email: "mailto:rahul@codelamda.com",
-  phone: "tel:+917567611653",
-  location: "https://www.google.com/maps/place/Surat,+Gujarat",
-  portfolio: "https://www.codelamda.com",
+  linkedin: "https://linkedin.com/in/rahulladumor",
+  twitter: "https://twitter.com/rahulladumor",
+  email: "mailto:rahul@rahulladumor.com",
+  blog: "https://blog.rahulladumor.com",
+  resume: "https://resume.rahulladumor.com",
+  portfolio: "https://www.rahulladumor.com",
 };
-
-export default links;

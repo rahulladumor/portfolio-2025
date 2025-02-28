@@ -94,9 +94,13 @@ const WorkExperienceCard: React.FC<Props> = ({ experience, index }) => {
               <span className="font-medium">{experience.location}</span>
             </div>
 
-            <p className="mt-6 text-gray-600 dark:text-gray-300 text-base leading-relaxed">
-              {experience.summary}
-            </p>
+            <ul className="list-disc list-inside space-y-2">
+              {experience.summary.map((item, index) => (
+                <li key={index} className="text-gray-600 dark:text-gray-400">
+                  {item}
+                </li>
+              ))}
+            </ul>
 
             {experience.keyFocus && (
               <div className="mt-6">

@@ -11,7 +11,7 @@ export const sectionSEO: Record<Section, SectionSEO> = {
   [Section.AboutMe]: {
     title: "Rahul Ladumor | Senior Full Stack Developer & AWS Solutions Architect",
     description:
-      "Award-winning Full Stack Developer and AWS Certified Solutions Architect with 7+ years of experience. Specialized in React.js, Node.js, TypeScript, and cloud-native applications. Founder of CodeLamda Technologies.",
+      "Award-winning Full Stack Developer and AWS Certified Solutions Architect with 7+ years of experience. Specialized in React.js, Node.js, TypeScript, and cloud-native applications.",
     keywords: [
       "Full Stack Developer",
       "AWS Solutions Architect",
@@ -22,14 +22,14 @@ export const sectionSEO: Record<Section, SectionSEO> = {
       "Software Engineer",
       "Web Developer",
       "JavaScript Developer",
-      "Tech Entrepreneur",
+      "Senior Developer",
     ],
     type: "profile",
   },
   [Section.WorkExperience]: {
     title: "Professional Experience | Full Stack & Cloud Architecture | Rahul Ladumor",
     description:
-      "Led high-impact projects at CodeLamda Technologies and ProtectOnce, delivering scalable cloud solutions and enterprise-grade applications. Expertise in AWS, React.js, Node.js, and microservices architecture.",
+      "Led high-impact projects delivering scalable cloud solutions and enterprise-grade applications. Expertise in AWS, React.js, Node.js, and microservices architecture.",
     keywords: [
       "Senior Developer Experience",
       "AWS Project Experience",
@@ -40,7 +40,7 @@ export const sectionSEO: Record<Section, SectionSEO> = {
       "React.js Experience",
       "Node.js Projects",
       "Enterprise Solutions",
-      "Startup Experience",
+      "System Architecture",
     ],
     type: "experience",
   },

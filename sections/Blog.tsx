@@ -1,10 +1,10 @@
 import Button from "components/Button";
-import links from "data/links";
+import { links } from "data/links";
 import { AnimatePresence, motion } from "framer-motion";
 import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
-import { FaArrowRight, FaCalendar, FaDev, FaHeart, FaMediumM, FaTags } from "react-icons/fa";
+import { FaArrowRight, FaCalendar, FaGlobe, FaHeart, FaTags } from "react-icons/fa";
 import { Article, Section } from "types/Sections";
 import { formatDateString, getSectionHeading, openURLInNewTab } from "utils";
 
@@ -132,7 +132,7 @@ const Blog = ({ articles }: Props) => {
     author: {
       "@type": "Person",
       name: "Rahul Ladumor",
-      url: "https://codelamda.com",
+      url: "https://blog.rahulladumor.com",
     },
     blogPost: articles.map((article) => ({
       "@type": "BlogPosting",
@@ -188,20 +188,12 @@ const Blog = ({ articles }: Props) => {
                 </Button>
               )}
               <Button
-                icon={FaDev}
-                onClick={() => openURLInNewTab(links.dev)}
+                icon={FaGlobe}
+                onClick={() => openURLInNewTab(links.blog)}
                 className="bg-gradient-to-r from-black/10 via-black/10 to-black/10
                          hover:from-black/20 hover:via-black/20 hover:to-black/20"
               >
-                Follow on DEV
-              </Button>
-              <Button
-                icon={FaMediumM}
-                onClick={() => openURLInNewTab(links.medium)}
-                className="bg-gradient-to-r from-gray-500/10 via-gray-600/10 to-gray-700/10
-                         hover:from-gray-500/20 hover:via-gray-600/20 hover:to-gray-700/20"
-              >
-                Follow on Medium
+                Follow on Blog
               </Button>
             </div>
           </>

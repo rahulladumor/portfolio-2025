@@ -32,10 +32,10 @@ const links = {
 const AboutMe = () => {
   const seoKeywords = [
     "Rahul Ladumor",
-    "CEO CodeLamda Technologies",
+    "Senior Full Stack Developer",
+    "AWS Solutions Architect",
+    "Cloud Architecture Expert",
     "Technology Leader",
-    "Cloud Solutions Architect",
-    "AWS Certified Expert",
     "Digital Transformation",
     "Enterprise Solutions",
     "Technology Innovation",
@@ -51,16 +51,23 @@ const AboutMe = () => {
     "Technology Strategy"
   ].join(", ");
 
+  const roles = [
+    "AWS Solutions Architect",
+    "Full Stack Developer",
+    "Cloud Architecture Expert",
+    "Tech Lead"
+  ];
+
   return (
     <>
       <Head>
-        <title>Rahul Ladumor - CEO & Founder of CodeLamda Technologies</title>
+        <title>Rahul Ladumor - Senior Full Stack Developer & AWS Solutions Architect</title>
         <meta
           name="description"
-          content="Founder & CEO of CodeLamda Technologies, pioneering innovative solutions in cloud architecture, AI/ML, and digital transformation. Leading enterprises to achieve remarkable technological breakthroughs."
+          content="Senior Full Stack Developer and AWS Solutions Architect, pioneering innovative solutions in cloud architecture, AI/ML, and digital transformation. Leading enterprises to achieve remarkable technological breakthroughs."
         />
         <meta name="keywords" content={seoKeywords} />
-        <meta property="og:title" content="Rahul Ladumor - CEO & Technology Innovation Leader" />
+        <meta property="og:title" content="Rahul Ladumor - Senior Technology Leader" />
         <meta
           property="og:description"
           content="Technology leader and innovator specializing in enterprise solutions, cloud architecture, and digital transformation. Proven track record of driving business growth through technological excellence."
@@ -83,8 +90,8 @@ const AboutMe = () => {
                            tracking-tight leading-snug">
                 👋 Hi, I&apos;m Rahul Ladumor
               </h1>
-              <p className="mt-4 text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-                Founder & CEO of <span className="text-blue-600 dark:text-blue-400">CodeLamda Technologies</span>, where I lead innovation in cloud architecture, AI/ML solutions, and digital transformation.
+              <p className="text-lg md:text-xl text-gray-800 dark:text-gray-300 text-justify">
+                Senior Full Stack Developer and AWS Solutions Architect with extensive experience in cloud architecture, AI/ML solutions, and digital transformation.
               </p>
               <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                 With over 7+ years of experience, I&apos;ve guided enterprises to achieve remarkable technological breakthroughs, including
@@ -122,7 +129,7 @@ const AboutMe = () => {
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {[
                 {
-                  title: "Enterprise Cloud Solutions",
+                  title: "Cloud Architecture",
                   description: "Strategic implementation of cloud architectures using AWS, Azure, and GCP, delivering scalable and cost-effective solutions for enterprises.",
                   icon: FaCloud
                 },

@@ -23,7 +23,7 @@ const philanthropyList: Philanthropy[] = [
     description: "Founded and grew a tech community, organizing workshops and creating platforms for knowledge sharing.",
     subtitle: "Founded and grew a tech community of 1500+ active developers. Organized 40+ technical workshops and hackathons.",
     keywords: ["Community Building", "Tech Events", "Knowledge Sharing", "Networking"],
-    url: "https://community.codelamda.com"
+    url: "https://community.rahulladumor.com"
   }
 ];
 

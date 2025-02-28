@@ -8,7 +8,7 @@ export interface WorkExperience {
   };
   position: string;
   location: string;
-  summary: string;
+  summary: string[];
   keyFocus: string[];
   technologies?: string[];
   achievements?: string[];

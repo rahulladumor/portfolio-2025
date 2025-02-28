@@ -37,10 +37,10 @@ const Document = () => (
             "@type": "Person",
             name: "Rahul Ladumor",
             url: "https://rahulladumor.com",
-            jobTitle: "Founder & CEO",
+            jobTitle: "Senior Full Stack Developer & AWS Solutions Architect",
             worksFor: {
               "@type": "Organization",
-              name: "CodeLamda Technologies",
+              name: "Independent Professional",
             },
             sameAs: [
               "https://github.com/rahulladumor",

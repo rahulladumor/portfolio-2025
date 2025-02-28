@@ -5,7 +5,7 @@ const nextConfig = {
   // Optimize images
   images: {
     domains: [
-      'rahulladumor.com',
+      'example.com',
       'codelamda.com',
       'prodigybuild.com',
       'media2.dev.to',
@@ -23,7 +23,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**.rahulladumor.com',
+        hostname: '**.example.com',
       },
       {
         protocol: 'https',
@@ -48,9 +48,10 @@ const nextConfig = {
     ],
   },
 
-  // Enable compression
+  // Enable compression and optimization
   compress: true,
   poweredByHeader: false,
+  generateEtags: true,
   
   // Optimize fonts
   optimizeFonts: true,
@@ -60,10 +61,10 @@ const nextConfig = {
 
   // Production optimizations
   compiler: {
-    removeConsole: process.env.NODE_ENV === 'production',
+    removeConsole: process.env.NODE_ENV === 'production'
   },
 
-  // Cache headers
+  // Cache headers for better performance
   headers: async () => [
     {
       source: '/:all*(svg|jpg|jpeg|png|gif|ico|css|js|woff2)',
@@ -114,6 +115,10 @@ const nextConfig = {
         {
           key: 'Permissions-Policy',
           value: 'camera=(), microphone=(), geolocation=()'
+        },
+        {
+          key: 'Content-Security-Policy',
+          value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; connect-src 'self' https:; media-src 'self' https:; object-src 'none'; frame-ancestors 'self'; base-uri 'self'; form-action 'self';"
         }
       ]
     }
@@ -150,27 +155,33 @@ const nextConfig = {
       ]
     });
 
-    // Optimize chunks
+    // Optimize chunks for production builds
     if (!dev && !isServer) {
-      config.optimization.splitChunks = {
-        chunks: 'all',
-        minSize: 20000,
-        maxSize: 244000,
-        minChunks: 1,
-        maxAsyncRequests: 30,
-        maxInitialRequests: 30,
-        cacheGroups: {
-          defaultVendors: {
-            test: /[\\/]node_modules[\\/]/,
-            priority: -10,
-            reuseExistingChunk: true,
-          },
-          default: {
-            minChunks: 2,
-            priority: -20,
-            reuseExistingChunk: true,
+      config.optimization = {
+        ...config.optimization,
+        minimize: true,
+        splitChunks: {
+          chunks: 'all',
+          minSize: 20000,
+          maxSize: 244000,
+          minChunks: 1,
+          maxAsyncRequests: 30,
+          maxInitialRequests: 30,
+          cacheGroups: {
+            defaultVendors: {
+              test: /[\\/]node_modules[\\/]/,
+              priority: -10,
+              reuseExistingChunk: true,
+            },
+            default: {
+              minChunks: 2,
+              priority: -20,
+              reuseExistingChunk: true,
+            },
           },
         },
+        usedExports: true,
+        concatenateModules: true
       };
     }
 
